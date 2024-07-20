@@ -9,11 +9,11 @@
                 <span>
             /
         </span>
-                <a href="/uma/course/apply/{{$course->id}}">{{$course->title}}</a>
+                <a href="/course/apply/{{$course->id}}">{{$course->title}}</a>
                 <span>
             /
         </span>
-                <a href="/uma/course/apply/{{$course->id}}">Apply </a>
+                <a href="/course/apply/{{$course->id}}">Apply </a>
             </div>
         </div>
         @if($errors->first('error'))

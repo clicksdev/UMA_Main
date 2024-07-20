@@ -104,7 +104,7 @@ createApp({
         this.errors = []
         $('.loader').fadeIn().css('display', 'flex')
           try {
-              const response = await axios.post(`/uma/admin/courses/update`, {
+              const response = await axios.post(`/admin/courses/update`, {
                   id: this.course.id,
                   title: this.title,
                   brief: this.brief,
@@ -127,7 +127,7 @@ createApp({
               }
               );
               if (response.data.status) {
-                window.location.href = "/uma/admin/courses"
+                window.location.href = "/admin/courses"
               }
           } catch (error) {
             this.errors = error.response.data.errors

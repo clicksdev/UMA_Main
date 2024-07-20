@@ -13,7 +13,7 @@
     </div>
     <nav>
         <div class="container">
-            <a href="/uma">
+            <a href="">
                 <img src="{{ $settingsArray['logo']['media_url'] }}" alt="logo" class="logo">
             </a>
             <div class="links">

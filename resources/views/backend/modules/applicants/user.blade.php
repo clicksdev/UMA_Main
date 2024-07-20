@@ -210,7 +210,7 @@
             _token: '{{ csrf_token() }}'
         },
         success: function (response) {
-            window.location.href = "/uma/admin/applicants"
+            window.location.href = "/admin/applicants"
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText);

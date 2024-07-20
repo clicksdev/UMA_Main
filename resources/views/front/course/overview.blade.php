@@ -9,7 +9,7 @@
                 <span>
             /
         </span>
-                <a href="/uma/course/apply/{{$course->id}}">{{$course->title}}</a>
+                <a href="/course/apply/{{$course->id}}">{{$course->title}}</a>
                 <span>
             /
         </span>
@@ -176,7 +176,7 @@
                         </div>
                     </div>
                     @if ($course->isReady)
-                        <a href="/uma/course/apply/{{$course->id}}" class="apply" style="display: none;text-decoration: none">
+                        <a href="/course/apply/{{$course->id}}" class="apply" style="display: none;text-decoration: none">
                             Apply Now
                         </a>
                     @else
@@ -201,7 +201,7 @@
                     </div>
                     <div class="courses_wrapper">
                         @foreach ($latest_courses as $course)
-                            <a href="/uma/course/{{$course->id}}"
+                            <a href="/course/{{$course->id}}"
                                class="course_card {{$course->isReady ? '' : 'coming-soon'}}">
                                 <div class="img">
                                     <img src="{{ $course->hasMedia() ? $course->getFirstMediaUrl() :  '' }}" alt="">

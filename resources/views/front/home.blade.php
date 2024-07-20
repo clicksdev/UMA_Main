@@ -139,7 +139,7 @@
                             <div class="swiper-wrapper">
 
                                     @foreach ($latest_courses as $course)
-                                        <a href="{{$course->isReady ? '/uma/course/' . $course->id : "#"}}" class="course_card swiper-slide {{$course->isReady ? '' : 'coming-soon'}}">
+                                        <a href="{{$course->isReady ? '/course/' . $course->id : "#"}}" class="course_card swiper-slide {{$course->isReady ? '' : 'coming-soon'}}">
                                             <div class="img">
                                                 <img src="{{ $course->hasMedia() ? $course->getFirstMediaUrl() :  '' }}" alt="">
                                                 <span class="date">

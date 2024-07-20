@@ -89,7 +89,7 @@ createApp({
         this.errors = []
         $('.loader').fadeIn().css('display', 'flex')
           try {
-              const response = await axios.post(`/uma/admin/courses/store`, {
+              const response = await axios.post(`/admin/courses/store`, {
                   title: this.title,
                   brief: this.brief,
                   overview: this.overview,
