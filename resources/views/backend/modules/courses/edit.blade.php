@@ -1,0 +1,275 @@
+@extends('backend.layouts.layout')
+@section('title',__('categories.add_new'))
+@section('content')
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Subheader-->
+        <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+            <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Info-->
+                <div class="d-flex align-items-center flex-wrap mr-1">
+                    <!--begin::Page Heading-->
+                    <div class="d-flex align-items-baseline flex-wrap mr-5">
+                        <!--begin::Page Title-->
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">{{__('categories.add_new')}}</h5>
+                        <!--end::Page Title-->
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ route('dashboard.index') }}" class="text-muted">{{__('home.title')}}</a>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ route('courses.index') }}" class="text-muted">Courses</a>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="" class="text-muted">{{__('categories.add_new')}}</a>
+                            </li>
+                        </ul>
+                        <!--end::Breadcrumb-->
+                    </div>
+                    <!--end::Page Heading-->
+                </div>
+                <!--end::Info-->
+                <!--begin::Entry-->
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid mb-4" id="course_wrapper">
+        <!--begin::Container-->
+        <div class=" container ">
+            <div class="card card-custom">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{__('categories.add_new')}}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Title *</label>
+                        <div class="col-lg-6">
+                            <input placeholder="Title" class="form-control" name="title" type="text" v-model="title">
+                            <div class="invalid-feedback" :style="{ display: this.errors['title'] ? 'block' : null }" >@{{ this.errors["title"] ? this.errors["title"][0] : ''}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Brief</label>
+                        <div class="col-lg-6">
+                            <input placeholder="Brief" class="form-control" name="brief" type="text" v-model="brief">
+                            <div class="invalid-feedback" :style="{ display: this.errors['brief'] ? 'block' : null }" >@{{ this.errors["brief"] ? this.errors["brief"][0] : ''}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Overview *</label>
+                        <div class="col-lg-6">
+                            <textarea placeholder="overview" class="form-control" name="overview" type="text" v-model="overview">
+                            </textarea>
+                            <div class="invalid-feedback" :style="{ display: this.errors['overview'] ? 'block' : null }" >@{{ this.errors["overview"] ? this.errors["overview"][0] : ''}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Duration *</label>
+                        <div class="col-lg-6">
+                            <input placeholder="Duration in hours" class="form-control" name="duration" type="number" v-model="duration">
+                            <div class="invalid-feedback" :style="{ display: this.errors['duration'] ? 'block' : null }" >@{{ this.errors["duration"] ? this.errors["duration"][0] : ''}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Started at</label>
+                        <div class="col-lg-6">
+                            <input placeholder="Started at" class="form-control" name="started_at" type="date" v-model="started_at">
+                            <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : ''}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Availability</label>
+                        <div class="col-lg-6">
+                            <select name="availability" id="availability" class="form-control" v-model="isReady">
+                                <option :value="1">Abilable</option>
+                                <option :value="0">Coming Soon</option>
+                            </select>
+                            <div class="invalid-feedback" :style="{ display: this.errors['isReady'] ? 'block' : null }" >@{{ this.errors["isReady"] ? this.errors["isReady"][0] : ''}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
+                        <div class="col-lg-6">
+                            <div class="d-flex" style="gap: 8px">
+                                <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="current_objective_text" @keyup.enter="handleAddObjective">
+                                <button class="btn btn-secondary" @click="handleAddObjective">Add</button>
+                            </div>
+                            <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
+                                <span  v-for="obj, index in objectives" :key="obj.id" class="text-secondary" style="font-size: 16px">
+                                    @{{obj["name"] || obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Questions</label>
+                        <div class="col-lg-6">
+                            <div class="d-flex" style="gap: 8px">
+                                <input type="text" name="course_questions" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
+                                <button class="btn btn-secondary" @click="handleAddQuestion">Add</button>
+                            </div>
+                            <div class="questions w-100 mt-3" style="display: flex; gap: 8px; flex-wrap: wrap">
+                                <span  v-for="obj, index in questions" :key="obj.id" class="text-secondary" style="font-size: 16px">
+                                    @{{obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveQuestion(index)">x</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Vedio Questions</label>
+                        <div class="col-lg-6">
+                            <div class="d-flex" style="gap: 8px">
+                                <input type="text" name="course_questions" id="course_questions" class="form-control" v-model="current_question_text_v" @keyup.enter="handleAddQuestionv">
+                                <button class="btn btn-secondary" @click="handleAddQuestionv">Add</button>
+                            </div>
+                            <div class="questions w-100 mt-3" style="display: flex; gap: 8px;flex-wrap: wrap">
+                                <span  v-for="obj, index in v_questions" :key="obj.id" class="text-secondary" style="font-size: 16px">
+                                    @{{obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveQuestionv(index)">x</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Image *</label>
+                        <div class="col-lg-6">
+                            <div class="image-input image-input-outline image-input-circle" id="kt_image_3">
+                                <div class="image-input-wrapper">
+                                <img :src="image ? getUri(image) : '{{ $course->hasMedia() ? $course->getFirstMediaUrl() :  asset('/assets/media/logo-placeholder.png') }}'" alt="" style="width: 100%;height: 100%;object-fit: cover;border-radius: 50%;">
+                            </div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                            data-action="change" data-toggle="tooltip" title=""
+                                    data-original-title="Change avatar">
+                                    <i class="fa fa-pen icon-sm text-muted"></i>
+                                    <input accept=".png, .jpg, .jpeg" name="image" id="course_image" type="file" @change="handleChangeCourseImage">
+                                </label>
+
+                                <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                    data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                </span>
+                            </div>
+                            <div class="invalid-feedback" :style="{ display: this.errors['image'] ? 'block' : null }" >@{{ this.errors["image"] ? this.errors["image"][0] : ''}}</div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <h2>Levels</h2>
+                        <button class="btn btn-success" @click="handleAddLevel">Add Level</button>
+                    </div>
+
+                    <div v-for="level, index in levels" :key="index">
+                        <div class="form-group row mt-2">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Title</label>
+                            <div class="col-lg-6">
+                                <input placeholder="Level title" class="form-control" name="title" type="text" v-model="levels[index]['title']">
+                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : ''}}</div> --}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Overview</label>
+                            <div class="col-lg-6">
+                                <input placeholder="Level overview" class="form-control" name="overview" type="text" v-model="levels[index]['overview']">
+                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : ''}}</div> --}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Duration</label>
+                            <div class="col-lg-6">
+                                <input placeholder="Level duration" class="form-control" name="duration" type="number" v-model="levels[index]['duration']">
+                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : ''}}</div> --}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Sessions</label>
+                            <div class="col-lg-6">
+                                <input placeholder="Number of sessions" class="form-control" name="sessions" type="number" v-model="levels[index]['num_sessions']">
+                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : ''}}</div> --}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
+                            <div class="col-lg-6">
+                                <div class="d-flex" style="gap: 8px">
+                                    <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="levels[index]['current_objective_text']" @keyup.enter="handleAddObjectiveLevel(index)">
+                                    <button class="btn btn-secondary" @click="handleAddObjectiveLevel(index)">Add</button>
+                                </div>
+                                <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
+                                    <span  v-for="obj, i in (levels[index] && levels[index]['objectives'] ? levels[index]['objectives'] : [])" :key="obj.id" class="text-secondary" style="font-size: 16px">
+                                        @{{obj["name"] || obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Image *</label>
+                            <div class="col-lg-6">
+                                <div class="image-input image-input-outline image-input-circle" id="kt_image_3"  @click="this.currentLevelIndex = index" >
+                                    <div class="image-input-wrapper">
+                                        <img :src="levels[index].image ? getUri(levels[index].image) : getBackgroundImage(index)" alt="" style="width: 100%;height: 100%;object-fit: cover;border-radius: 50%;">
+                                    </div>
+
+                                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"  @click="this.currentLevelIndex = index"
+                                data-action="change" data-toggle="tooltip" title=""
+                                data-original-title="Change avatar">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input accept=".png, .jpg, .jpeg" id="course_image" type="file"@change="handelChangeLevelImage">
+                                    </label>
+
+                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                        data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                    </span>
+                                </div>
+                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['image'] ? 'block' : null }" >@{{ this.errors["image"] ? this.errors["image"][0] : ''}}</div> --}}
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="index != 0">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12"></label>
+                            <div class="col-lg-6">
+                                <button class="btn btn-danger" @click="handleRemoveLevel(index)">Remove level</button>
+                            </div>
+                        </div>
+                        <hr v-if="index + 1 < levels.length">
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-2">
+                            <button @click="update"
+                                    class="btn font-weight-bold btn-primary mr-2">{{__('sidebar.save')}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('Script')
+    <script>
+        window.course = @json($course);
+        window.objectives = @json($course->objectives()->get());
+        window.questions = @json($course->questions()->where("type", 1)->pluck('question')->toArray());
+        window.v_questions = @json($course->questions()->where("type", 2)->pluck('question')->toArray());
+        window.levels = @json($levels);
+    </script>
+    <script src="{{ asset('assets/libs/axios.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery.js') }}"></script>
+    <script src="{{ asset('assets/libs/vue.js') }}"></script>
+    <script src="{{ asset('assets/vueJs/editCourse.js') }}"></script>
+@endsection
+

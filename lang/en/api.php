@@ -1,0 +1,21 @@
+<?php
+return [
+    'someErrorsHappened'	    => 'Some errors happened',
+    'successOperation'	        => 'Successfully operation',
+    'successRegister'           => 'Successful registration process, you will receive an activation code message',
+    'usrAlreadyActive'          => 'The account that you activate is already activated',
+    'userBlocked'               => 'Your account has been deactivated',
+    'activeCodeNotToUser'       => 'The activation code you have entered is incorrect',
+    'wrongCredential'           => 'The mobile number or password you entered isn\'t connected to an account',
+    'successLogin'              => 'You have signed in successfully',
+    'resendCodeSent'            => 'The activation code has been re-sent',
+    'userWaitingActivation'     => 'Your account is awaiting activation, you will receive a message with the activation code',
+    'resetCodeSent' 		    => 'Reset code sent successfully',
+    'tokenNotAllowResetPass'    => 'Your identification code is not allowed to change the password',
+    'passwordUpdated'           => 'Your password has been successfully changed',
+    'profileUpdated'            => 'The profile has been successfully updated',
+    'logOutSuccess'             => 'You have signed out successfully',
+    'contactUsSent'             => 'Your inquiry has been sent',
+    'orderNotToUser'            => 'This request does not pertain to your account',
+    'userNotHaveEnoughCoins'    => 'You do not have enough points to bid.. Buy now',
+];

@@ -1,0 +1,33 @@
+<?php
+
+return [
+
+    'dashboard'         => 'Home Page',
+    'settings'          => 'Settings',
+    'courses'          => 'Courses',
+    'applicants'          => 'Applicants',
+    'admins'            => 'Managers' ,
+    'users'             => 'Users',
+    'coupons'           => 'Discount Codes',
+    'ads'               => 'Advertisement' ,
+    'contact_us'        => 'Contact Us' ,
+    'custom_requests'   => 'Custom Orders' ,
+    'orders'            => 'Orders' ,
+    'cities_areas'      => 'Cities And Areas' ,
+    'roles_permissions' => 'Roles And Permissions' ,
+    'roles'             => 'Roles' ,
+    'permissions'       => 'Permissions' ,
+    'cities'            => 'Cities' ,
+    'areas'             => 'Areas' ,
+    'categories'        => 'Categories' ,
+    'stores'            => 'Stores' ,
+    'products'          => 'Products' ,
+    'packages'          => 'Packages' ,
+    'user_packages'     => 'Package Purchase Requests' ,
+    'auctions'          => 'Auctions' ,
+    'user_profile'      => 'User Profile' ,
+    'hi'                => 'Hi' ,
+    'sign_out'          => 'Sign Out',
+    'save'              => 'Save Data',
+    'no_data_to_show'   => 'No Data To Show',
+];

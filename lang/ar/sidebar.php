@@ -1,0 +1,33 @@
+<?php
+
+return [
+
+    'dashboard'         => 'الـرئيسية' ,
+    'settings'          => 'الإعدادات' ,
+    'courses'          => 'الدورات' ,
+    'applicants'          => 'المتقدمين' ,
+    'admins'            => 'المديرين' ,
+    'users'             => 'المستخدمين' ,
+    'coupons'           => 'اكواد الخصم' ,
+    'ads'               => 'الإعلانات' ,
+    'contact_us'        => 'تواصل معنا' ,
+    'custom_requests'   => 'الطلبات المخصصة' ,
+    'orders'            => 'الـطـلبات' ,
+    'cities_areas'      => 'المدن الأحياء' ,
+    'roles_permissions' => 'الوظائف والصلاحيات' ,
+    'roles'             => 'الوظائف' ,
+    'permissions'       => 'الصلاحيات' ,
+    'cities'            => 'المدن' ,
+    'areas'             => 'الأحياء' ,
+    'categories'        => 'الاقسام' ,
+    'stores'            => 'المتاجر' ,
+    'products'          => 'المنتجات' ,
+    'packages'          => 'الباقات' ,
+    'user_packages'     => 'طلبات شراء الباقات' ,
+    'auctions'          => 'المزادات' ,
+    'user_profile'      => 'الملف التعريفى للمستخدم' ,
+    'hi'                => 'مرحبا' ,
+    'sign_out'          => 'تسجيل الخروج',
+    'save'              => 'حفظ البيانات',
+    'no_data_to_show'   => 'لا يوجد بيانات لعرضها',
+];
