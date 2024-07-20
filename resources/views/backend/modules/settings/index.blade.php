@@ -530,7 +530,7 @@
                                 <label class="col-form-label col-lg-3 col-sm-12">{{ __('UMA Mission') }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
                                     {{ Form::textarea('uma_mission',
-                                    (isset($settingsArray['uma_mission']) && $settingsArray['uma_mission']['value']) ??: null, ['placeholder' =>
+                                    (isset($settingsArray['uma_mission']) && $settingsArray['uma_mission']['value']) ?? null, ['placeholder' =>
                                     "UMA Mission", 'class' => $errors->has('uma_mission') ?
                                     'form-control is-invalid' : 'form-control']) }}
                                     <div class="invalid-feedback">{{ $errors->first('uma_mission') }}
