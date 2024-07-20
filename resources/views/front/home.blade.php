@@ -48,8 +48,9 @@
             <div class="img">
                 <img src="{{ $settingsArray['persident_img']['media_url'] ?? asset('/assets/media/persident_img-placeholder.png') }}">
                 <div class="breif">
-                    {{$settingsArray['presedent_name']['value'] }}
-                    <h1></h1>
+                    <h1>
+                        {{$settingsArray['presedent_name']['value'] }}
+                    </h1>
                     <p>
                     {{$settingsArray['presedent_position']['value'] }}
                     </p>
