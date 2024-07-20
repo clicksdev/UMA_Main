@@ -16,7 +16,7 @@ class SettingsController extends Controller
 
     public function store(CreateUpdateSettingRequest $request)
     {
-        foreach ($request->except('_token', 'logo', 'shape_section_image', 'partners_image') as $key => $value) {
+        foreach ($request->except('_token', 'logo', 'shape_section_image', 'partners_image', 'persident_img') as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
@@ -36,6 +36,11 @@ class SettingsController extends Controller
             $shapeImageSetting = Setting::updateOrCreate(['key' => 'partners_image']);
             $shapeImageSetting->clearMediaCollection('partners_image');
             $shapeImageSetting->addMedia($request->file('partners_image'))->toMediaCollection('partners_image');
+        }
+        if ($request->hasFile('persident_img')) {
+            $shapeImageSetting = Setting::updateOrCreate(['key' => 'persident_img']);
+            $shapeImageSetting->clearMediaCollection('persident_img');
+            $shapeImageSetting->addMedia($request->file('persident_img'))->toMediaCollection('persident_img');
         }
 
         Toastr::success('settings updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
