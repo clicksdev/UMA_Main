@@ -506,7 +506,7 @@
                                 <label class="col-form-label col-lg-3 col-sm-12">{{ __('President Full word') }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
                                     {{ Form::textarea('presedent_word_full',
-                                    $settingsArray['presedent_word_full']['value'] ?? null, ['placeholder' =>
+                                    isset($settingsArray['presedent_word_full']) && $settingsArray['presedent_word_full']['value'] ? $settingsArray['presedent_word_full']['value'] : null, ['placeholder' =>
                                     "President Full word", 'class' => $errors->has('presedent_word_full') ?
                                     'form-control is-invalid' : 'form-control']) }}
                                     <div class="invalid-feedback">{{ $errors->first('presedent_word_full') }}
