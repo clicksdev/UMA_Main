@@ -1,5 +1,5 @@
-<header>
-    <div class="top">
+<header style="margin-top: 46px">
+    <div class="top" style="position: fixed; width: 100%;top: 0; left: 0">
         Unlock your potential and apply now
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right" width="20"
              height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
