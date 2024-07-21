@@ -57,8 +57,8 @@ class HomeController extends Controller
     {
         $validatedData = $request->validated();
         DB::beginTransaction();
-        return $isRegistered = Applicant::where("email", $validatedData['email'])->where("course", $request['email'])->get();
-        if ($isRegistered) {
+        $isRegistered = Applicant::where("email", $validatedData['email'])->where("course", $request['email'])->get();
+        if ($isRegistered->count() > 0) {
             return redirect()->back()->withErrors(["error" => "You have registered before"])->withInput();
         }
         try {
