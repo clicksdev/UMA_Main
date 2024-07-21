@@ -27,7 +27,7 @@
         @endif
         <section class="form" id="apply_wrapper">
             <div class="container">
-                <form action="{{route('course.apply')}}" enctype="multipart/form-data" method="POST" style="background: #ECECEC;width: 100%">
+                <form ref="form" @submit.prevent="handleSubmit" action="{{route('course.apply')}}" enctype="multipart/form-data" method="POST" style="background: #ECECEC;width: 100%">
                     @csrf
                     <input type="hidden" name="course" value="{{$course->title}}">
                     <div class="head_form step1" :class="step == 2 ? 'step2' : (step == 3 ? 'step2 step3' : '')">
@@ -174,10 +174,10 @@
                         @endforeach
                     </div>
                     <div class="input-row" v-if="step > 1">
-                        <button type="button" @click="handlePrev">Previous</button>
-                        <button type="button" v-if="step == 2" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
-                        <button type="submit" v-if="step == 3" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
-                        {{-- <div class="loader" v-if="loader"></div> --}}
+                        <button type="button" v-if="!loader" @click="handlePrev">Previous</button>
+                        <button type="button" v-if="step == 2 && !loader" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
+                        <button type="submit" v-if="step == 3 && !loader" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
+                        <div class="loader" v-if="loader" style="margin: auto;grid-column: span 2;"></div>
                     </div>
                     <button type="button" v-if="step == 1" @click="handleNext">Next</button>
                 </form>

@@ -60,7 +60,7 @@
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Applicant Date of Brith *</label>
                         <div class="col-lg-6">
-                            <input placeholder="Title" class="form-control" name="title" type="text" value="{{$user->dob}}" disabled>
+                            <input placeholder="Title" class="form-control" name="title" type="date" value="{{$user->dob}}" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -154,12 +154,14 @@
                     @foreach ($user->answers as $item)
                         <div class="form-group row">
                             <label class="col-form-label text-right col-lg-3 col-sm-12"></label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" style="padding: 8px;border: 1px solid gray;border-radius: 8px;">
                                 <h3>{{ $item->question_txt }}</h3>
                                 @if($item->hasMedia())
                                     <a href="{{ $item->getFirstMediaUrl() }}" download class="btn btn-success">Download Video</a>
                                 @else
-                                    {{ $item->answer }}
+                                    <p class="text-danger" style="font-weight: bold">
+                                        {{ $item->answer }}
+                                    </p>
                                 @endif
                             </div>
                         </div>

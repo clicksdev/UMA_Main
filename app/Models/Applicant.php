@@ -15,6 +15,7 @@ class Applicant extends Model
         "email",
         "course",
         "rate",
+        "dob",
         'gender',
         'country',
         'governante',

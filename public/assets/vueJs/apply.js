@@ -14,6 +14,11 @@ createApp({
     },
     handlePrev() {
         this.step = this.step > 1 ? this.step - 1 : this.step;
+    },
+    handleSubmit() {
+        this.loader = true;
+        // Submit the form using JavaScript to show the loader properly
+        this.$refs.form.submit();
     }
   },
 }).mount('#apply_wrapper')

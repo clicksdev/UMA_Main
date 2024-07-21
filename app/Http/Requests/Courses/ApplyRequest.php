@@ -37,6 +37,7 @@ class ApplyRequest extends FormRequest
             'graduation'    => 'required',
             'prev_education'    => 'required',
             'job'    => 'required',
+            'dob'    => 'required',
             'organization_name'    => 'required',
             'duration_of_employment'    => 'required',
             'subject_studied'    => 'required',
