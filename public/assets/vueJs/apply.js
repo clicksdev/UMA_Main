@@ -11,9 +11,6 @@ createApp({
   methods: {
     handleNext() {
         this.step = this.step < 3 ? this.step + 1 : this.step;
-        if (this.step == 3) {
-            this.loader = true;
-        }
     },
     handlePrev() {
         this.step = this.step > 1 ? this.step - 1 : this.step;
