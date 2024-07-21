@@ -175,8 +175,9 @@
                     </div>
                     <div class="input-row" v-if="step > 1">
                         <button type="button" @click="handlePrev">Previous</button>
-                        <button type="button" v-if="step == 2" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
-                        <button type="submit" v-if="step == 3" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
+                        <button type="button" v-if="step == 2 && !loader" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
+                        <button type="submit" v-if="step == 3 && !loader" @click="handleNext">@{{ step == 3 ? "Apply" : "Next" }}</button>
+                        <div class="loader" v-if="loader"></div>
                     </div>
                     <button type="button" v-if="step == 1" @click="handleNext">Next</button>
                 </form>
