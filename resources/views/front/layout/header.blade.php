@@ -13,19 +13,9 @@
     </div>
     <nav>
         <div class="container">
-            <a href="">
+            <a href="/">
                 <img src="{{ $settingsArray['logo']['media_url'] }}" alt="logo" class="logo">
             </a>
-            <div class="links">
-                <a href="/" class="active">Home</a>
-                <a href="#">Who we are</a>
-                <a href="#">Majors</a>
-                <a href="#">Learn Online</a>
-                <a href="#">UMA</a>
-                <a href="#">Helpful links</a>
-                <a href="#">Contact</a>
-            </div>
-            <span></span>
         </div>
     </nav>
 </header>
