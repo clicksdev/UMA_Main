@@ -189,7 +189,7 @@
 
 @section("script")
     <script src="{{asset('/assets/libs/vue.js')}}"></script>
-    <script src="{{asset('/assets/vueJs/apply.js')}}"></script>
+    <script src="{{asset('/assets/vueJs/apply.js')}}?={{time()}}"></script>
     <script>
         $(".question").on("click", function () {
             $(this).find(".body").slideToggle()
