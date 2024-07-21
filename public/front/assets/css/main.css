@@ -46,13 +46,16 @@ body {
 }
 
 header .top {
-  background-color: #F2685B;
-  padding: 16px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 16px;
-  gap: 8px;
-  color: #0E0E0F;
+    background-color: #F2685B;
+    padding: 16px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    gap: 8px;
+    color: #0E0E0F;
+}
+header .top a{
+    color: #0E0E0F;
 }
 header .top svg {
   width: 16px;
@@ -2587,4 +2590,8 @@ header .container .links a:hover, header .container .links a.active {
  {
     display: none;
  }
+}
+
+html {
+    scroll-behavior: smooth;
 }
