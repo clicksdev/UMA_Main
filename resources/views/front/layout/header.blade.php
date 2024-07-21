@@ -1,6 +1,6 @@
 <header style="margin-top: 46px">
     <div class="top" style="position: fixed; width: 100%;top: 0; left: 0;z-index: 999999">
-        <a href="#our-major">
+        <a href="/#our-major">
             Unlock your potential and apply now
         </a>
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right" width="20"

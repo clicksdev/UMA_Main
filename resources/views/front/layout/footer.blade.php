@@ -4,7 +4,7 @@
             <img src="{{asset('/front/assets/imgs/FINAL Logo UMA-04 1.png')}}" alt="">
             <p>serves as a beacon of knowledge and expertise, nurturing aspiring media professionals and shaping the
                 future of the industry.</p>
-            <a href="#our-major">
+            <a href="/#our-major">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-click" width="20"
                      height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                      stroke-linecap="round" stroke-linejoin="round">
