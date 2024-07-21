@@ -62,6 +62,8 @@ class ApplicantsController extends Controller
     {
         $applicants = Applicant::query();
 
+        $applicants->latest();
+
         $applicants->when($request->start_date, function ($q) use ($request) {
             return $q->where('created_at', '>', Carbon::parse($request->start_date)->startOfDay());
         });
