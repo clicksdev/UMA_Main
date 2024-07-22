@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="container">
-            <a href="#our-major" style="color: #000;text-decoration: none">
+            <a href="#our-major" style="color: #000;text-decoration: none;display:block;margin: auto;">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="20"
                         height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
@@ -37,7 +37,6 @@
                     Scroll Down
                 </span>
             </a>
-            <img src="{{asset('front/assets/imgs/mobile-hero.png')}}" alt="mobile hero" class="mobile-hero">
         </div>
     </section>
     @endif
