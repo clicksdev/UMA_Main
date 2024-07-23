@@ -40,7 +40,7 @@ class ApplyRequest extends FormRequest
             'dob'    => 'required',
             'organization_name'    => 'required',
             'duration_of_employment'    => 'required',
-            'subject_studied'    => 'required',
+            'subject_studied'    => 'nullable',
             'questions'    => 'required',
         ];
     }

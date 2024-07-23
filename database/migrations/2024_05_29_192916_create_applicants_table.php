@@ -29,7 +29,7 @@ return new class extends Migration {
             $table->string('job');
             $table->string('organization_name');
             $table->string('duration_of_employment');
-            $table->string('subject_studied');
+            $table->string('subject_studied')->nullable();
             $table->boolean('gender');
             $table->timestamps();
         });
