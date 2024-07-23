@@ -1,4 +1,7 @@
 <footer>
+    @php
+        $latest_courses = App\Models\Course::latest()->take(7)->get();
+    @endphp
     <div class="container">
         <div class="main">
             <img src="{{asset('/front/assets/imgs/FINAL Logo UMA-04 1.png')}}" alt="">
@@ -22,15 +25,11 @@
         <div class="links">
             <ul>
                 <li><h2>Majors</h2></li>
-                <li><a href="">News</a></li>
-                <li><a href="">Drama</a></li>
-                <li><a href="">Advertising Industry</a></li>
-                <li><a href="">Sports shows</a></li>
-                <li><a href="">Digital Content</a></li>
-                <li><a href="">Radio</a></li>
-                <li><a href="">TV Interviewer</a></li>
+                @foreach ($latest_courses as $course)
+                    <li><a href="{{$course->isReady ? '/course/' . $course->id : "#"}}">{{ $course->title }}</a></li>
+                @endforeach
             </ul>
-            <ul>
+            {{-- <ul>
                 <li><h2>UMA</h2></li>
                 <li><a href="">Comunity</a></li>
                 <li><a href="">Video Guides</a></li>
@@ -43,7 +42,7 @@
                 <li><a href="">Customer Support</a></li>
                 <li><a href="">Terms & Conditions</a></li>
                 <li><a href="">Privacy Policy</a></li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
     <div class="container">
