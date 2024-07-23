@@ -64,7 +64,7 @@ class CourseController extends Controller
 
             foreach ($request->levels as $level) {
                 $image = $level["image"];
-                $objectives = $level["objectives"];
+                $objectives = isset($level["objectives"]) ? ($level["objectives"]) : [];
                 $level["course_id"] = $course->id;
                 $level = Level::create($level);
                 $level->addMedia($image)->toMediaCollection();
