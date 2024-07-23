@@ -11,9 +11,15 @@ createApp({
   methods: {
     handleNext() {
         this.step = this.step < 3 ? this.step + 1 : this.step;
+        setTimeout(() => {
+        window.scroll(0, 0)
+        }, 200);
     },
     handlePrev() {
         this.step = this.step > 1 ? this.step - 1 : this.step;
+        setTimeout(() => {
+            window.scroll(0, 0)
+        }, 200);
     },
     handleSubmit() {
         this.loader = true;
