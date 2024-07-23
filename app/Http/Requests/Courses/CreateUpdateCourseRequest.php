@@ -28,7 +28,7 @@ class CreateUpdateCourseRequest extends FormRequest
             'brief'                     => 'max:255',
             'duration'                  => 'required|numeric',
             'isReady'                   => 'required|boolean',
-            'started_at'                => 'required_if:isReady,1|date',
+            'started_at'                => 'required_if:isReady,1',
             'overview'                  => ['required', 'string','min:2'],
             'image'                     => ['nullable','image','mimes:jpg,png,jpeg','max:10240'],
             "levels"                    => "required|min:1",
