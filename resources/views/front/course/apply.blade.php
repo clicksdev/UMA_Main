@@ -126,7 +126,7 @@
                             </div>
                             <div class="input-group">
                                 <label for="subject_studied">Relevant Courses or Subjects Studied</label>
-                                {{ Form::text('subject_studied', old('subject_studied'), ['placeholder' => 'Courses *', 'class' => $errors->has('subject_studied') ? 'form-control is-invalid' : 'form-control']) }}
+                                {{ Form::text('subject_studied', old('subject_studied'), ['placeholder' => 'Courses ', 'class' => $errors->has('subject_studied') ? 'form-control is-invalid' : 'form-control']) }}
                                 <div class="invalid-feedback">{{ $errors->first('subject_studied') }}</div>
                             </div>
                         </div>
