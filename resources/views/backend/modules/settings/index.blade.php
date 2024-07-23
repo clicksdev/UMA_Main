@@ -364,11 +364,19 @@
                                 <label class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update Title')
                                     }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
-                                    {{ Form::text('never_miss_update_title',
-                                    $settingsArray['never_miss_update_title']['value'] ?? null, ['placeholder' =>
-                                    __('Title'), 'class' => $errors->has('never_miss_update_title') ? 'form-control
-                                    is-invalid' : 'form-control']) }}
-                                    <div class="invalid-feedback">{{ $errors->first('never_miss_update_title') }}</div>
+                                    @php
+                                    $neverMissUpdateTitle = $settingsArray['never_miss_update_title']['value'] ?? null;
+                                    if (is_array($neverMissUpdateTitle)) {
+                                        $neverMissUpdateTitle = implode(',', $neverMissUpdateTitle); // Convert array to string if needed
+                                    }
+                                @endphp
+
+                                {{ Form::text('never_miss_update_title', $neverMissUpdateTitle, [
+                                    'placeholder' => __('Title'),
+                                    'class' => $errors->has('never_miss_update_title') ? 'form-control is-invalid' : 'form-control'
+                                ]) }}
+
+<div class="invalid-feedback">{{ $errors->first('never_miss_update_title') }}</div>
                                 </div>
                             </div>
                             <div class="form-group row">
