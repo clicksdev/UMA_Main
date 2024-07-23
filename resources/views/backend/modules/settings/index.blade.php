@@ -218,10 +218,7 @@
                                     <label class="col-form-label col-lg-3 col-sm-12">{{ __('Masterclass Description')
                                         }}</label>
                                     <div class="col-lg-7 col-md-9 col-sm-12">
-                                        {{ Form::textarea('masterclass_description',
-                                        $settingsArray['masterclass_description']['value'] ?? null, ['placeholder' =>
-                                        __('Description'), 'class' => $errors->has('masterclass_description') ?
-                                        'form-control is-invalid' : 'form-control']) }}
+                                        <textarea name="masterclass_description" id="" cols="30" rows="10" value="{{$settingsArray['masterclass_description'] ? $settingsArray['masterclass_description']['value'] : null}}" class="form-control"></textarea>
                                         <div class="invalid-feedback">{{ $errors->first('masterclass_description') }}
                                         </div>
                                     </div>
