@@ -599,7 +599,7 @@
       <!-- Initialize Swiper -->
       <script>
         var swiper = new Swiper(".mySwiper2", {
-            slidesPerView: "auto",
+            slidesPerView: 1,
             spaceBetween: 16,
             autoplay: true,
             loop: true,
