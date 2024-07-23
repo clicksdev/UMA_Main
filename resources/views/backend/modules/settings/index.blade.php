@@ -364,7 +364,7 @@
                                 <label class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update Title')
                                     }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
-                                    <input type="text" name="never_miss_update_title" id="never_miss_update_title" value="{{$settingsArray['never_miss_update_title'] ? $settingsArray['never_miss_update_title']['value'] : '' }}">
+                                    <input type="text" name="never_miss_update_title" class="form-control" id="never_miss_update_title" value="{{$settingsArray['never_miss_update_title'] ? $settingsArray['never_miss_update_title']['value'] : '' }}">
                                     <div class="invalid-feedback">{{ $errors->first('never_miss_update_title') }}</div>
                                 </div>
                             </div>
@@ -372,7 +372,7 @@
                                 <label class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update
                                     Description') }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
-                                    <textarea name="never_miss_update_description" id="never_miss_update_description" value="{{$settingsArray['never_miss_update_description'] ? $settingsArray['never_miss_update_description']['value'] : '' }}">
+                                    <textarea name="never_miss_update_description" class="form-control" id="never_miss_update_description" value="{{$settingsArray['never_miss_update_description'] ? $settingsArray['never_miss_update_description']['value'] : '' }}">
                                     <div class="invalid-feedback">{{ $errors->first('never_miss_update_description') }}
                                     </div>
                                 </div>
