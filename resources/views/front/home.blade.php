@@ -600,9 +600,7 @@
       <script>
         var swiper = new Swiper(".mySwiper2", {
             slidesPerView: "auto",
-            fremode: true,
             spaceBetween: 16,
-            autoplay: true,
             loop: true,
             pagination: {
                 el: ".swiper-pagination",
