@@ -364,11 +364,11 @@
                                 <label class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update Title')
                                     }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
-                                    {{ Form::text('never_miss_update_title',
-                                    $settingsArray['never_miss_update_title']['value'] ?? null, ['placeholder' =>
-                                    'Title', 'class' => $errors->has('never_miss_update_title') ? 'form-control
+                                    {{ Form::text('never_miss_title',
+                                    $settingsArray['never_miss_title']['value'] ?? null, ['placeholder' =>
+                                    __('Title'), 'class' => $errors->has('never_miss_title') ? 'form-control
                                     is-invalid' : 'form-control']) }}
-                                    <div class="invalid-feedback">{{ $errors->first('never_miss_update_title') }}</div>
+                                    <div class="invalid-feedback">{{ $errors->first('never_miss_title') }}</div>
                                 </div>
                             </div>
                             <div class="form-group row">
