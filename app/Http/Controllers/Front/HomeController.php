@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
         $course = Course::find($id);
 
-        $faqs  = Faq::query()->latest()->get();
+        $faqs  = Faq::query()->get();
 
         return view("front.course.overview", compact("course", 'faqs'));
     }
@@ -48,7 +48,7 @@ class HomeController extends Controller
     {
         $course = Course::find($id);
 
-        $faqs  = Faq::query()->latest()->get();
+        $faqs  = Faq::query()->get();
 
         return view("front.course.apply", compact("course", 'faqs'));
     }
