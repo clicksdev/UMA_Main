@@ -4,7 +4,7 @@
     @endphp
     <div class="container">
         <div class="main">
-            <img src="{{asset('/front/assets/imgs/FINAL Logo UMA-04 1.png')}}" alt="">
+            <img src="{{asset('/front/assets/imgs/logo-n.png')}}" alt="">
             <p>serves as a beacon of knowledge and expertise, nurturing aspiring media professionals and shaping the
                 future of the industry.</p>
             <a href="/#our-major">
