@@ -7,7 +7,7 @@
             <img src="{{asset('/front/assets/imgs/logo-n.png')}}" alt="">
             <p>serves as a beacon of knowledge and expertise, nurturing aspiring media professionals and shaping the
                 future of the industry.</p>
-            <a href="/#our-major">
+            <a href="/#our-major" id="apply_btn_footer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-click" width="20"
                      height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                      stroke-linecap="round" stroke-linejoin="round">
@@ -26,17 +26,14 @@
             <ul>
                 <li><h2>Majors</h2></li>
                 @foreach ($latest_courses as $course)
-                    <li><a href="{{$course->isReady ? '/course/' . $course->id : "#"}}">{{ $course->title }}</a></li>
+                <li><a href="{{$course->isReady ? '/course/' . $course->id : "#"}}">{{ $course->title }}</a></li>
                 @endforeach
             </ul>
-            {{-- <ul>
-                <li><h2>UMA</h2></li>
-                <li><a href="">Comunity</a></li>
-                <li><a href="">Video Guides</a></li>
-                <li><a href="">Documentation</a></li>
-                <li><a href="">Certification</a></li>
-                <li><a href="">Scholarships</a></li>
+            <ul>
+                <li><h2>Quick Links</h2></li>
+                <li><a href="/contact">Contact Us</a></li>
             </ul>
+            {{-- <ul>
             <ul>
                 <li><h2>Links</h2></li>
                 <li><a href="">Customer Support</a></li>

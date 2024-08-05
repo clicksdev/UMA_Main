@@ -255,8 +255,6 @@
                         <h1>
                             Frequently Asked Questions
                         </h1>
-                        <p>Egestas faucibus nisl et ultricies. Tempus lectus condimentum tristique mauris id vitae. Id
-                            pulvinar a eget vitae pellentesque ridiculus platea. Vulputate cursus.</p>
                     </div>
                 </div>
                 <div class="questions_wrapper" style="background-color: #fff;">

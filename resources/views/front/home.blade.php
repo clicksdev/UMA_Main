@@ -11,10 +11,10 @@
                 <p>
                     {{$settingsArray['shape_section_description']['value']}}
                 </p>
-                <form id="signupForm">
+                {{-- <form id="signupForm">
                     <input type="email" name="email" id="email" placeholder="Your email address" required>
                     <button>Sign Up</button>
-                </form>
+                </form> --}}
             </div>
             <div class="img">
                 <img
