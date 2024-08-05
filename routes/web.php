@@ -11,3 +11,6 @@ Route::get('/president-word', [HomeController::class, 'presidentIndex']);
 Route::get('/course/apply/{id}', [HomeController::class, 'courseApplyIndex']);
 Route::post('/course/apply', [HomeController::class, 'applyCourse'])->name('course.apply');
 Route::get("/success/{name}", [HomeController::class, "successIndex"])->name("success.view");
+Route::get('/contact', function() {
+    return view('front.contact');
+});

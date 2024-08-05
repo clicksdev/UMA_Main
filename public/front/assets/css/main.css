@@ -2597,3 +2597,17 @@ header .container .links a:hover, header .container .links a.active {
 html {
     scroll-behavior: smooth;
 }
+
+
+.contact_wrapper .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+
+@media (max-width: 767.98px) {
+    .contact_wrapper .container {
+        grid-template-columns: 1fr;
+    }
+}
