@@ -1,7 +1,7 @@
 @extends('front.layout.master')
 
 @section('content')
-<section class="contact_wrapper" style="margin-bottom: 80px">
+<section class="contact_wrapper" style="margin-bottom: 80px;border-top: 1px solid rgba(0, 0, 0, .4)">
     <div class="container">
         <div class="text">
             <h1>Contact Us</h1>
