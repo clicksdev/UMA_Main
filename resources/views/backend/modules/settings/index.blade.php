@@ -54,7 +54,7 @@
                                 Update') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#toggle-sections">Toggle Sections</a>
+                            <a class="nav-link" data-toggle="tab" href="#toggle-sections-2">Toggle Sections</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#presedent-word-sections">President info</a>
@@ -370,13 +370,14 @@
                                     Description') }}</label>
                                 <div class="col-lg-7 col-md-9 col-sm-12">
                                     <textarea name="never_miss_update_description" class="form-control" id="never_miss_update_description" value="{{$settingsArray['never_miss_update_description'] ? $settingsArray['never_miss_update_description']['value'] : '' }}">
+                                    </textarea>
                                     <div class="invalid-feedback">{{ $errors->first('never_miss_update_description') }}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="toggle-sections" class="tab-pane">
+                        <div id="toggle-sections-2" class="tab-pane">
                             <div class="form-check">
                                 <input type="hidden" name="isShowHero" value="0">
                                 <input class="form-check-input" type="checkbox" name="isShowHero" id="flexCheckDefault1" value="1" {{isset($settingsArray['isShowHero']) && $settingsArray['isShowHero']['value'] == 1 ? "checked" : ""}}>
