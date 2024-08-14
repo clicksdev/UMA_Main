@@ -433,9 +433,14 @@
                 <span>Discover</span>
                 <h1>Our Partners</h1>
             </div>
-            <img
-                src="{{ $settingsArray['partners_image']['media_url'] }}"
-                alt="">
+            <div style="display: flex; justify-content: center;align-items: center;gap: 24px; flex-wrap: wrap">
+                @php
+                    $ourParteners = App\Models\Sponsor::all();
+                @endphp
+                @foreach ($ourParteners as $item)
+                <img src="{{$item->image_path}}" alt="" style="width :100px;height: 100px;object-fit: contain">
+                @endforeach
+            </div>
         </div>
     </section>
     @endif

@@ -9,7 +9,7 @@ use App\Http\Controllers\Dashboard\TestimonialController;
 use App\Http\Controllers\Dashboard\CourseController;
 use App\Http\Controllers\Dashboard\ApplicantsController;
 use App\Http\Controllers\Dashboard\FaqController;
-
+use App\Http\Controllers\Dashboard\SponsorController;
 
 Route::get('login', [LoginController::class, 'getShowAdmin']);
 Route::post('login', [LoginController::class, 'postAdminLogin'])->name('admins.login');
@@ -42,6 +42,19 @@ Route::middleware('AdminAuth')->group(function () {
     Route::get('applicants/{applicant}/getRating', [ApplicantsController::class, 'getRating'])->name('applicants.getRating');
     Route::get('applicants/user/{id}', [ApplicantsController::class, 'getUserIndex'])->name('applicant.details');
     Route::resource('applicants', ApplicantsController::class);
+
+    // Sponsor
+    Route::prefix('sponsors')->group(function () {
+        Route::get("/", [SponsorController::class, "index"])->name("admin.sponsors.show");
+        Route::get("/get", [SponsorController::class, "get"])->name("admin.sponsors.get");
+        Route::get("/create", [SponsorController::class, "add"])->name("admin.sponsors.add");
+        Route::post("/create", [SponsorController::class, "create"])->name("admin.sponsors.create");
+        Route::get("/edit/{id}", [SponsorController::class, "edit"])->name("admin.sponsors.edit");
+        Route::get("/toggleTop/{id}", [SponsorController::class, "toggleTop"])->name("admin.sponsors.toggleTop");
+        Route::post("/update", [SponsorController::class, "update"])->name("admin.sponsors.update");
+        Route::get("/delete/{id}", [SponsorController::class, "deleteIndex"])->name("admin.sponsors.delete.confirm");
+        Route::post("/delete", [SponsorController::class, "delete"])->name("admin.sponsors.delete");
+    });
 
     /***************** Testimonials *****************/
     Route::get('testimonials/dataTable', [TestimonialController::class, 'dataTable']);

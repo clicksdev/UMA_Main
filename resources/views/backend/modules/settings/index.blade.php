@@ -45,11 +45,6 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#our-partners">{{ __('Our Partners Image')
-                                }}</a>
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#never-miss-update">{{ __('Never Miss Any
                                 Update') }}</a>
                         </li>

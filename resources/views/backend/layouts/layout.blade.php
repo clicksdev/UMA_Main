@@ -54,6 +54,7 @@
     <!--begin::Logo-->
     <a href="{{ route('dashboard.index') }}">{{--<img alt="Logo" style="width: 130px; height: 50px;" src="{{$settingsArray['logo']['value'] }}"/>--}}</a>
     <!--end::Logo-->
+    <div id="errors"></div>
 
     <!--begin::Toolbar-->
     <div class="d-flex align-items-center">
@@ -232,8 +233,6 @@
 <script src="{{ asset('assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js') }}"></script>
 
 <script src="{{ asset('assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js') }}"></script>
-
-
 <script>
     new KTImageInput('kt_image_1');
     new KTImageInput('kt_image_2');
@@ -246,7 +245,6 @@
         });
     });
 </script>
-@yield('Script')
 <script>
     @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -256,6 +254,10 @@
     @endif
 </script>
 {!! Toastr::message() !!}
+<script src="{{ asset('/jquery/jquery.js') }}"></script>
+<script src="{{ asset('/axios/axios.min.js') }}"></script>
+<script src="{{ asset('/vue/vue.min.js') }}"></script>
+@yield('Script')
 </body>
 <!--end::Body-->
 </html>
