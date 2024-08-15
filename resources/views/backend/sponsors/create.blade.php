@@ -44,6 +44,10 @@
 @endSection
 
 @section("Script")
+<script src="{{ asset('/jquery/jquery.js') }}"></script>
+<script src="{{ asset('/axios/axios.min.js') }}"></script>
+<script src="{{ asset('/vue/vue.min.js') }}"></script>
+
 <script>
 const { createApp, ref } = Vue
 
