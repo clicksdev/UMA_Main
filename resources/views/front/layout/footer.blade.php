@@ -24,7 +24,7 @@
         </div>
         <div class="links">
             <ul>
-                <li><h2>Majors</h2></li>
+                <li><h2>Programs</h2></li>
                 @foreach ($latest_courses as $course)
                 <li><a href="{{$course->isReady ? '/course/' . $course->id : "#"}}">{{ $course->title }}</a></li>
                 @endforeach

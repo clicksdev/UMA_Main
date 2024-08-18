@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-form-label text-right col-lg-3 col-sm-12">Major Name *</label>
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">Program Name *</label>
                     <div class="col-lg-6">
                         {{ Form::text('major_name', null, ['placeholder' => 'Major Name','class' => ($errors->has('major_name')) ? 'form-control is-invalid' : 'form-control']) }}
                         <div class="invalid-feedback">{{ $errors->first('major_name') }}</div>
