@@ -1173,7 +1173,7 @@ header nav .container .logo {
   color: #0E0E0F;
 }
 .testemonials .container .text_wrapper p {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 26px;
   text-align: left;
@@ -1295,7 +1295,7 @@ header nav .container .logo {
   .testemonials .container .text_wrapper {
     max-width: 370px;
     width: 100%;
-    min-height: 280px;
+    min-height: 350px;
   }
   .testemonials .container .text_wrapper img {
     display: none;
