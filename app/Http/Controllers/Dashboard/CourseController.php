@@ -46,21 +46,14 @@ class CourseController extends Controller
             if ($request->questions) {
                 foreach ($request->questions as $obj) {
                     Question::create([
-                        "question" => $obj,
+                        "question" => $obj['question'],
+                        "type" => $obj['type'],
+                        "note" => $obj['note'],
                         "course_id" => $course->id
                     ]);
                 }
             }
 
-            if ($request->v_questions) {
-                foreach ($request->v_questions as $obj) {
-                    Question::create([
-                        "question" => $obj,
-                        "type" => 2,
-                        "course_id" => $course->id
-                    ]);
-                }
-            }
 
             foreach ($request->levels as $level) {
                 $image = $level["image"];
@@ -134,21 +127,13 @@ class CourseController extends Controller
                 }
                 foreach ($request->questions as $obj) {
                     Question::create([
-                        "question" => $obj,
+                        "question" => $obj['question'],
+                        "type" => $obj['type'],
+                        "note" => $obj['note'],
                         "course_id" => $course->id
                     ]);
                 }
             }
-            if ($request->v_questions) {
-                foreach ($request->v_questions as $obj) {
-                    Question::create([
-                        "question" => $obj,
-                        "type" => 2,
-                        "course_id" => $course->id
-                    ]);
-                }
-            }
-
             if ($request->objectives_to_delete) {
                 foreach ($request->objectives_to_delete as $obj) {
                     if (is_array($obj) && $obj["id"]) {

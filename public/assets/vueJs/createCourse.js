@@ -9,12 +9,16 @@ createApp({
         duration: 0,
         started_at: null,
         isReady: 1,
+        patch: 1,
         image: null,
         currentLevelIndex: 0,
         objectives: [],
         questions: [],
         v_questions: [],
+        f_questions: [],
         current_objective_text: "",
+        current_type: 1,
+        current_note_text: "",
         levels: [
             {
             }
@@ -30,15 +34,27 @@ createApp({
         }
     },
     handleAddQuestion() {
-        if (this.current_question_text) {
-            this.questions.push(this.current_question_text)
+        if (this.current_question_text && this.current_note_text && this.current_type) {
+            this.questions.push({
+                question: this.current_question_text,
+                note: this.current_note_text,
+                type: this.current_type,
+            })
             this.current_question_text = ""
+            this.current_note_text = ""
+            this.current_type = ""
         }
     },
     handleAddQuestionv() {
         if (this.current_question_text_v) {
             this.v_questions.push(this.current_question_text_v)
             this.current_question_text_v = ""
+        }
+    },
+    handleAddQuestionf() {
+        if (this.current_question_text_f) {
+            this.f_questions.push(this.current_question_text_f)
+            this.current_question_text_f = ""
         }
     },
     handleAddObjectiveLevel(index) {
@@ -69,6 +85,8 @@ createApp({
     },
     handleRemoveQuestionv(index) {
         this.v_questions.splice(index, 1)
+    },handleRemoveQuestionf(index) {
+        this.f_questions.splice(index, 1)
     },
     handleRemoveObjectiveFromLevel(index, i) {
         this.levels[index]["objectives"].splice(i, 1)
@@ -99,7 +117,7 @@ createApp({
                   image: this.image,
                   objectives: this.objectives,
                   questions: this.questions,
-                  v_questions: this.v_questions,
+                  patch: this.patch,
                   levels: this.levels
               },
               {

@@ -10,6 +10,7 @@ createApp({
         duration: 0,
         started_at: null,
         isReady: 1,
+        patch: 1,
         image: null,
         objectives: window.objectives || [],
         questions: window.questions || [],
@@ -18,6 +19,8 @@ createApp({
         levels: window.levels || [],
         currentLevelIndex: 0,
         objectives_to_delete: [],
+        current_type: 1,
+        current_note_text: "",
         levels_to_delete: [],
         errors: []
     }
@@ -29,6 +32,7 @@ createApp({
     this.duration = course.duration || "";
     this.started_at = course.started_at || "";
     this.isReady = course.isReady || 0;
+    this.patch = course.patch || 1;
   },
   methods: {
     handleAddObjective() {
@@ -79,9 +83,15 @@ createApp({
         this.levels.push({})
     },
     handleAddQuestion() {
-        if (this.current_question_text) {
-            this.questions.push(this.current_question_text)
+        if (this.current_question_text && this.current_note_text && this.current_type) {
+            this.questions.push({
+                question: this.current_question_text,
+                note: this.current_note_text,
+                type: this.current_type,
+            })
             this.current_question_text = ""
+            this.current_note_text = ""
+            this.current_type = ""
         }
     },
     handleAddQuestionv() {
@@ -115,8 +125,8 @@ createApp({
                   image: this.image,
                   objectives: this.objectives,
                   questions: this.questions,
-                  v_questions: this.v_questions,
                   objectives_to_delete: this.objectives_to_delete,
+                  patch: this.patch,
                   levels: this.levels,
                   levels_to_delete: this.levels_to_delete
               },

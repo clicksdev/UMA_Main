@@ -157,7 +157,7 @@
                             <div class="col-lg-6" style="padding: 8px;border: 1px solid gray;border-radius: 8px;">
                                 <h3>{{ $item->question_txt }}</h3>
                                 @if($item->hasMedia())
-                                    <a href="{{ $item->getFirstMediaUrl() }}" download class="btn btn-success">Download Video</a>
+                                    <a href="{{ $item->getFirstMediaUrl() }}" download class="btn btn-success">Download File</a>
                                 @else
                                     <p class="text-danger" style="font-weight: bold">
                                         {{ $item->answer }}

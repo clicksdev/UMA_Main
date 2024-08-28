@@ -19,6 +19,7 @@ class Course extends Model implements HasMedia
         'duration',
         'started_at',
         'isReady',
+        'patch',
     ];
 
     /**

@@ -53,6 +53,19 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Patch *</label>
+                        <div class="col-lg-6">
+                            <select class="form-control" name="patch" v-model="patch">
+                                <option value="" disabled>Select Patch</option>
+                                <option v-for="num in 10" :key="num" :value="num">@{{ num }}</option>
+                            </select>
+                            <div class="invalid-feedback" :style="{ display: this.errors['patch'] ? 'block' : null }">
+                                @{{ this.errors['patch'] ? this.errors['patch'][0] : '' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Brief</label>
                         <div class="col-lg-6">
                             <input placeholder="Brief" class="form-control" name="brief" type="text" v-model="brief">
@@ -115,27 +128,18 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Questions</label>
                         <div class="col-lg-6">
                             <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_questions" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
+                                <input type="text" name="course_questions" placeholder="question" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
+                                <input type="text" name="note" id="course_questions" placeholder="note" class="form-control" v-model="current_note_text">
+                                <select name="type" id="type" class="form-control"  v-model="current_type">
+                                    <option value="1">Text</option>
+                                    <option value="2">File</option>
+                                    <option value="3">Video</option>
+                                </select>
                                 <button class="btn btn-secondary" @click="handleAddQuestion">Add</button>
                             </div>
                             <div class="questions w-100 mt-3" style="display: flex; gap: 8px; flex-wrap: wrap">
                                 <span  v-for="obj, index in questions" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                    @{{obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveQuestion(index)">x</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label text-right col-lg-3 col-sm-12">Vedio Questions</label>
-                        <div class="col-lg-6">
-                            <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_questions" id="course_questions" class="form-control" v-model="current_question_text_v" @keyup.enter="handleAddQuestionv">
-                                <button class="btn btn-secondary" @click="handleAddQuestionv">Add</button>
-                            </div>
-                            <div class="questions w-100 mt-3" style="display: flex; gap: 8px; flex-wrap: wrap">
-                                <span  v-for="obj, index in v_questions" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                    @{{obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveQuestionv(index)">x</button>
+                                    @{{obj.question}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveQuestion(index)">x</button>
                                 </span>
                             </div>
                         </div>

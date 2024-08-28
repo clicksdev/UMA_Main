@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('answers', 'question_txt')) {
-            Schema::table('answers', function (Blueprint $table) {
-                $table->text('question_txt')->nullable();
-            });
-        }
+        Schema::table('courses', function (Blueprint $table) {
+            $table->integer('patch')->default(1);
+        });
     }
 
     /**
@@ -27,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('answers', function (Blueprint $table) {
+        Schema::table('courses', function (Blueprint $table) {
             //
         });
     }

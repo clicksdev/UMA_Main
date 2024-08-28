@@ -24,7 +24,7 @@
             <div class="container">
                 <form ref="form" @submit.prevent="handleSubmit" action="{{route('course.apply')}}" enctype="multipart/form-data" method="POST" style="background: #ECECEC; width: 100%">
                     @csrf
-                    <input type="hidden" name="course" value="{{$course->title}}">
+                    <input type="hidden" name="course" value="{{$course->title . " - " . $course->patch}}">
                     <div class="head_form step1" :class="step == 2 ? 'step2' : (step == 3 ? 'step2 step3' : '')">
                         <div class="step">1</div>
                         <span></span>
@@ -142,12 +142,20 @@
                                 </div>
                             </div>
                             <br>
+                            @elseif ($item->type == 2)
+                            <div class="input-row" style="grid-template-columns: 1fr">
+                                <div class="input-group">
+                                    <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt" name="questions[{{$item->id}}]" required class="form-control">
+                                </div>
+                                <span>{{ $item->note ? $item->note : 'File size can not be more than 100MB' }}</span>
+                            </div>
+                            <br>
                             @else
                             <div class="input-row" style="grid-template-columns: 1fr">
                                 <div class="input-group">
-                                    <input type="file" accept="video/mp4,video/x-m4v,video/*" rows="4" name="questions[{{$item->id}}]" required class="form-control">
+                                    <input type="file" accept="video/mp4,video/x-m4v,video/*" name="questions[{{$item->id}}]" required class="form-control">
                                 </div>
-                                <span>Video size can not be more than 100MB</span>
+                                <span>{{ $item->note ? $item->note : 'Video size can not be more than 100MB' }}</span>
                             </div>
                             <br>
                             @endif

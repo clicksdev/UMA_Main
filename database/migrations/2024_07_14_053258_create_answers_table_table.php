@@ -12,13 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        if (!Schema::hasTable('answers')) {
+            Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->string('applicant_id');
             $table->string('question_id');
             $table->string('answer');
             $table->timestamps();
-        });
+            });
+        }
     }
 
     /**

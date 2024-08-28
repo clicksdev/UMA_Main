@@ -11,6 +11,7 @@ class Question extends Model
     protected $fillable = [
         "question",
         "answer",
+        "note",
         "type",
         "course_id"
     ];
