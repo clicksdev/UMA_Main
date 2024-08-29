@@ -14,3 +14,9 @@ Route::get("/success/{name}", [HomeController::class, "successIndex"])->name("su
 Route::get('/contact', function() {
     return view('front.contact');
 });
+Route::get('/terms-and-conditions', function() {
+    return view('front.terms');
+});
+Route::get('/privacy-policy', function() {
+    return view('front.privacy');
+});

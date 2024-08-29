@@ -57,6 +57,12 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#about-sections">About info</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#privacy-policy">Privacy policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#terms-and-conditions">terms and conditions</a>
+                        </li>
                     </ul>
 
                     <div class="tab-content mt-3">
@@ -525,6 +531,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="privacy-policy" class="tab-pane">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">{{ __('Privacy Policy') }}</label>
+                                <div class="col-lg-7 col-md-9 col-sm-12">
+                                    {{ Form::textarea('privacy_policy',
+                                    (isset($settingsArray['privacy_policy']) && $settingsArray['privacy_policy']['value']) ? $settingsArray['privacy_policy']['value'] : null, ['placeholder' =>
+                                    "Privacy Policy", 'class' => $errors->has('privacy_policy') ?
+                                    'form-control is-invalid' : 'form-control']) }}
+                                    <div class="invalid-feedback">{{ $errors->first('privacy_policy') }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="terms-and-conditions" class="tab-pane">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">{{ __('Terms and Conditions') }}</label>
+                                <div class="col-lg-7 col-md-9 col-sm-12">
+                                    {{ Form::textarea('terms_and_conditions',
+                                    (isset($settingsArray['terms_and_conditions']) && isset($settingsArray['terms_and_conditions']['value'])) ? $settingsArray['terms_and_conditions']['value'] : null, ['placeholder' =>
+                                    "Terms and Conditions", 'class' => $errors->has('terms_and_conditions') ?
+                                    'form-control is-invalid' : 'form-control']) }}
+                                    <div class="invalid-feedback">{{ $errors->first('terms_and_conditions') }}</div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
