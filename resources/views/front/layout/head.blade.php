@@ -8,6 +8,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{asset('front/assets/css/main.css')}}?v={{time()}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/swiper.css')}}">
+    <meta name="description" content="United Media Academy (UMA), a leading Egyptian training institute, empowering media creatives across Egypt and the Arab World.">
     <style>
         /* HTML: <div class="loader"></div> */
 .loader {
