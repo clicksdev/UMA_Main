@@ -53,6 +53,35 @@ class HomeController extends Controller
         return view("front.course.apply", compact("course", 'faqs'));
     }
 
+    public function moveToTop($id)
+    {
+        // Find the course by its ID
+        $course = Course::find($id);
+
+        if (!$course) {
+            return response()->json(['message' => 'Course not found'], 404);
+        }
+
+        // Start a transaction to ensure data integrity
+        DB::transaction(function () use ($course) {
+            // Increment the arrangement value for all courses
+            $courses_rest = Course::where('id', '!=', $course->id)->orderBy('home_arrangment', 'asc')
+                  ->get();
+
+            $i = 2;
+            foreach ($courses_rest as $item) {
+                $item->home_arrangment = $i++;
+                $item->save();
+            }
+
+            // Set the selected course's arrangement to 1 (top position)
+            $course->home_arrangment = 1;
+            $course->save();
+        });
+
+        return redirect()->back();
+    }
+
     public function applyCourse(ApplyRequest $request)
     {
         $validatedData = $request->validated();

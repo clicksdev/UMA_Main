@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\CourseController;
 use App\Http\Controllers\Dashboard\ApplicantsController;
 use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\Dashboard\SponsorController;
+use App\Http\Controllers\Front\HomeController;
 
 Route::get('login', [LoginController::class, 'getShowAdmin']);
 Route::post('login', [LoginController::class, 'postAdminLogin'])->name('admins.login');
@@ -71,5 +72,6 @@ Route::middleware('AdminAuth')->group(function () {
     Route::get('/admins/dataTable', [AdminController::class, 'datatable'])->name('admins.datatable');
     Route::get('admins/{admin}/delete', [AdminController::class, 'destroy'])->name('admins.delete');
     Route::resource('admins', AdminController::class);
+
 });
 

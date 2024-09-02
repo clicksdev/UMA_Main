@@ -31,6 +31,7 @@
             </ul>
             <ul>
                 <li><h2>Quick Links</h2></li>
+                <li><a href="/our-majors">Our Majors</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/privacy-policy">Privacy Policy</a></li>
                 <li><a href="/terms-and-conditions">Terms and Conditions</a></li>

@@ -81,6 +81,7 @@
                                     <th>Is Ready</th>
                                     <th>created at</th>
                                     <th>Actions</th>
+                                    <th>Move to Top</th> <!-- New Column for "Move to Top" -->
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -120,6 +121,12 @@
                 {data: 'isReady'},
                 {data: 'created_at'},
                 {data: 'actions'},
+                {
+                    data: 'id', // Move to Top column
+                    render: function (data, type, row, meta) {
+                        return '<a href="/admins/moveToTop/' + data + '" class="btn btn-sm btn-warning">Move to Top</a>';
+                    }
+                }
             ];
             _DataTableHandler(ajaxUrl, data);
         });

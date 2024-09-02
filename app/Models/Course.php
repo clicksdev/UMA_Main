@@ -20,6 +20,7 @@ class Course extends Model implements HasMedia
         'started_at',
         'isReady',
         'patch',
+        'home_arrangment',
     ];
 
     /**

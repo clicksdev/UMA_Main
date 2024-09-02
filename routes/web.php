@@ -20,3 +20,8 @@ Route::get('/terms-and-conditions', function() {
 Route::get('/privacy-policy', function() {
     return view('front.privacy');
 });
+Route::get('/our-majors', function() {
+    return view('front.majors');
+});
+
+Route::get('/admins/moveToTop/{id}', [HomeController::class, 'moveToTop']);
