@@ -14,7 +14,7 @@
                     Our
                     <br>
                     <span>
-                        Programs
+                        Majors
                     </span>
                 </h1>
             </div>
