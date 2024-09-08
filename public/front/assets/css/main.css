@@ -1097,16 +1097,17 @@ header nav .container .logo {
 }
 .testemonials .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 80px;
 }
 .testemonials .container .swiper {
-  width: 420px;
+    width: 330px;
+    min-width: 330px;
 }
 .testemonials .container .swiper .swiper-slide {
-  height: 480px;
-  width: 420px;
+    height: 420px;
+    width: 330px;
 }
 .testemonials .container .swiper .swiper-slide .img {
   width: 100%;
@@ -1144,7 +1145,6 @@ header nav .container .logo {
   text-align: left;
 }
 .testemonials .container .text_wrapper {
-  max-width: 500px;
   width: 100%;
   display: flex;
   align-items: end;
