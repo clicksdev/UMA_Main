@@ -91,7 +91,7 @@ createApp({
     handleRemoveObjectiveFromLevel(index, i) {
         this.levels[index]["objectives"].splice(i, 1)
     },
-    handleChangeCourseImage(e) {
+    handleChangeMajorImage(e) {
         this.image = e.target.files[0]
     },
     handelChangeLevelImage(e) {
@@ -104,13 +104,13 @@ createApp({
         this.levels.splice(index, 1)
     },
     async add() {
-        if (this.questions.length == 0) {
-            alert('You have to add at least one question')
+        if (this.levels.length == 0 || !this.levels[0].title) {
+            alert("Please add at least one level")
         } else {
             this.errors = []
             $('.loader').fadeIn().css('display', 'flex')
               try {
-                  const response = await axios.post(`/admin/courses/store`, {
+                  const response = await axios.post(`/admin/majors/store`, {
                       title: this.title,
                       brief: this.brief,
                       overview: this.overview,
@@ -130,7 +130,7 @@ createApp({
                   }
                   );
                   if (response.data.status) {
-                    window.location.href = "/admin/courses"
+                    window.location.href = "/admin/majors"
                   }
               } catch (error) {
                 this.errors = error.response.data.errors
@@ -138,4 +138,4 @@ createApp({
         }
       },
   },
-}).mount('#course_wrapper')
+}).mount('#major_wrapper')

@@ -16,7 +16,8 @@ class Level extends Model implements HasMedia
         "overview",
         "duration",
         "num_sessions",
-        "course_id"
+        "course_id",
+        "major_id",
     ];
 
     public $timestamps = false;

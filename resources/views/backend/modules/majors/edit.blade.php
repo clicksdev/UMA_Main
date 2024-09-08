@@ -19,7 +19,7 @@
                                 <a href="{{ route('dashboard.index') }}" class="text-muted">{{__('home.title')}}</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('courses.index') }}" class="text-muted">Programs</a>
+                                <a href="{{ route('majors.index') }}" class="text-muted">Majors</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="" class="text-muted">{{__('categories.add_new')}}</a>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column-fluid mb-4" id="course_wrapper">
+    <div class="d-flex flex-column-fluid mb-4" id="major_wrapper">
         <!--begin::Container-->
         <div class=" container ">
             <div class="card card-custom">
@@ -64,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Brief</label>
@@ -108,17 +109,16 @@
                             <div class="invalid-feedback" :style="{ display: this.errors['isReady'] ? 'block' : null }" >@{{ this.errors["isReady"] ? this.errors["isReady"][0] : ''}}</div>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
                         <div class="col-lg-6">
                             <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="current_objective_text" @keyup.enter="handleAddObjective">
+                                <input type="text" name="major_objectives" id="major_objectives" class="form-control" v-model="current_objective_text" @keyup.enter="handleAddObjective">
                                 <button class="btn btn-secondary" @click="handleAddObjective">Add</button>
                             </div>
                             <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
                                 <span  v-for="obj, index in objectives" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                    @{{obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
+                                    @{{obj["name"] || obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
                                 </span>
                             </div>
                         </div>
@@ -128,8 +128,8 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Questions</label>
                         <div class="col-lg-6">
                             <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_questions" placeholder="question" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
-                                <input type="text" name="note" id="course_questions" placeholder="note" class="form-control" v-model="current_note_text">
+                                <input type="text" name="major_questions" placeholder="question" id="major_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
+                                <input type="text" name="note" id="major_questions" placeholder="note" class="form-control" v-model="current_note_text">
                                 <select name="type" id="type" class="form-control"  v-model="current_type">
                                     <option value="1">Text</option>
                                     <option value="2">File</option>
@@ -149,16 +149,15 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Image *</label>
                         <div class="col-lg-6">
                             <div class="image-input image-input-outline image-input-circle" id="kt_image_3">
-                                <div class="image-input-wrapper"
-                                style="background-image: url({{ asset('/assets/media/logo-placeholder.png') }})">
-                                <img :src="image ? getUri(image) : ''" v-if="image" alt="" style="width: 100%;height: 100%;object-fit: cover;border-radius: 50%;">
+                                <div class="image-input-wrapper">
+                                <img :src="image ? getUri(image) : '{{ $major->hasMedia() ? $major->getFirstMediaUrl() :  asset('/assets/media/logo-placeholder.png') }}'" alt="" style="width: 100%;height: 100%;object-fit: cover;border-radius: 50%;">
                             </div>
 
                             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                             data-action="change" data-toggle="tooltip" title=""
                                     data-original-title="Change avatar">
                                     <i class="fa fa-pen icon-sm text-muted"></i>
-                                    <input accept=".png, .jpg, .jpeg" name="image" id="course_image" type="file" @change="handleChangeCourseImage">
+                                    <input accept=".png, .jpg, .jpeg" name="image" id="major_image" type="file" @change="handleChangeMajorImage">
                                 </label>
 
                                 <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -209,12 +208,12 @@
                             <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
                             <div class="col-lg-6">
                                 <div class="d-flex" style="gap: 8px">
-                                    <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="levels[index]['current_objective_text']" @keyup.enter="handleAddObjectiveLevel(index)">
+                                    <input type="text" name="major_objectives" id="major_objectives" class="form-control" v-model="levels[index]['current_objective_text']" @keyup.enter="handleAddObjectiveLevel(index)">
                                     <button class="btn btn-secondary" @click="handleAddObjectiveLevel(index)">Add</button>
                                 </div>
                                 <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
                                     <span  v-for="obj, i in (levels[index] && levels[index]['objectives'] ? levels[index]['objectives'] : [])" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                        @{{obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
+                                        @{{obj["name"] || obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
                                     </span>
                                 </div>
                             </div>
@@ -224,14 +223,14 @@
                             <div class="col-lg-6">
                                 <div class="image-input image-input-outline image-input-circle" id="kt_image_3"  @click="this.currentLevelIndex = index" >
                                     <div class="image-input-wrapper">
-                                    <img :src="levels[index].image ? getUri(levels[index].image) : getBackgroundImage(index)" alt="" style="width: 100%;height: 100%;object-fit: cover;border-radius: 50%;">
-                                </div>
+                                        <img :src="levels[index].image ? getUri(levels[index].image) : getBackgroundImage(index)" alt="" style="width: 100%;height: 100%;object-fit: cover;border-radius: 50%;">
+                                    </div>
 
                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"  @click="this.currentLevelIndex = index"
                                 data-action="change" data-toggle="tooltip" title=""
                                 data-original-title="Change avatar">
                                 <i class="fa fa-pen icon-sm text-muted"></i>
-                                <input accept=".png, .jpg, .jpeg" id="course_image" type="file"@change="handelChangeLevelImage">
+                                <input accept=".png, .jpg, .jpeg" id="major_image" type="file"@change="handelChangeLevelImage">
                                     </label>
 
                                     <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -250,12 +249,13 @@
                         </div>
                         <hr v-if="index + 1 < levels.length">
                     </div>
+
                 </div>
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-2">
-                            <button @click="add"
+                            <button @click="update"
                                     class="btn font-weight-bold btn-primary mr-2">{{__('sidebar.save')}}</button>
                         </div>
                     </div>
@@ -266,9 +266,15 @@
 @endsection
 
 @section('Script')
+    <script>
+        window.major = @json($major);
+        window.objectives = @json($major->objectives()->get());
+        window.questions = @json($major->questions()->get());
+        window.levels = @json($levels);
+    </script>
     <script src="{{ asset('assets/libs/axios.js') }}"></script>
     <script src="{{ asset('assets/libs/jquery.js') }}"></script>
     <script src="{{ asset('assets/libs/vue.js') }}"></script>
-    <script src="{{ asset('assets/vueJs/createCourse.js') }}"></script>
+    <script src="{{ asset('assets/vueJs/editMajor.js') }}"></script>
 @endsection
 

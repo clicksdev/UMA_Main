@@ -19,7 +19,7 @@
                                 <a href="{{ route('dashboard.index') }}" class="text-muted">{{__('home.title')}}</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('courses.index') }}" class="text-muted">Courses</a>
+                                <a href="{{ route('courses.index') }}" class="text-muted">Programs</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="" class="text-muted">{{__('categories.add_new')}}</a>

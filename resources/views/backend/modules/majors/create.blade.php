@@ -19,7 +19,7 @@
                                 <a href="{{ route('dashboard.index') }}" class="text-muted">{{__('home.title')}}</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('courses.index') }}" class="text-muted">Programs</a>
+                                <a href="{{ route('majors.index') }}" class="text-muted">Majors</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="" class="text-muted">{{__('categories.add_new')}}</a>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column-fluid mb-4" id="course_wrapper">
+    <div class="d-flex flex-column-fluid mb-4" id="major_wrapper">
         <!--begin::Container-->
         <div class=" container ">
             <div class="card card-custom">
@@ -113,7 +113,7 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
                         <div class="col-lg-6">
                             <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="current_objective_text" @keyup.enter="handleAddObjective">
+                                <input type="text" name="major_objectives" id="major_objectives" class="form-control" v-model="current_objective_text" @keyup.enter="handleAddObjective">
                                 <button class="btn btn-secondary" @click="handleAddObjective">Add</button>
                             </div>
                             <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
@@ -128,8 +128,8 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Questions</label>
                         <div class="col-lg-6">
                             <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_questions" placeholder="question" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
-                                <input type="text" name="note" id="course_questions" placeholder="note" class="form-control" v-model="current_note_text">
+                                <input type="text" name="major_questions" placeholder="question" id="major_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
+                                <input type="text" name="note" id="major_questions" placeholder="note" class="form-control" v-model="current_note_text">
                                 <select name="type" id="type" class="form-control"  v-model="current_type">
                                     <option value="1">Text</option>
                                     <option value="2">File</option>
@@ -158,7 +158,7 @@
                             data-action="change" data-toggle="tooltip" title=""
                                     data-original-title="Change avatar">
                                     <i class="fa fa-pen icon-sm text-muted"></i>
-                                    <input accept=".png, .jpg, .jpeg" name="image" id="course_image" type="file" @change="handleChangeCourseImage">
+                                    <input accept=".png, .jpg, .jpeg" name="image" id="major_image" type="file" @change="handleChangeMajorImage">
                                 </label>
 
                                 <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -209,7 +209,7 @@
                             <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
                             <div class="col-lg-6">
                                 <div class="d-flex" style="gap: 8px">
-                                    <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="levels[index]['current_objective_text']" @keyup.enter="handleAddObjectiveLevel(index)">
+                                    <input type="text" name="major_objectives" id="major_objectives" class="form-control" v-model="levels[index]['current_objective_text']" @keyup.enter="handleAddObjectiveLevel(index)">
                                     <button class="btn btn-secondary" @click="handleAddObjectiveLevel(index)">Add</button>
                                 </div>
                                 <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
@@ -231,7 +231,7 @@
                                 data-action="change" data-toggle="tooltip" title=""
                                 data-original-title="Change avatar">
                                 <i class="fa fa-pen icon-sm text-muted"></i>
-                                <input accept=".png, .jpg, .jpeg" id="course_image" type="file"@change="handelChangeLevelImage">
+                                <input accept=".png, .jpg, .jpeg" id="major_image" type="file"@change="handelChangeLevelImage">
                                     </label>
 
                                     <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -269,6 +269,6 @@
     <script src="{{ asset('assets/libs/axios.js') }}"></script>
     <script src="{{ asset('assets/libs/jquery.js') }}"></script>
     <script src="{{ asset('assets/libs/vue.js') }}"></script>
-    <script src="{{ asset('assets/vueJs/createCourse.js') }}"></script>
+    <script src="{{ asset('assets/vueJs/createMajor.js') }}"></script>
 @endsection
 

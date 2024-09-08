@@ -11,7 +11,8 @@ class Objective extends Model
     protected $fillable = [
         "name",
         "level_id",
-        "course_id"
+        "course_id",
+        "major_id"
     ];
 
     public $timestamps = false;

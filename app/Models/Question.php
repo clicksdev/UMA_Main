@@ -13,6 +13,7 @@ class Question extends Model
         "answer",
         "note",
         "type",
+        "major_id",
         "course_id"
     ];
 }

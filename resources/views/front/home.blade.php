@@ -188,6 +188,79 @@
         @endif
     @endif
 
+    {{-- @php
+        $latest_majors = App\Models\Major::orderBy("home_arrangment", "asc")->get();
+    @endphp
+    @if($latest_majors->count() > 0)
+        @if((isset($settingsArray['isShowOurMajor']) && $settingsArray['isShowOurMajor']["value"]) || !isset($settingsArray['isShowOurMajor']))
+
+        <section class="our-major" id="our-major">
+            <div class="container">
+                <div class="head">
+                    <img src="{{asset('front/assets/imgs/sec-head.png')}}?v={{time()}}" alt="logo short">
+                    <h1>
+                        Our
+                        <br>
+                        <span>
+                            Majors
+                        </span>
+                    </h1>
+                </div>
+                    <div class="courses_wrapper" style="display: block">
+                        <div class="swiper mySwiper2" style="width: 100%">
+                            <div class="swiper-wrapper">
+
+                                    @foreach ($latest_majors as $major)
+                                        <a href="{{$major->isReady ? '/major/' . $major->id : "#"}}" class="course_card swiper-slide {{$major->isReady ? '' : 'coming-soon'}}">
+                                            <div class="img">
+                                                <img src="{{ $major->hasMedia() ? $major->getFirstMediaUrl() :  '' }}" alt="">
+                                                <span class="date">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-month"
+                                                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000"
+                                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                        <path
+                                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/>
+                                                        <path d="M16 3v4"/>
+                                                        <path d="M8 3v4"/>
+                                                        <path d="M4 11h16"/>
+                                                        <path d="M7 14h.013"/>
+                                                        <path d="M10.01 14h.005"/>
+                                                        <path d="M13.01 14h.005"/>
+                                                        <path d="M16.015 14h.005"/>
+                                                        <path d="M13.015 17h.005"/>
+                                                        <path d="M7.01 17h.005"/>
+                                                        <path d="M10.01 17h.005"/>
+                                                    </svg>
+                                                    Start {{ Carbon\Carbon::parse($major->started_at)->format('F jS') }}
+                                                </span>
+                                            </div>
+                                            <div class="text">
+                                                <h3>{{ $major->title }}</h3>
+                                                <span class="time">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-filled"
+                                                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000"
+                                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                        <path
+                                                            d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-5 2.66a1 1 0 0 0 -.993 .883l-.007 .117v5l.009 .131a1 1 0 0 0 .197 .477l.087 .1l3 3l.094 .082a1 1 0 0 0 1.226 0l.094 -.083l.083 -.094a1 1 0 0 0 0 -1.226l-.083 -.094l-2.707 -2.708v-4.585l-.007 -.117a1 1 0 0 0 -.993 -.883z"
+                                                            stroke-width="0" fill="currentColor"/>
+                                                    </svg>
+                                                    {{ $major->duration }} + hour
+                                                </span>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+                        </div>
+                    </div>
+            </section>
+        @endif
+    @endif
+ --}}
     @if((isset($settingsArray['isShowOurAim']) && $settingsArray['isShowOurAim']["value"]) || !isset($settingsArray['isShowOurAim']))
     <section class="our-aim">
         <div class="container">

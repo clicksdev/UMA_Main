@@ -1,5 +1,5 @@
 @extends('backend.layouts.layout')
-@section('title','Courses')
+@section('title','Majors')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -10,7 +10,7 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">Programs</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">Majors</h5>
                         <!--end::Page Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -19,8 +19,8 @@
                                 <a href="{{ route('dashboard.index') }}" class="text-muted">{{__('home.title')}}</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('courses.index') }}"
-                                   class="text-muted">Programs</a>
+                                <a href="{{ route('majors.index') }}"
+                                   class="text-muted">Majors</a>
                             </li>
                         </ul>
                         <!--end::Breadcrumb-->
@@ -44,11 +44,11 @@
 											<span class="card-icon">
 												<i class="flaticon2-favourite text-primary"></i>
 											</span>
-                            <h3 class="card-label">Courses</h3>
+                            <h3 class="card-label">Majors</h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            <a href="{{route('courses.create')}}" class="btn btn-primary font-weight-bolder">
+                            <a href="{{route('majors.create')}}" class="btn btn-primary font-weight-bolder">
 	<span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg--><svg
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
             viewBox="0 0 24 24" version="1.1">
@@ -67,7 +67,7 @@
 
 
                     <div class="card-body">
-                        @if (\App\Models\Course::count() > 0)
+                        @if (\App\Models\Major::count() > 0)
                             <!--begin: Datatable-->
                             <table class="table table-bordered table-hover" id="myTable"
                                    style="margin-top: 13px !important">
@@ -110,7 +110,7 @@
 @section('Script')
     <script>
         $(document).ready(function () {
-            var ajaxUrl = "courses";
+            var ajaxUrl = "majors";
 
             var data = [
                 {data: 'id'},
@@ -124,7 +124,7 @@
                 {
                     data: 'id', // Move to Top column
                     render: function (data, type, row, meta) {
-                        return '<a href="/admins/moveToTop/' + data + '" class="btn btn-sm btn-warning">Move to Top</a>';
+                        return '<a href="/admins/moveMajorToTop/' + data + '" class="btn btn-sm btn-warning">Move to Top</a>';
                     }
                 }
             ];

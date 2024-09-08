@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard\TestimonialController;
 use App\Http\Controllers\Dashboard\CourseController;
 use App\Http\Controllers\Dashboard\ApplicantsController;
 use App\Http\Controllers\Dashboard\FaqController;
+use App\Http\Controllers\Dashboard\MajorApplicantsController;
+use App\Http\Controllers\Dashboard\MajorController;
 use App\Http\Controllers\Dashboard\SponsorController;
 use App\Http\Controllers\Front\HomeController;
 
@@ -31,6 +33,13 @@ Route::middleware('AdminAuth')->group(function () {
     Route::post('courses/update', [CourseController::class, 'update']);
     Route::resource('courses', CourseController::class);
 
+    /*****************  Site majors ****************/
+    Route::get('majors/dataTable', [MajorController::class, 'dataTable']);
+    Route::get('majors/{major}/delete', [MajorController::class, 'destroy'])->name('majors.delete');
+    Route::post('majors/store', [MajorController::class, 'store']);
+    Route::post('majors/update', [MajorController::class, 'update']);
+    Route::resource('majors', MajorController::class);
+
     /***************** Statistics *****************/
     Route::get('statistics/dataTable', [StatisticsController::class, 'dataTable']);
     Route::get('statistics/{statistic}/delete', [StatisticsController::class, 'destroy'])->name('statistics.delete');
@@ -43,6 +52,14 @@ Route::middleware('AdminAuth')->group(function () {
     Route::get('applicants/{applicant}/getRating', [ApplicantsController::class, 'getRating'])->name('applicants.getRating');
     Route::get('applicants/user/{id}', [ApplicantsController::class, 'getUserIndex'])->name('applicant.details');
     Route::resource('applicants', ApplicantsController::class);
+
+    /***************** Applicants *****************/
+    Route::get('majorApplicants/dataTable', [MajorApplicantsController::class, 'dataTable'])->name('majorApplicants.datatable');
+    Route::post('majorApplicants/export', [MajorApplicantsController::class, 'export'])->name('majorApplicants.export');
+    Route::post('majorApplicants/updateRating', [MajorApplicantsController::class, 'updateRating'])->name('majorApplicants.updateRating');
+    Route::get('majorApplicants/{majorApplicant}/getRating', [MajorApplicantsController::class, 'getRating'])->name('majorApplicants.getRating');
+    Route::get('majorApplicants/user/{id}', [MajorApplicantsController::class, 'getUserIndex'])->name('majorApplicant.details');
+    Route::resource('majorApplicants', MajorApplicantsController::class);
 
     // Sponsor
     Route::prefix('sponsors')->group(function () {
