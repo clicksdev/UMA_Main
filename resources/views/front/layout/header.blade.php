@@ -41,7 +41,7 @@
                 </svg>
                 <ul class="more">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about-us">About us</a></li>
+                    {{-- <li><a href="/about-us">About us</a></li> --}}
                     <li><a href="/our-programs">Programs</a></li>
                     <li><a href="/contact">Contact Us</a></li>
                 </ul>
