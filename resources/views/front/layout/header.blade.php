@@ -30,7 +30,7 @@
             <span></span> --}}
             <button
                 class="toggle_more"
-                style="cursor: pointer;position: relative;display: flex;align-items: center;background: #8080800e;border: none;border-radius: 0;padding: 7px;">
+                style="cursor: pointer;position: relative;display: flex;  height: 40px;align-items: center;background: #8080800e;border: none;border-radius: 0;padding: 7px;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="20"
                     height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
