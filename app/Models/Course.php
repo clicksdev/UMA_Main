@@ -21,6 +21,7 @@ class Course extends Model implements HasMedia
         'isReady',
         'patch',
         'home_arrangment',
+        'faq_type',
     ];
 
     /**
@@ -39,5 +40,9 @@ class Course extends Model implements HasMedia
     public function questions()
     {
         return $this->hasMany('App\Models\Question', 'course_id');
+    }
+    public function FAQ()
+    {
+        return $this->hasMany('App\Models\CoursesFAQ', 'course_id');
     }
 }

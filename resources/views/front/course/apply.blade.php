@@ -142,6 +142,16 @@
                                 </div>
                             </div>
                             <br>
+                            @elseif ($item->type == 4)
+                            <div class="input-row" dir="rtl" style="grid-template-columns: 1fr 1fr 1fr 1fr">
+                                @foreach ($item->options()->get() as $option)
+                                <div class="input-group" style="display: flex;align-items: center;justify-content: center;">
+                                    <label for="{{$option->option}}">{{$option->option}}</label>
+                                    <input type="radio" name="questions[{{$item->id}}]" id="{{$option->option}}" value="{{$option->option}}">
+                                </div>
+                                @endforeach
+                            </div>
+                            <br>
                             @elseif ($item->type == 2)
                             <div class="input-row" style="grid-template-columns: 1fr">
                                 <div class="input-group">

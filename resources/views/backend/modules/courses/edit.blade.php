@@ -130,15 +130,26 @@
                             <div class="d-flex" style="gap: 8px">
                                 <input type="text" name="course_questions" placeholder="question" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
                                 <input type="text" name="note" id="course_questions" placeholder="note" class="form-control" v-model="current_note_text">
-                                <select name="type" id="type" class="form-control"  v-model="current_type">
+                                <select name="type" id="type" class="form-control" v-model="current_type">
                                     <option value="1">Text</option>
                                     <option value="2">File</option>
                                     <option value="3">Video</option>
+                                    <option value="4">MCQ</option>
                                 </select>
                                 <button class="btn btn-secondary" @click="handleAddQuestion">Add</button>
                             </div>
+
+                            <!-- Conditionally display options input fields if MCQ is selected -->
+                            <div v-if="current_type == 4" class="mt-3">
+                                <div v-for="(option, index) in current_options" :key="index" class="d-flex align-items-center mb-2" style="gap: 8px">
+                                    <input type="text" class="form-control" placeholder="Option text" v-model="current_options[index]">
+                                    <button class="btn btn-danger" @click="removeOption(index)">Remove</button>
+                                </div>
+                                <button class="btn btn-primary mt-2" @click="addOption">Add Option</button>
+                            </div>
+
                             <div class="questions w-100 mt-3" style="display: flex; gap: 8px; flex-wrap: wrap">
-                                <span  v-for="obj, index in questions" :key="obj.id" class="text-secondary" style="font-size: 16px">
+                                <span v-for="(obj, index) in questions" :key="obj.id" class="text-secondary" style="font-size: 16px">
                                     @{{obj.question}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveQuestion(index)">x</button>
                                 </span>
                             </div>
@@ -249,6 +260,67 @@
                         </div>
                         <hr v-if="index + 1 < levels.length">
                     </div>
+                    <div class="pl-5">
+                        <div>
+                          <!-- Radio buttons for FAQ Type -->
+                          <div class="form-group">
+                            <label>Choose FAQ Type</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  id="faqDefault"
+                                  value="1"
+                                  v-model="faqType"
+                                />
+                                <label class="form-check-label" for="faqDefault">Default</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  id="faqCustom"
+                                  value="2"
+                                  v-model="faqType"
+                                />
+                                <label class="form-check-label" for="faqCustom">Custom</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Custom FAQ module visible when faqType is '2' -->
+                          <div v-if="faqType == 2">
+                            <h3>Custom FAQ</h3>
+                            <button class="btn btn-primary mb-3" @click="addFaq">Add Question</button>
+
+                            <!-- Loop through custom FAQs -->
+                            <div v-for="(faq, index) in faqs" :key="index" class="mb-3">
+                              <div class="form-group">
+                                <label>Question @{{ index + 1 }}</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  v-model="faq.question"
+                                  placeholder="Enter your question"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label>Answer</label>
+                                <textarea
+                                  class="form-control"
+                                  v-model="faq.answer"
+                                  rows="3"
+                                  placeholder="Enter the answer"
+                                ></textarea>
+                              </div>
+
+                              <!-- Remove FAQ button -->
+                              <button class="btn btn-danger" @click="removeFaq(index)">Remove</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="card-footer">
@@ -264,12 +336,26 @@
         </div>
     </div>
 @endsection
+@php
+    $questions = $course->questions()->with('options')->get()->map(function($question) {
+    return [
+        'id' => $question->id,
+        'question' => $question->question,
+        'note' => $question->note,
+        'type' => $question->type,
+        'options' => $question->options->pluck('option')->toArray(), // Pluck only the 'option' field
+    ];
+});
 
+@endphp
 @section('Script')
     <script>
         window.course = @json($course);
         window.objectives = @json($course->objectives()->get());
-        window.questions = @json($course->questions()->get());
+        window.questions = @json($questions);
+        console.log(window.questions);
+
+        window.faq_questions = @json($course->FAQ()->get());
         window.levels = @json($levels);
     </script>
     <script src="{{ asset('assets/libs/axios.js') }}"></script>

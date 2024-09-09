@@ -22,7 +22,9 @@ createApp({
         current_type: 1,
         current_note_text: "",
         levels_to_delete: [],
-        errors: []
+        errors: [],
+        faqType: 1, // Default FAQ type is 1 (Default)
+        faqs: window.faq_questions || [], // Array to hold custom FAQs
     }
   },
   created() {
@@ -33,6 +35,7 @@ createApp({
     this.started_at = course.started_at || "";
     this.isReady = course.isReady || 0;
     this.patch = course.patch || 1;
+    this.faqType = course.faq_type || 1;
   },
   methods: {
     handleAddObjective() {
@@ -41,6 +44,14 @@ createApp({
             this.current_objective_text = ""
         }
     },
+            // Add a new empty FAQ
+            addFaq() {
+                this.faqs.push({ question: '', answer: '' });
+            },
+            // Remove an FAQ by index
+            removeFaq(index) {
+                this.faqs.splice(index, 1);
+            },
     handleAddObjectiveLevel(index) {
         if (this.levels[index]['current_objective_text']) {
             if (!this.levels[index]["objectives"])
@@ -128,6 +139,8 @@ createApp({
                   objectives_to_delete: this.objectives_to_delete,
                   patch: this.patch,
                   levels: this.levels,
+                  faq_questions: this.faqs,
+                  faq_type: this.faqType,
                   levels_to_delete: this.levels_to_delete
               },
               {

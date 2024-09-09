@@ -175,7 +175,8 @@
                     {data: 'course'},
                     {data: 'created_at'},
                     {data: 'rate'},
-                ]
+                ],
+                order: [[5, 'desc']] // By default, order by the course column (A-Z). Change index according to your column structure
             });
 
             $('#rateModal').on('show.bs.modal', function (event) {

@@ -16,4 +16,9 @@ class Question extends Model
         "major_id",
         "course_id"
     ];
+
+    public function options()
+    {
+        return $this->hasMany('App\Models\QuestionsOption', 'question_id');
+    }
 }

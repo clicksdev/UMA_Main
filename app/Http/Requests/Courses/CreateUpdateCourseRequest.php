@@ -37,6 +37,8 @@ class CreateUpdateCourseRequest extends FormRequest
             'levels.*.overview'         => 'required|string',
             'levels.*.duration'         => 'required',
             'levels.*.num_sessions'     => 'required',
+            'faq_questions'     => 'nullable',
+            'faq_type'     => 'nullable',
             // 'levels.*.image'            => 'required',
         ];
     }

@@ -9,7 +9,9 @@ use App\Models\Level;
 use App\Models\Objective;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\Courses\CreateUpdateCourseRequest;
+use App\Models\CoursesFAQ;
 use App\Models\Question;
+use App\Models\QuestionsOption;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -45,10 +47,28 @@ class CourseController extends Controller
 
             if ($request->questions) {
                 foreach ($request->questions as $obj) {
-                    Question::create([
+                    $question = Question::create([
                         "question" => $obj['question'],
                         "type" => $obj['type'],
                         "note" => $obj['note'],
+                        "course_id" => $course->id
+                    ]);
+                    if ($obj['type'] == 4) {
+                        foreach ($obj['options'] as $option) {
+                            QuestionsOption::create([
+                                'question_id' => $question->id,
+                                'option' => $option
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            if ($request->faq_questions) {
+                foreach ($request->faq_questions as $obj) {
+                    CoursesFAQ::create([
+                        "question" => $obj['question'],
+                        "answer" => $obj['answer'],
                         "course_id" => $course->id
                     ]);
                 }
@@ -123,16 +143,40 @@ class CourseController extends Controller
 
             if ($request->questions) {
                 foreach ($course->questions as $question) {
+                    $question->options()->delete();
                     $question->delete();
                 }
                 foreach ($request->questions as $obj) {
-                    Question::create([
+                    $question = Question::create([
                         "question" => $obj['question'],
                         "type" => $obj['type'],
                         "note" => $obj['note'],
                         "course_id" => $course->id
                     ]);
+                    if ($obj['type'] == 4) {
+                        if ($obj['options']) {
+
+                            foreach ($obj['options'] as $option) {
+                                QuestionsOption::create([
+                                    'question_id' => $question->id,
+                                    'option' => $option
+                                ]);
+                            }
+                        }
+                    }
                 }
+            }
+            if ($request->faq_questions) {
+                foreach ($course->FAQ as $question) {
+                    $question->delete();
+                }
+                    foreach ($request->faq_questions as $obj) {
+                        CoursesFAQ::create([
+                            "question" => $obj['question'],
+                            "answer" => $obj['answer'],
+                            "course_id" => $course->id
+                        ]);
+                    }
             }
             if ($request->objectives_to_delete) {
                 foreach ($request->objectives_to_delete as $obj) {

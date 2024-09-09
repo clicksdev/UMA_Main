@@ -62,14 +62,23 @@ class ApplicantsController extends Controller
     {
         $applicants = Applicant::query();
 
-        $applicants->latest();
-
         $applicants->when($request->start_date, function ($q) use ($request) {
             return $q->where('created_at', '>', Carbon::parse($request->start_date)->startOfDay());
         });
         $applicants->when($request->end_date, function ($q) use ($request) {
             return $q->where('created_at', '<', Carbon::parse($request->end_date)->endOfDay());
         });
+
+        // Check if the sorting column is the created_at column (index 5)
+        if ($request->has('order')) {
+            $orderColumn = $request->input('order.0.column'); // Column index
+            $orderDir = $request->input('order.0.dir'); // Sort direction (asc/desc)
+
+            // Apply sorting by created_at if column 5 is being sorted
+            if ($orderColumn == 5) {
+                $applicants->orderBy('created_at', $orderDir);
+            }
+        }
         return DataTables::of($applicants)
             ->addColumn('name', function ($model) {
                 return '<a href="' . route("applicant.details", ["id" => $model->id]) . '">' . $model->name . '</a>';
