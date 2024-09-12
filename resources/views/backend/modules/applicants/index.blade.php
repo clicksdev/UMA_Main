@@ -1,6 +1,9 @@
 @extends('backend.layouts.layout')
 @section('title','Courses')
 @section('content')
+@php
+        $courses = \App\Models\Applicant::select('course')->distinct()->get();
+@endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
@@ -10,7 +13,8 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">Applicants</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">Applicants
+                        </h5>
                         <!--end::Page Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -75,6 +79,14 @@
                                             </span>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-3 col-md-9 col-sm-12">
+                                    <select id="course_filter" class="form-control">
+                                        <option value="">All Courses</option>
+                                        @foreach($courses as $course)
+                                            <option value="{{ $course->course }}">{{ $course->course }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="col-md-3">
@@ -154,81 +166,35 @@
 
 @section('Script')
     <script>
-        $(document).ready(function () {
-            var table = $('#myTable').DataTable({
-                processing: true,
-                serverSide: true,
-                pageLength: 25,
-                order: [],
-                ajax: {
-                    url: "{{ route('applicants.datatable') }}",
-                    data: function (d) {
-                        d.start_date = $('#start_date').val();
-                        d.end_date = $('#end_date').val();
-                    }
-                },
-                columns: [
-                    {data: 'id'},
-                    {data: 'name'},
-                    {data: 'phone'},
-                    {data: 'email'},
-                    {data: 'course'},
-                    {data: 'created_at'},
-                    {data: 'rate'},
-                ],
-                order: [[5, 'desc']] // By default, order by the course column (A-Z). Change index according to your column structure
-            });
+$(document).ready(function () {
+    var table = $('#myTable').DataTable({
+        processing: true,
+        serverSide: true,
+        pageLength: 25,
+        order: [],
+        ajax: {
+            url: "{{ route('applicants.datatable') }}",
+            data: function (d) {
+                d.start_date = $('#start_date').val();
+                d.end_date = $('#end_date').val();
+                d.course = $('#course_filter').val(); // Get the selected course
+            }
+        },
+        columns: [
+            {data: 'id'},
+            {data: 'name'},
+            {data: 'phone'},
+            {data: 'email'},
+            {data: 'course'},
+            {data: 'created_at'},
+            {data: 'rate'},
+        ],
+        order: [[5, 'desc']]
+    });
 
-            $('#rateModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var applicantId = button.data('applicant-id');
-                var modal = $(this);
-
-                // Clear previous rating value
-                modal.find('#rating').val('');
-
-                $.ajax({
-                    type: 'GET',
-                    url: '{{ route("applicants.getRating", ["applicant" => ":applicantId"]) }}'.replace(':applicantId', applicantId),
-                    success: function (response) {
-                        if (response.success && response.rating) {
-                            modal.find('#rating').val(response.rating);
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-
-                modal.find('#ratingForm').attr('data-applicant-id', applicantId);
-            });
-
-            $('#ratingForm').submit(function (e) {
-                e.preventDefault();
-                var applicantId = $(this).data('applicant-id');
-                var rating = $('#rating').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('applicants.updateRating') }}",
-                    data: {
-                        applicant_id: applicantId,
-                        rating: rating,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function (response) {
-                        table.draw();
-                        $('#rateModal').modal('hide');
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-
-            $('#start_date, #end_date').on('change', function () {
-                table.draw();
-            });
-        });
+    $('#start_date, #end_date, #course_filter').on('change', function () {
+        table.draw(); // Redraw the table when filters change
+    });
+});
     </script>
 @endsection

@@ -69,6 +69,10 @@ class ApplicantsController extends Controller
             return $q->where('created_at', '<', Carbon::parse($request->end_date)->endOfDay());
         });
 
+        // Filter by course if selected
+        if ($request->course) {
+            $applicants->where('course', $request->course);
+        }
         // Check if the sorting column is the created_at column (index 5)
         if ($request->has('order')) {
             $orderColumn = $request->input('order.0.column'); // Column index
