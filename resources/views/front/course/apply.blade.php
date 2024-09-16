@@ -12,6 +12,7 @@
                 <a href="/course/apply/{{$course->id}}">Apply</a>
             </div>
         </div>
+        {{-- <div>{{$errors}}</div> --}}
         @if($errors->first('error'))
         <br><br>
             <div class="container">

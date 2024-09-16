@@ -117,45 +117,55 @@ class CourseController extends Controller
         }
         return view('backend.modules.courses.edit', compact(['course', 'levels']));
     }
-
     public function update(CreateUpdateCourseRequest $request)
     {
-        $validatedData = $request->validated();
-        $course = course::find($request->id ?? 0);
-        if ($course) {
+        // Start a database transaction
+        DB::beginTransaction();
 
-            $course->update($validatedData);
+        try {
+            $validatedData = $request->validated();
+            $course = Course::find($request->id ?? 0);
 
-            if ($request->hasFile('image')) {
-                $course->clearMediaCollection();
-                $course->addMediaFromRequest('image')->toMediaCollection();
-            }
+            if ($course) {
+                // Update course details
+                $course->update($validatedData);
 
-            if ($request->objectives) {
-                foreach ($request->objectives as $obj) {
-                    if (!is_array($obj))
-                        $objective = Objective::create([
-                            "name" => $obj,
+                // Handle image upload
+                if ($request->hasFile('image')) {
+                    $course->clearMediaCollection();
+                    $course->addMediaFromRequest('image')->toMediaCollection();
+                }
+
+                // Handle objectives creation
+                if ($request->objectives) {
+                    foreach ($request->objectives as $obj) {
+                        if (!is_array($obj)) {
+                            Objective::create([
+                                "name" => $obj,
+                                "course_id" => $course->id
+                            ]);
+                        }
+                    }
+                }
+
+                // Handle questions update
+                if ($request->questions) {
+                    // Delete old questions and their options
+                    foreach ($course->questions as $question) {
+                        $question->options()->delete();
+                        $question->delete();
+                    }
+
+                    // Create new questions and options
+                    foreach ($request->questions as $obj) {
+                        $question = Question::create([
+                            "question" => $obj['question'],
+                            "type" => $obj['type'],
+                            "note" => $obj['note'] ?? null,
                             "course_id" => $course->id
                         ]);
-                }
-            }
 
-            if ($request->questions) {
-                foreach ($course->questions as $question) {
-                    $question->options()->delete();
-                    $question->delete();
-                }
-                foreach ($request->questions as $obj) {
-                    $question = Question::create([
-                        "question" => $obj['question'],
-                        "type" => $obj['type'],
-                        "note" => $obj['note'],
-                        "course_id" => $course->id
-                    ]);
-                    if ($obj['type'] == 4) {
-                        if ($obj['options']) {
-
+                        if ($obj['type'] == 4 && $obj['options']) {
                             foreach ($obj['options'] as $option) {
                                 QuestionsOption::create([
                                     'question_id' => $question->id,
@@ -165,11 +175,12 @@ class CourseController extends Controller
                         }
                     }
                 }
-            }
-            if ($request->faq_questions) {
-                foreach ($course->FAQ as $question) {
-                    $question->delete();
-                }
+
+                // Handle FAQ questions update
+                if ($request->faq_questions) {
+                    foreach ($course->FAQ as $question) {
+                        $question->delete();
+                    }
                     foreach ($request->faq_questions as $obj) {
                         CoursesFAQ::create([
                             "question" => $obj['question'],
@@ -177,37 +188,41 @@ class CourseController extends Controller
                             "course_id" => $course->id
                         ]);
                     }
-            }
-            if ($request->objectives_to_delete) {
-                foreach ($request->objectives_to_delete as $obj) {
-                    if (is_array($obj) && $obj["id"]) {
-                        Objective::find($obj["id"])->delete();
-                    }
                 }
-            }
 
-            if ($request->levels_to_delete) {
-                foreach ($request->levels_to_delete as $lev) {
-                    if (is_array($lev) && $lev["id"]) {
-                        Level::find($lev["id"])->delete();
-                    }
-                }
-            }
-
-            foreach ($request->levels as $level) {
-                $image = $level["image"] ?? null;
-                $objectives = $level["objectives"] ?? null;
-                if ($level["objectives_to_delete"] ?? false) {
-                    foreach (($level["objectives_to_delete"] ?? []) as $obj) {
-                        if (is_array($obj) && ($obj["id"] ?? false)) {
+                // Handle objectives deletion
+                if ($request->objectives_to_delete) {
+                    foreach ($request->objectives_to_delete as $obj) {
+                        if (is_array($obj) && $obj["id"]) {
                             Objective::find($obj["id"])->delete();
                         }
                     }
                 }
 
-                $levelData =
+                // Handle levels deletion
+                if ($request->levels_to_delete) {
+                    foreach ($request->levels_to_delete as $lev) {
+                        if (is_array($lev) && $lev["id"]) {
+                            Level::find($lev["id"])->delete();
+                        }
+                    }
+                }
 
-                    [
+                // Handle levels creation or update
+                foreach ($request->levels as $level) {
+                    $image = $level["image"] ?? null;
+                    $objectives = $level["objectives"] ?? null;
+
+                    // Handle objectives deletion within levels
+                    if ($level["objectives_to_delete"] ?? false) {
+                        foreach (($level["objectives_to_delete"] ?? []) as $obj) {
+                            if (is_array($obj) && ($obj["id"] ?? false)) {
+                                Objective::find($obj["id"])->delete();
+                            }
+                        }
+                    }
+
+                    $levelData = [
                         "id" => $level["id"] ?? 0,
                         "title" => $level["title"] ?? "",
                         "overview" => $level["overview"] ?? "",
@@ -216,35 +231,50 @@ class CourseController extends Controller
                         "course_id" => $level["course_id"] ?? $course->id,
                     ];
 
-                $level = Level::make($levelData);  // Create Level model instance
+                    // Update or create level
+                    $level = Level::updateOrCreate(
+                        ['id' => $levelData['id']],
+                        $levelData
+                    );
 
-                $level = Level::updateOrCreate(
-                    ['id' => $levelData['id']], // Use 'id' for unique identification
-                    $levelData
-                );
+                    // Handle objectives creation for the level
+                    if ($objectives) {
+                        foreach ($objectives as $obj) {
+                            if (!is_array($obj)) {
+                                Objective::create([
+                                    "name" => $obj,
+                                    "level_id" => $level->id
+                                ]);
+                            }
+                        }
+                    }
 
-                if ($objectives) {
-                    foreach ($objectives as $obj) {
-                        if (!is_array($obj))
-                        $objective = Objective::create([
-                            "name" => $obj,
-                            "level_id" => $level->id
-                        ]);
+                    // Handle level image upload
+                    if ($image) {
+                        $level->clearMediaCollection();
+                        $level->addMedia($image)->toMediaCollection();
                     }
                 }
 
-                if ($image) {
-                    $level->clearMediaCollection();
-                    $level->addMedia($image)->toMediaCollection();
-                }
-            }
+                // If all operations are successful, commit the transaction
+                DB::commit();
 
-            if ($course)
+                // Return success response
                 return response()->json([
                     "status" => true,
-                    "message" => "Course updated succussfuly"
+                    "message" => "Course updated successfully"
                 ]);
+            }
+        } catch (\Exception $e) {
+            // If any error occurs, rollback the transaction
+            DB::rollBack();
 
+            // Return error response
+            return response()->json([
+                "status" => false,
+                "message" => "An error occurred while updating the course",
+                "error" => $e->getMessage()
+            ], 500);
         }
     }
 
