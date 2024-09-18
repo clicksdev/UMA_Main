@@ -307,4 +307,12 @@ class CourseController extends Controller
             ->rawColumns(['actions', 'image'])->make(true);
     }
 
+    public function toggleShow($id) {
+        $course = Course::find($id);
+        $course->doesShow = !$course->doesShow;
+        $course->save();
+
+        return redirect()->back();
+    }
+
 }

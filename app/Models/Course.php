@@ -21,6 +21,7 @@ class Course extends Model implements HasMedia
         'isReady',
         'patch',
         'home_arrangment',
+        'doesShow',
         'faq_type',
     ];
 

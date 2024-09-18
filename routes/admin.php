@@ -31,6 +31,7 @@ Route::middleware('AdminAuth')->group(function () {
     Route::get('courses/{course}/delete', [CourseController::class, 'destroy'])->name('courses.delete');
     Route::post('courses/store', [CourseController::class, 'store']);
     Route::post('courses/update', [CourseController::class, 'update']);
+    Route::get('courses/toggle-show/{id}', [CourseController::class, 'toggleShow']);
     Route::resource('courses', CourseController::class);
 
     /*****************  Site majors ****************/

@@ -2,7 +2,7 @@
 
 @section('content')
     @php
-    $latest_courses = App\Models\Course::latest()->paginate(16); // 10 courses per page
+    $latest_courses = App\Models\Course::latest()->where("doesShow", true)->paginate(16); // 10 courses per page
     @endphp
     <!-- Bootstrap 4 CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">

@@ -116,7 +116,7 @@
     @endif
 
     @php
-        $latest_courses = App\Models\Course::orderBy("home_arrangment", "asc")->get();
+        $latest_courses = App\Models\Course::orderBy("home_arrangment", "asc")->where("doesShow", true)->get();
     @endphp
     @if($latest_courses->count() > 0)
         @if((isset($settingsArray['isShowOurMajor']) && $settingsArray['isShowOurMajor']["value"]) || !isset($settingsArray['isShowOurMajor']))

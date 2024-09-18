@@ -82,6 +82,7 @@
                                     <th>created at</th>
                                     <th>Actions</th>
                                     <th>Move to Top</th> <!-- New Column for "Move to Top" -->
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -125,6 +126,12 @@
                     data: 'id', // Move to Top column
                     render: function (data, type, row, meta) {
                         return '<a href="/admins/moveToTop/' + data + '" class="btn btn-sm btn-warning">Move to Top</a>';
+                    }
+                },
+                {
+                    data: 'id', // Move to Top column
+                    render: function (data, type, row, meta) {
+                        return `<a href="/admin/courses/toggle-show/${data}" class="btn btn-sm ${row.doesShow ? 'btn-success' : 'btn-danger'}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg></a>`;
                     }
                 }
             ];
