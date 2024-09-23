@@ -39,7 +39,8 @@ class CourseController extends Controller
             if ($request->objectives) {
                 foreach ($request->objectives as $obj) {
                     Objective::create([
-                        "name" => $obj,
+                        "name" => $obj['en'],
+                        "name_ar" => $obj['ar'],
                         "course_id" => $course->id
                     ]);
                 }
@@ -49,15 +50,18 @@ class CourseController extends Controller
                 foreach ($request->questions as $obj) {
                     $question = Question::create([
                         "question" => $obj['question'],
+                        "question_ar" => $obj['question_ar'],
                         "type" => $obj['type'],
                         "note" => $obj['note'],
+                        "note_ar" => $obj['note_ar'],
                         "course_id" => $course->id
                     ]);
                     if ($obj['type'] == 4) {
                         foreach ($obj['options'] as $option) {
                             QuestionsOption::create([
                                 'question_id' => $question->id,
-                                'option' => $option
+                                'option' => $option['en'],
+                                'option_ar' => $option['ar']
                             ]);
                         }
                     }
@@ -69,6 +73,8 @@ class CourseController extends Controller
                     CoursesFAQ::create([
                         "question" => $obj['question'],
                         "answer" => $obj['answer'],
+                        "question_ar" => $obj['question_ar'],
+                        "answer_ar" => $obj['answer_ar'],
                         "course_id" => $course->id
                     ]);
                 }
@@ -85,7 +91,8 @@ class CourseController extends Controller
                 if ($objectives) {
                     foreach ($objectives as $obj) {
                         Objective::create([
-                            "name" => $obj,
+                            "name" => $obj['en'],
+                            "name_ar" => $obj['ar'],
                             "level_id" => $level->id
                         ]);
                     }
@@ -139,9 +146,10 @@ class CourseController extends Controller
                 // Handle objectives creation
                 if ($request->objectives) {
                     foreach ($request->objectives as $obj) {
-                        if (!is_array($obj)) {
+                        if (isset($obj['en'])) {
                             Objective::create([
-                                "name" => $obj,
+                                "name" => $obj['en'],
+                                "name_ar" => $obj['ar'],
                                 "course_id" => $course->id
                             ]);
                         }
@@ -160,8 +168,10 @@ class CourseController extends Controller
                     foreach ($request->questions as $obj) {
                         $question = Question::create([
                             "question" => $obj['question'],
+                            "question_ar" => $obj['question_ar'] ?? null,
                             "type" => $obj['type'],
                             "note" => $obj['note'] ?? null,
+                            "note_ar" => $obj['note_ar'] ?? null,
                             "course_id" => $course->id
                         ]);
 
@@ -169,7 +179,8 @@ class CourseController extends Controller
                             foreach ($obj['options'] as $option) {
                                 QuestionsOption::create([
                                     'question_id' => $question->id,
-                                    'option' => $option
+                                    'option' => isset($option['en']) ? $option['en'] : $option['option'],
+                                    'option_ar' => isset($option['ar']) ? $option['ar'] : $option['option_ar']
                                 ]);
                             }
                         }
@@ -185,6 +196,8 @@ class CourseController extends Controller
                         CoursesFAQ::create([
                             "question" => $obj['question'],
                             "answer" => $obj['answer'],
+                            "question_ar" => $obj['question_ar'],
+                            "answer_ar" => $obj['answer_ar'],
                             "course_id" => $course->id
                         ]);
                     }
@@ -240,9 +253,10 @@ class CourseController extends Controller
                     // Handle objectives creation for the level
                     if ($objectives) {
                         foreach ($objectives as $obj) {
-                            if (!is_array($obj)) {
+                            if (isset($obj['en'])) {
                                 Objective::create([
-                                    "name" => $obj,
+                                    "name" => $obj['en'],
+                                    "name_ar" => $obj['ar'],
                                     "level_id" => $level->id
                                 ]);
                             }

@@ -13,38 +13,79 @@
                 </h3>
             </div>
             <div class="card-body">
+                <!-- English Username -->
                 <div class="form-group row">
                     <label class="col-form-label text-right col-lg-3 col-sm-12">Username *</label>
                     <div class="col-lg-6">
-                        {{ Form::text('username', null, ['placeholder' => 'username','class' => ($errors->has('username')) ? 'form-control is-invalid' : 'form-control']) }}
+                        {{ Form::text('username', null, ['placeholder' => 'Username', 'class' => ($errors->has('username')) ? 'form-control is-invalid' : 'form-control']) }}
                         <div class="invalid-feedback">{{ $errors->first('username') }}</div>
                     </div>
                 </div>
 
+                <!-- Arabic Username -->
+                <div class="form-group row">
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">اسم المستخدم بالعربية *</label>
+                    <div class="col-lg-6">
+                        {{ Form::text('username_ar', null, ['placeholder' => 'اسم المستخدم بالعربية', 'class' => ($errors->has('username_ar')) ? 'form-control is-invalid' : 'form-control']) }}
+                        <div class="invalid-feedback">{{ $errors->first('username_ar') }}</div>
+                    </div>
+                </div>
+
+                <!-- English Program Name -->
                 <div class="form-group row">
                     <label class="col-form-label text-right col-lg-3 col-sm-12">Program Name *</label>
                     <div class="col-lg-6">
-                        {{ Form::text('major_name', null, ['placeholder' => 'Major Name','class' => ($errors->has('major_name')) ? 'form-control is-invalid' : 'form-control']) }}
+                        {{ Form::text('major_name', null, ['placeholder' => 'Major Name', 'class' => ($errors->has('major_name')) ? 'form-control is-invalid' : 'form-control']) }}
                         <div class="invalid-feedback">{{ $errors->first('major_name') }}</div>
                     </div>
                 </div>
 
+                <!-- Arabic Program Name -->
+                <div class="form-group row">
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">اسم البرنامج بالعربية *</label>
+                    <div class="col-lg-6">
+                        {{ Form::text('major_name_ar', null, ['placeholder' => 'اسم البرنامج بالعربية', 'class' => ($errors->has('major_name_ar')) ? 'form-control is-invalid' : 'form-control']) }}
+                        <div class="invalid-feedback">{{ $errors->first('major_name_ar') }}</div>
+                    </div>
+                </div>
+
+                <!-- English Title -->
                 <div class="form-group row">
                     <label class="col-form-label text-right col-lg-3 col-sm-12">Title *</label>
                     <div class="col-lg-6">
-                        {{ Form::text('title', null, ['placeholder' => 'title','class' =>($errors->has('title')) ? 'form-control is-invalid' : 'form-control']) }}
+                        {{ Form::text('title', null, ['placeholder' => 'Title', 'class' => ($errors->has('title')) ? 'form-control is-invalid' : 'form-control']) }}
                         <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                     </div>
                 </div>
 
+                <!-- Arabic Title -->
+                <div class="form-group row">
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">العنوان بالعربية *</label>
+                    <div class="col-lg-6">
+                        {{ Form::text('title_ar', null, ['placeholder' => 'العنوان بالعربية', 'class' => ($errors->has('title_ar')) ? 'form-control is-invalid' : 'form-control']) }}
+                        <div class="invalid-feedback">{{ $errors->first('title_ar') }}</div>
+                    </div>
+                </div>
+
+                <!-- English Description -->
                 <div class="form-group row">
                     <label class="col-form-label col-lg-3 col-sm-12 text-right">Description *</label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        {{ Form::textarea('description', null, ['placeholder' => 'Description', 'class' => $errors->has('description') ? 'form-control is-invalid' : 'form-control' ,]) }}
+                        {{ Form::textarea('description', null, ['placeholder' => 'Description', 'class' => $errors->has('description') ? 'form-control is-invalid' : 'form-control']) }}
                         <div class="invalid-feedback">{{ $errors->first('description') }}</div>
                     </div>
                 </div>
 
+                <!-- Arabic Description -->
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-3 col-sm-12 text-right">الوصف بالعربية *</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        {{ Form::textarea('description_ar', null, ['placeholder' => 'الوصف بالعربية', 'class' => $errors->has('description_ar') ? 'form-control is-invalid' : 'form-control']) }}
+                        <div class="invalid-feedback">{{ $errors->first('description_ar') }}</div>
+                    </div>
+                </div>
+
+                <!-- Image Input -->
                 <div class="form-group row">
                     <label class="col-form-label text-right col-lg-3 col-sm-12">Image *</label>
                     <div class="col-lg-6">

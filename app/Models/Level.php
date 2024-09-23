@@ -14,6 +14,8 @@ class Level extends Model implements HasMedia
     protected $fillable = [
         "title",
         "overview",
+        "title_ar",
+        "overview_ar",
         "duration",
         "num_sessions",
         "course_id",

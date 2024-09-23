@@ -53,6 +53,17 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Title (AR) *</label>
+                        <div class="col-lg-6">
+                            <input placeholder="Title (AR)" class="form-control" name="title_ar" type="text"
+                                v-model="title_ar">
+                            <div class="invalid-feedback" :style="{ display: this.errors['title_ar'] ? 'block' : null }">
+                                @{{ this.errors["title_ar"] ? this.errors["title_ar"][0] : '' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Patch *</label>
                         <div class="col-lg-6">
                             <select class="form-control" name="patch" v-model="patch">
@@ -70,16 +81,40 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Brief</label>
                         <div class="col-lg-6">
                             <input placeholder="Brief" class="form-control" name="brief" type="text" v-model="brief">
-                            <div class="invalid-feedback" :style="{ display: this.errors['brief'] ? 'block' : null }" >@{{ this.errors["brief"] ? this.errors["brief"][0] : ''}}</div>
+                            <div class="invalid-feedback" :style="{ display: this.errors['brief'] ? 'block' : null }">
+                                @{{ this.errors["brief"] ? this.errors["brief"][0] : '' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Brief (AR)</label>
+                        <div class="col-lg-6">
+                            <input placeholder="Brief (AR)" class="form-control" name="brief_ar" type="text"
+                                v-model="brief_ar">
+                            <div class="invalid-feedback" :style="{ display: this.errors['brief_ar'] ? 'block' : null }">
+                                @{{ this.errors["brief_ar"] ? this.errors["brief_ar"][0] : '' }}
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Overview *</label>
                         <div class="col-lg-6">
-                            <textarea placeholder="overview" class="form-control" name="overview" type="text" v-model="overview">
-                            </textarea>
-                            <div class="invalid-feedback" :style="{ display: this.errors['overview'] ? 'block' : null }" >@{{ this.errors["overview"] ? this.errors["overview"][0] : ''}}</div>
+                            <textarea placeholder="Overview" class="form-control" name="overview" v-model="overview"></textarea>
+                            <div class="invalid-feedback" :style="{ display: this.errors['overview'] ? 'block' : null }">
+                                @{{ this.errors["overview"] ? this.errors["overview"][0] : '' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Overview (AR) *</label>
+                        <div class="col-lg-6">
+                            <textarea placeholder="Overview (AR)" class="form-control" name="overview_ar" v-model="overview_ar"></textarea>
+                            <div class="invalid-feedback" :style="{ display: this.errors['overview_ar'] ? 'block' : null }">
+                                @{{ this.errors["overview_ar"] ? this.errors["overview_ar"][0] : '' }}
+                            </div>
                         </div>
                     </div>
 
@@ -113,12 +148,17 @@
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
                         <div class="col-lg-6">
                             <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="current_objective_text" @keyup.enter="handleAddObjective">
+                                <input type="text" name="course_objectives" id="course_objectives"
+                                    class="form-control" v-model="current_objective_text"
+                                    @keyup.enter="handleAddObjective" placeholder="Objective (En)">
+                                <input type="text" name="course_objectives" id="course_objectives" placeholder="Objective (AR)"
+                                    class="form-control" v-model="current_objective_text_ar"
+                                    @keyup.enter="handleAddObjective">
                                 <button class="btn btn-secondary" @click="handleAddObjective">Add</button>
                             </div>
                             <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
                                 <span  v-for="obj, index in objectives" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                    @{{obj["name"] || obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
+                                    @{{obj["name"] || obj.en}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
                                 </span>
                             </div>
                         </div>
@@ -127,9 +167,17 @@
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Questions</label>
                         <div class="col-lg-6">
-                            <div class="d-flex" style="gap: 8px">
-                                <input type="text" name="course_questions" placeholder="question" id="course_questions" class="form-control" v-model="current_question_text" @keyup.enter="handleAddQuestion">
-                                <input type="text" name="note" id="course_questions" placeholder="note" class="form-control" v-model="current_note_text">
+                            <div style="gap: 8px; display: flex; flex-direction: column">
+                                <input type="text" name="course_questions" placeholder="question"
+                                    id="course_questions" class="form-control" v-model="current_question_text"
+                                    @keyup.enter="handleAddQuestion">
+                                <input type="text" name="course_questions_ar" placeholder="question (AR)"
+                                    id="course_questions_ar" class="form-control" v-model="current_question_text_ar"
+                                    @keyup.enter="handleAddQuestion">
+                                <input type="text" name="note" id="course_questions" placeholder="note"
+                                    class="form-control" v-model="current_note_text">
+                                <input type="text" name="note" id="course_questions" placeholder="note (AR)"
+                                    class="form-control" v-model="current_note_text_ar">
                                 <select name="type" id="type" class="form-control" v-model="current_type">
                                     <option value="1">Text</option>
                                     <option value="2">File</option>
@@ -142,7 +190,10 @@
                             <!-- Conditionally display options input fields if MCQ is selected -->
                             <div v-if="current_type == 4" class="mt-3">
                                 <div v-for="(option, index) in current_options" :key="index" class="d-flex align-items-center mb-2" style="gap: 8px">
-                                    <input type="text" class="form-control" placeholder="Option text" v-model="current_options[index]">
+                                    <input type="text" class="form-control" placeholder="Option text"
+                                        v-model="current_options[index]['en']">
+                                    <input type="text" class="form-control" placeholder="Option text (AR)"
+                                        v-model="current_options[index]['ar']">
                                     <button class="btn btn-danger" @click="removeOption(index)">Remove</button>
                                 </div>
                                 <button class="btn btn-primary mt-2" @click="addOption">Add Option</button>
@@ -195,10 +246,27 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Title (AR)</label>
+                            <div class="col-lg-6">
+                                <input placeholder="Level title (AR)" class="form-control" name="title_ar"
+                                    type="text" v-model="levels[index]['title_ar']">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="col-form-label text-right col-lg-3 col-sm-12">Overview</label>
                             <div class="col-lg-6">
-                                <input placeholder="Level overview" class="form-control" name="overview" type="text" v-model="levels[index]['overview']">
-                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : ''}}</div> --}}
+                                <input placeholder="Level overview" class="form-control" name="overview" type="text"
+                                    v-model="levels[index]['overview']">
+                                {{-- <div class="invalid-feedback" :style="{ display: this.errors['started_at'] ? 'block' : null }" >@{{ this.errors["started_at"] ? this.errors["started_at"][0] : '' }}</div> --}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-3 col-sm-12">Overview (AR)</label>
+                            <div class="col-lg-6">
+                                <input placeholder="Level overview (AR)" class="form-control" name="overview_ar"
+                                    type="text" v-model="levels[index]['overview_ar']">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -219,12 +287,17 @@
                             <label class="col-form-label text-right col-lg-3 col-sm-12">Objectives</label>
                             <div class="col-lg-6">
                                 <div class="d-flex" style="gap: 8px">
-                                    <input type="text" name="course_objectives" id="course_objectives" class="form-control" v-model="levels[index]['current_objective_text']" @keyup.enter="handleAddObjectiveLevel(index)">
+                                    <input type="text" name="course_objectives" id="course_objectives"
+                                        class="form-control" v-model="levels[index]['current_objective_text']" placeholder="Objective (EN)"
+                                        @keyup.enter="handleAddObjectiveLevel(index)">
+                                    <input type="text" name="course_objectives" id="course_objectives"
+                                        class="form-control" v-model="levels[index]['current_objective_text_ar']" placeholder="Objective (AR)"
+                                        @keyup.enter="handleAddObjectiveLevel(index)">
                                     <button class="btn btn-secondary" @click="handleAddObjectiveLevel(index)">Add</button>
                                 </div>
                                 <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
                                     <span  v-for="obj, i in (levels[index] && levels[index]['objectives'] ? levels[index]['objectives'] : [])" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                        @{{obj["name"] || obj}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
+                                        @{{obj.name ?? obj.en}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
                                     </span>
                                 </div>
                             </div>
@@ -296,27 +369,27 @@
 
                             <!-- Loop through custom FAQs -->
                             <div v-for="(faq, index) in faqs" :key="index" class="mb-3">
-                              <div class="form-group">
-                                <label>Question @{{ index + 1 }}</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  v-model="faq.question"
-                                  placeholder="Enter your question"
-                                />
-                              </div>
-                              <div class="form-group">
-                                <label>Answer</label>
-                                <textarea
-                                  class="form-control"
-                                  v-model="faq.answer"
-                                  rows="3"
-                                  placeholder="Enter the answer"
-                                ></textarea>
-                              </div>
+                                <div class="form-group">
+                                    <label>Question @{{ index + 1 }}</label>
+                                    <input type="text" class="form-control" v-model="faq.question"
+                                        placeholder="Enter your question" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Answer</label>
+                                    <textarea class="form-control" v-model="faq.answer" rows="3" placeholder="Enter the answer"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Question (AR) @{{ index + 1 }}</label>
+                                    <input type="text" class="form-control" v-model="faq.question_ar"
+                                        placeholder="Enter your question in Arabic" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Answer (AR)</label>
+                                    <textarea class="form-control" v-model="faq.answer_ar" rows="3" placeholder="Enter the answer in arabic"></textarea>
+                                </div>
 
-                              <!-- Remove FAQ button -->
-                              <button class="btn btn-danger" @click="removeFaq(index)">Remove</button>
+                                <!-- Remove FAQ button -->
+                                <button class="btn btn-danger" @click="removeFaq(index)">Remove</button>
                             </div>
                           </div>
                         </div>
@@ -341,9 +414,11 @@
     return [
         'id' => $question->id,
         'question' => $question->question,
+        'question_ar' => $question->question_ar,
         'note' => $question->note,
+        'note_ar' => $question->note_ar,
         'type' => $question->type,
-        'options' => $question->options->pluck('option')->toArray(), // Pluck only the 'option' field
+        'options' => $question->options, // Pluck only the 'option' field
     ];
 });
 

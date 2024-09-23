@@ -27,6 +27,8 @@ class UpdateFaqRequest extends FormRequest
         return [
             'question'   => ['required', 'string','min:2'],
             'answer'     => ['required', 'string','min:2'],
+            'question_ar'   => ['required', 'string','min:2'],
+            'answer_ar'     => ['required', 'string','min:2'],
         ];
     }
 }

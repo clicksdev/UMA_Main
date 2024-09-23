@@ -29,6 +29,10 @@ class UpdateTestimonialRequest extends FormRequest
             'major_name'  => ['required', 'string','min:2','max:255'],
             'title'       => ['required', 'string','min:2','max:255'],
             'description' => ['required', 'string','min:2'],
+            'username_ar'    => ['required', 'string','min:2','max:255'],
+            'major_name_ar'  => ['required', 'string','min:2','max:255'],
+            'title_ar'       => ['required', 'string','min:2','max:255'],
+            'description_ar' => ['required', 'string','min:2'],
             'image'       => ['nullable','image','mimes:jpg,png,jpeg','max:10240'],
         ];
     }

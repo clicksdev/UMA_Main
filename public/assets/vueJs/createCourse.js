@@ -4,6 +4,9 @@ createApp({
     data() {
         return {
             title: "",
+            title_ar: "",
+            brief_ar: "",
+            overview_ar: "",
             brief: "",
             overview: "",
             duration: 0,
@@ -17,6 +20,7 @@ createApp({
             v_questions: [],
             f_questions: [],
             current_objective_text: "",
+            current_objective_text_ar: "",
             current_type: 1,
             current_note_text: "",
             levels: [
@@ -32,7 +36,7 @@ createApp({
     methods: {
         // Add a new empty FAQ
         addFaq() {
-            this.faqs.push({ question: '', answer: '' });
+            this.faqs.push({ question: '', answer: '', question_ar: '', answer_ar: "" });
         },
         // Remove an FAQ by index
         removeFaq(index) {
@@ -40,26 +44,39 @@ createApp({
         },
         handleAddObjective() {
             if (this.current_objective_text) {
-                this.objectives.push(this.current_objective_text)
+                this.objectives.push(
+                    {
+                        "en": this.current_objective_text,
+                        "ar": this.current_objective_text_ar,
+                    }
+                )
                 this.current_objective_text = ""
+                this.current_objective_text_ar = ""
             }
         },
         addOption() {
-            this.current_options.push("");
+            this.current_options.push({
+                en: '',
+                ar: ''
+            });
         },
         removeOption(index) {
             this.current_options.splice(index, 1);
         },
         handleAddQuestion() {
-            if (this.current_question_text && this.current_note_text && this.current_type) {
+            if (this.current_question_text && this.current_note_text && this.current_type && this.current_question_text_ar) {
                 this.questions.push({
                     question: this.current_question_text,
+                    question_ar: this.current_question_text_ar,
                     note: this.current_note_text,
+                    note_ar: this.current_note_text_ar,
                     type: this.current_type,
                     options: this.current_options,
                 })
                 this.current_question_text = ""
+                this.current_question_text_ar = ""
                 this.current_note_text = ""
+                this.current_note_text_ar = ""
                 this.current_type = ""
                 this.current_options = []
             }
@@ -77,11 +94,17 @@ createApp({
             }
         },
         handleAddObjectiveLevel(index) {
-            if (this.levels[index]['current_objective_text']) {
+            if (this.levels[index]['current_objective_text'] && this.levels[index]['current_objective_text_ar']) {
                 if (!this.levels[index]["objectives"])
                     this.levels[index]["objectives"] = []
-                this.levels[index]["objectives"].push(this.levels[index]['current_objective_text'])
+                this.levels[index]["objectives"].push(
+                    {
+                        en: this.levels[index]['current_objective_text'],
+                        ar: this.levels[index]['current_objective_text_ar']
+                    }
+                )
                 this.levels[index]['current_objective_text'] = ""
+                this.levels[index]['current_objective_text_ar'] = ""
             }
         },
         getUri(file) {
@@ -131,6 +154,9 @@ createApp({
                 try {
                     const response = await axios.post(`/admin/courses/store`, {
                         title: this.title,
+                        title_ar: this.title_ar,
+                        brief_ar: this.brief_ar,
+                        overview_ar: this.overview_ar,
                         brief: this.brief,
                         overview: this.overview,
                         duration: this.duration,

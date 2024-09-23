@@ -10,6 +10,8 @@ class Question extends Model
     use HasFactory;
     protected $fillable = [
         "question",
+        "note_ar",
+        "question_ar",
         "answer",
         "note",
         "type",

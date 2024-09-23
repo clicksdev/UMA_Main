@@ -47,7 +47,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab"
                                     href="#never-miss-update">{{ __('Never Miss Any
-                                                                    Update') }}</a>
+                                                                                                                                                                                                                                                        Update') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#toggle-sections-2">Toggle Sections</a>
@@ -95,7 +95,7 @@
                                                 {{ Form::file('logo', [
                                                     'class' => 'd-none',
                                                     'accept' => '.png, .jpg,
-                                                                                            .jpeg',
+                                                                                                                                                                                                                                                                                                                                            .jpeg',
                                                 ]) }}
                                                 <span data-original-title="Upload logo"
                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow">
@@ -130,13 +130,42 @@
                                 <div class="form-group row">
                                     <label
                                         class="col-form-label col-lg-3 col-sm-12 text-right">{{ __('Shape Section
-                                                                            Description') }}</label>
+                                                                                                                                                                                                                                                                                    Description') }}</label>
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::textarea('shape_section_description', $settingsArray['shape_section_description']['value'] ?? null, [
                                             'placeholder' => __('Description'),
                                             'class' => $errors->has('shape_section_description') ? 'form-control is-invalid' : 'form-control',
                                         ]) }}
                                         <div class="invalid-feedback">{{ $errors->first('shape_section_description') }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12 text-right">{{ __('Shape Section Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text('shape_section_title_ar', $settingsArray['shape_section_title_ar']['value'] ?? null, [
+                                            'placeholder' => __('Title (AR)'),
+                                            'class' => $errors->has('shape_section_title_ar') ? 'form-control is-invalid' : 'form-control',
+                                        ]) }}
+                                        <div class="invalid-feedback">{{ $errors->first('shape_section_title_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12 text-right">{{ __('Shape Section Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'shape_section_description_ar',
+                                            $settingsArray['shape_section_description_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Description (AR)'),
+                                                'class' => $errors->has('shape_section_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('shape_section_description_ar') }}
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +217,7 @@
                                             'placeholder' => __('Description'),
                                             'class' => $errors->has('our_aim_description')
                                                 ? 'form-control
-                                                                            is-invalid'
+                                                                                                                                                                                                                                                                                    is-invalid'
                                                 : 'form-control',
                                         ]) }}
                                         <div class="invalid-feedback">{{ $errors->first('our_aim_description') }}</div>
@@ -236,6 +265,76 @@
                                                 class="form-control"></textarea>
                                             <div class="invalid-feedback">{{ $errors->first('masterclass_description') }}
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('OUR AIM Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text('our_aim_title_ar', $settingsArray['our_aim_title_ar']['value'] ?? null, [
+                                            'placeholder' => __('Title (AR)'),
+                                            'class' => $errors->has('our_aim_title_ar') ? 'form-control is-invalid' : 'form-control',
+                                        ]) }}
+                                        <div class="invalid-feedback">{{ $errors->first('our_aim_title_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('OUR AIM Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea('our_aim_description_ar', $settingsArray['our_aim_description_ar']['value'] ?? null, [
+                                            'placeholder' => __('Description (AR)'),
+                                            'class' => $errors->has('our_aim_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                        ]) }}
+                                        <div class="invalid-feedback">{{ $errors->first('our_aim_description_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div id="main-majors-description" class="tab-pane">
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-form-label col-lg-3 col-sm-12">{{ __('Main Majors Description (AR)') }}</label>
+                                        <div class="col-lg-7 col-md-9 col-sm-12">
+                                            {{ Form::textarea('main_majors_description_ar', $settingsArray['main_majors_description_ar']['value'] ?? null, [
+                                                'placeholder' => __('Description (AR)'),
+                                                'class' => $errors->has('main_majors_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ]) }}
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('main_majors_description_ar') }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="online-courses-description" class="tab-pane">
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-form-label col-lg-3 col-sm-12">{{ __('Online Courses Description (AR)') }}</label>
+                                        <div class="col-lg-7 col-md-9 col-sm-12">
+                                            {{ Form::textarea(
+                                                'online_courses_description_ar',
+                                                $settingsArray['online_courses_description_ar']['value'] ?? null,
+                                                [
+                                                    'placeholder' => __('Description (AR)'),
+                                                    'class' => $errors->has('online_courses_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                                ],
+                                            ) }}
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('online_courses_description_ar') }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="masterclass" class="tab-pane">
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-form-label col-lg-3 col-sm-12">{{ __('Masterclass Description (AR)') }}</label>
+                                        <div class="col-lg-7 col-md-9 col-sm-12">
+                                            <textarea name="masterclass_description_ar" cols="30" rows="10" class="form-control">{{ $settingsArray['masterclass_description_ar']['value'] ?? null }}</textarea>
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('masterclass_description_ar') }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -358,6 +457,142 @@
                                             {{ $errors->first('how_it_works_step_three_description') }}</div>
                                     </div>
                                 </div>
+
+                                <!-- How It Works Title and Description (AR) -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('How It Works Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text('how_it_works_title_ar', $settingsArray['how_it_works_title_ar']['value'] ?? null, [
+                                            'placeholder' => __('Title (AR)'),
+                                            'class' => $errors->has('how_it_works_title_ar') ? 'form-control is-invalid' : 'form-control',
+                                        ]) }}
+                                        <div class="invalid-feedback">{{ $errors->first('how_it_works_title_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('How It Works Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'how_it_works_description_ar',
+                                            $settingsArray['how_it_works_description_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Description (AR)'),
+                                                'class' => $errors->has('how_it_works_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('how_it_works_description_ar') }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step One (AR) -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Step One Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text(
+                                            'how_it_works_step_one_title_ar',
+                                            $settingsArray['how_it_works_step_one_title_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Step One Title (AR)'),
+                                                'class' => $errors->has('how_it_works_step_one_title_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('how_it_works_step_one_title_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Step One Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'how_it_works_step_one_description_ar',
+                                            $settingsArray['how_it_works_step_one_description_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Step One Description (AR)'),
+                                                'class' => $errors->has('how_it_works_step_one_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('how_it_works_step_one_description_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <!-- Step Two (AR) -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Step Two Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text(
+                                            'how_it_works_step_two_title_ar',
+                                            $settingsArray['how_it_works_step_two_title_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Step Two Title (AR)'),
+                                                'class' => $errors->has('how_it_works_step_two_title_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('how_it_works_step_two_title_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Step Two Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'how_it_works_step_two_description_ar',
+                                            $settingsArray['how_it_works_step_two_description_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Step Two Description (AR)'),
+                                                'class' => $errors->has('how_it_works_step_two_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('how_it_works_step_two_description_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <!-- Step Three (AR) -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Step Three Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text(
+                                            'how_it_works_step_three_title_ar',
+                                            $settingsArray['how_it_works_step_three_title_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Step Three Title (AR)'),
+                                                'class' => $errors->has('how_it_works_step_three_title_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('how_it_works_step_three_title_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Step Three Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'how_it_works_step_three_description_ar',
+                                            $settingsArray['how_it_works_step_three_description_ar']['value'] ?? null,
+                                            [
+                                                'placeholder' => __('Step Three Description (AR)'),
+                                                'class' => $errors->has('how_it_works_step_three_description_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('how_it_works_step_three_description_ar') }}</div>
+                                    </div>
+                                </div>
+
                             </div>
 
 
@@ -404,7 +639,7 @@
                                 <div class="form-group row">
                                     <label
                                         class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update
-                                                                            Description') }}</label>
+                                                                                                                                                                                                                                                                                    Description') }}</label>
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         <textarea name="never_miss_update_description" class="form-control" id="never_miss_update_description"
                                             value="{{ $settingsArray['never_miss_update_description'] ? $settingsArray['never_miss_update_description']['value'] : '' }}">
@@ -414,6 +649,33 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Never Miss Any Update Title (AR) -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update Title (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        <input type="text" name="never_miss_update_title_ar" class="form-control"
+                                            id="never_miss_update_title_ar"
+                                            value="{{ isset($settingsArray['never_miss_update_title_ar']) ? $settingsArray['never_miss_update_title_ar']['value'] : '' }}">
+                                        <div class="invalid-feedback">{{ $errors->first('never_miss_update_title_ar') }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Never Miss Any Update Description (AR) -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Never Miss Any Update Description (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        <textarea name="never_miss_update_description_ar" class="form-control" id="never_miss_update_description_ar">
+            {{ isset($settingsArray['never_miss_update_description_ar']) ? $settingsArray['never_miss_update_description_ar']['value'] : '' }}
+        </textarea>
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('never_miss_update_description_ar') }}</div>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div id="toggle-sections-2" class="tab-pane">
@@ -511,7 +773,7 @@
                                             {{ Form::file('persident_img', [
                                                 'class' => 'd-none',
                                                 'accept' => '.png, .jpg,
-                                                                                    .jpeg',
+                                                                                                                                                                                                                                                                                                                .jpeg',
                                             ]) }}
                                             <span data-original-title="Upload persident_img"
                                                 class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow">
@@ -538,10 +800,28 @@
                                                 'class' => $errors->has('presedent_name') ? 'form-control is-invalid' : 'form-control',
                                             ],
                                         ) }}
-                                        <div class="invalid-feedback">{{ $errors->first('presedent_name') }}
-                                        </div>
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_name') }}</div>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('President Name (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text(
+                                            'presedent_name_ar',
+                                            isset($settingsArray['presedent_name_ar']) && $settingsArray['presedent_name_ar']['value']
+                                                ? $settingsArray['presedent_name_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'President Name (AR)',
+                                                'class' => $errors->has('presedent_name_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_name_ar') }}</div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label
                                         class="col-form-label col-lg-3 col-sm-12">{{ __('President Position') }}</label>
@@ -550,10 +830,22 @@
                                             'placeholder' => 'President Position',
                                             'class' => $errors->has('presedent_position') ? 'form-control is-invalid' : 'form-control',
                                         ]) }}
-                                        <div class="invalid-feedback">{{ $errors->first('presedent_position') }}
-                                        </div>
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_position') }}</div>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('President Position (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text('presedent_position_ar', $settingsArray['presedent_position_ar']['value'] ?? null, [
+                                            'placeholder' => 'President Position (AR)',
+                                            'class' => $errors->has('presedent_position_ar') ? 'form-control is-invalid' : 'form-control',
+                                        ]) }}
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_position_ar') }}</div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label
                                         class="col-form-label col-lg-3 col-sm-12">{{ __('President Part word') }}</label>
@@ -562,10 +854,23 @@
                                             'placeholder' => 'President Part word',
                                             'class' => $errors->has('presedent_word_part') ? 'form-control is-invalid' : 'form-control',
                                         ]) }}
-                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_part') }}
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_part') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('President Part word (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea('presedent_word_part_ar', $settingsArray['presedent_word_part_ar']['value'] ?? null, [
+                                            'placeholder' => 'President Part word (AR)',
+                                            'class' => $errors->has('presedent_word_part_ar') ? 'form-control is-invalid' : 'form-control',
+                                        ]) }}
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_part_ar') }}
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label
                                         class="col-form-label col-lg-3 col-sm-12">{{ __('President Full word') }}</label>
@@ -580,7 +885,25 @@
                                                 'class' => $errors->has('presedent_word_full') ? 'form-control is-invalid' : 'form-control',
                                             ],
                                         ) }}
-                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_full') }}
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_full') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('President Full word (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'presedent_word_full_ar',
+                                            isset($settingsArray['presedent_word_full_ar']) && $settingsArray['presedent_word_full_ar']['value']
+                                                ? $settingsArray['presedent_word_full_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'President Full word (AR)',
+                                                'class' => $errors->has('presedent_word_full_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_full_ar') }}
                                         </div>
                                     </div>
                                 </div>
@@ -601,6 +924,23 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label class="col-form-label col-lg-3 col-sm-12">{{ __('UMA Vision (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'uma_vision_ar',
+                                            isset($settingsArray['uma_vision_ar']) && $settingsArray['uma_vision_ar']['value']
+                                                ? $settingsArray['uma_vision_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'UMA Vision (AR)',
+                                                'class' => $errors->has('uma_vision_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('uma_vision_ar') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label class="col-form-label col-lg-3 col-sm-12">{{ __('UMA Mission') }}</label>
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::textarea(
@@ -614,6 +954,23 @@
                                             ],
                                         ) }}
                                         <div class="invalid-feedback">{{ $errors->first('uma_mission') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-lg-3 col-sm-12">{{ __('UMA Mission (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'uma_mission_ar',
+                                            isset($settingsArray['uma_mission_ar']) && $settingsArray['uma_mission_ar']['value']
+                                                ? $settingsArray['uma_mission_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'UMA Mission (AR)',
+                                                'class' => $errors->has('uma_mission_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('uma_mission_ar') }}</div>
                                     </div>
                                 </div>
 
@@ -686,6 +1043,24 @@
                                         <div class="invalid-feedback">{{ $errors->first('privacy_policy') }}</div>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Privacy Policy (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'privacy_policy_ar',
+                                            isset($settingsArray['privacy_policy_ar']) && $settingsArray['privacy_policy_ar']['value']
+                                                ? $settingsArray['privacy_policy_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'Privacy Policy (AR)',
+                                                'class' => $errors->has('privacy_policy_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('privacy_policy_ar') }}</div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div id="terms-and-conditions" class="tab-pane">
@@ -704,6 +1079,25 @@
                                             ],
                                         ) }}
                                         <div class="invalid-feedback">{{ $errors->first('terms_and_conditions') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Terms and Conditions (AR)') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::textarea(
+                                            'terms_and_conditions_ar',
+                                            isset($settingsArray['terms_and_conditions_ar']) && isset($settingsArray['terms_and_conditions_ar']['value'])
+                                                ? $settingsArray['terms_and_conditions_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'Terms and Conditions (AR)',
+                                                'class' => $errors->has('terms_and_conditions_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('terms_and_conditions_ar') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
