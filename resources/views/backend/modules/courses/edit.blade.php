@@ -436,6 +436,6 @@
     <script src="{{ asset('assets/libs/axios.js') }}"></script>
     <script src="{{ asset('assets/libs/jquery.js') }}"></script>
     <script src="{{ asset('assets/libs/vue.js') }}"></script>
-    <script src="{{ asset('assets/vueJs/editCourse.js') }}"></script>
+    <script src="{{ asset('assets/vueJs/editCourse.js') }}?v={{time()}}"></script>
 @endsection
 
