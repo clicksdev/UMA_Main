@@ -187,7 +187,7 @@ createApp({
               }
               );
               if (response.data.status) {
-                window.location.href = "/admin/courses"
+                // window.location.href = "/admin/courses"
               }
           } catch (error) {
             this.errors = error.response.data.errors
