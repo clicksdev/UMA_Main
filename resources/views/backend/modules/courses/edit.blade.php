@@ -158,7 +158,7 @@
                             </div>
                             <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
                                 <span  v-for="obj, index in objectives" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                    @{{obj["name"] || obj.en}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
+                                    @{{obj["name"] || obj.en}} <br> @{{obj["name_ar"] || obj.ar}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjective(index)">x</button>
                                 </span>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                                 </div>
                                 <div class="objectives w-100 mt-3" style="display: flex; gap: 8px; white-space: nowrap; flex-wrap: wrap">
                                     <span  v-for="obj, i in (levels[index] && levels[index]['objectives'] ? levels[index]['objectives'] : [])" :key="obj.id" class="text-secondary" style="font-size: 16px">
-                                        @{{obj.name ?? obj.en}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
+                                        @{{obj.name ?? obj.en}} <br> @{{obj.name_ar ?? obj.ar}} <button class="text-danger" style="background: transparent;border: none" @click="handleRemoveObjectiveFromLevel(index, i)">x</button>
                                     </span>
                                 </div>
                             </div>
