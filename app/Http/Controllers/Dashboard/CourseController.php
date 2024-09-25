@@ -239,6 +239,8 @@ class CourseController extends Controller
                         "id" => $level["id"] ?? 0,
                         "title" => $level["title"] ?? "",
                         "overview" => $level["overview"] ?? "",
+                        "title_ar" => $level["title_ar"] ?? "",
+                        "title_ar" => $level["title_ar"] ?? "",
                         "duration" => $level["duration"] ?? 0,
                         "num_sessions" => $level["num_sessions"] ?? 0,
                         "course_id" => $level["course_id"] ?? $course->id,
