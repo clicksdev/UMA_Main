@@ -19,6 +19,7 @@ createApp({
         questions: window.questions || [],
         v_questions: window.v_questions || [],
         current_objective_text: "",
+        current_note_text_ar: "",
         current_objective_text_ar: "",
         levels: window.levels || [],
         currentLevelIndex: 0,
