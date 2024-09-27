@@ -232,7 +232,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><span class="menu-text">admins-logs</span></a>
+                    </span><span class="menu-text">Admins Logs</span></a>
             </li>
 
             <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'admins') === 0 ? 'menu-item-active' : '' }}"
