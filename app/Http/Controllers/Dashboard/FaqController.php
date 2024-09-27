@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\ActionLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Faqs\CreateFaqRequest;
 use App\Http\Requests\Faqs\UpdateFaqRequest;
@@ -24,8 +25,9 @@ class FaqController extends Controller
     public function store(CreateFaqRequest $request)
     {
         $validatedData = $request->validated();
-        Faq::create($validatedData);
+        $faq = Faq::create($validatedData);
         Toastr::success('faq created successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('create', 'FAQ', $faq->question);
         return redirect()->route('faqs.index');
     }
 
@@ -39,13 +41,16 @@ class FaqController extends Controller
         $validatedData = $request->validated();
         $faq->update($validatedData);
         Toastr::success('faq updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('update', 'FAQ', $faq->question);
         return redirect()->route('faqs.index');
     }
 
     public function destroy(Faq $faq)
     {
+        $original = $faq;
         $faq->delete();
         Toastr::success('faq deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('delete', 'FAQ', $original->question);
         return redirect()->route('faqs.index');
     }
 

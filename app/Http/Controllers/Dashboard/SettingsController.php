@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\ActionLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\CreateUpdateSettingRequest;
 use App\Models\Setting;
@@ -44,6 +45,8 @@ class SettingsController extends Controller
         }
 
         Toastr::success('settings updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        ActionLogger::log('update', 'settings', "");
 
         return redirect()->route('settings.index')->with('success', 'Settings updated successfully');
     }

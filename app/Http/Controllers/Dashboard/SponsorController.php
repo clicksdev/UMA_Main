@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\HandleResponseTrait;
+use App\Helpers\ActionLogger;
 use App\SaveImageTrait;
 use App\Models\Sponsor;
 use Illuminate\Support\Facades\Validator;
@@ -40,6 +41,7 @@ class SponsorController extends Controller
 
         if ($sponsor)
             return view("backend.sponsors.edit")->with(compact("sponsor"));
+
 
         return $this->handleResponse(
             false,
@@ -78,6 +80,8 @@ class SponsorController extends Controller
             "name" => $request->name,
             "image_path" => '/images/uploads/Sponsors/' . $image,
         ]);
+
+        ActionLogger::log('create', 'sponsors', $sponsor->name);
 
         if ($sponsor)
             return $this->handleResponse(
@@ -123,6 +127,7 @@ class SponsorController extends Controller
 
         $sponsor->name = $request->name;
         $sponsor->save();
+        ActionLogger::log('update', 'sponsors', $sponsor->name);
 
         if ($sponsor)
             return $this->handleResponse(
@@ -168,7 +173,11 @@ class SponsorController extends Controller
 
         $Sponsor = Sponsor::find($request->id);
 
+        $original = $Sponsor;
+
         $Sponsor->delete();
+
+        ActionLogger::log('delete', 'sponsors', $original->name);
 
         if ($Sponsor)
             return $this->handleResponse(

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\ActionLogger;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
@@ -101,6 +102,8 @@ class CourseController extends Controller
 
             DB::commit();
 
+            ActionLogger::log('create', 'program', $course->title);
+
             return response()->json([
                 "status" => true,
                 "message" => "Course created successfully"
@@ -129,9 +132,12 @@ class CourseController extends Controller
         // Start a database transaction
         DB::beginTransaction();
 
+
         try {
             $validatedData = $request->validated();
             $course = Course::find($request->id ?? 0);
+
+            $original = $course;
 
             if ($course) {
                 // Update course details
@@ -275,6 +281,9 @@ class CourseController extends Controller
                 // If all operations are successful, commit the transaction
                 DB::commit();
 
+
+                ActionLogger::log('update', 'program', $course->title);
+
                 // Return success response
                 return response()->json([
                     "status" => true,
@@ -296,9 +305,14 @@ class CourseController extends Controller
 
     public function destroy(Course $course)
     {
+        $original = $course;
+
         $course->levels()->delete();
         $course->delete();
         Toastr::success('course deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        ActionLogger::log('delete', 'program', $original->title);
+
         return redirect()->route('courses.index');
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\ActionLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Testimonials\CreateTestimonialRequest;
 use App\Http\Requests\Testimonials\UpdateTestimonialRequest;
@@ -27,6 +28,7 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::create($validatedData);
         $testimonial->addMediaFromRequest('image')->toMediaCollection();
         Toastr::success('testimonial created successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('create', 'testimonials', $testimonial->username);
         return redirect()->route('testimonials.index');
     }
 
@@ -44,13 +46,17 @@ class TestimonialController extends Controller
             $testimonial->addMediaFromRequest('image')->toMediaCollection();
         }
         Toastr::success('testimonial updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        ActionLogger::log('update', 'testimonials', $testimonial->username);
         return redirect()->route('testimonials.index');
     }
 
     public function destroy(Testimonial $testimonial)
     {
+        $original = $testimonial;
         $testimonial->delete();
         Toastr::success('testimonial deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('delete', 'testimonials', $original->username);
         return redirect()->route('testimonials.index');
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\ActionLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Statistics\CreateStatisticRequest;
 use App\Http\Requests\Statistics\UpdateStatisticRequest;
@@ -27,8 +28,10 @@ class StatisticsController extends Controller
     public function store(CreateStatisticRequest $request)
     {
         $validatedData = $request->validated();
-        Statistic::create($validatedData);
+        $statistic = Statistic::create($validatedData);
         Toastr::success('statistic Created successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('create', 'statistics', $statistic->title);
+
         return redirect()->route('statistics.index');
     }
 
@@ -42,13 +45,20 @@ class StatisticsController extends Controller
         $validatedData = $request->validated();
         $statistic->update($validatedData);
         Toastr::success('statistic updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        ActionLogger::log('update', 'statistics', $statistic->title);
+
         return redirect()->route('statistics.index');
     }
 
     public function destroy(Statistic $statistic)
     {
+        $original = $statistic;
         $statistic->delete();
         Toastr::success('statistic deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        ActionLogger::log('delete', 'statistics', $original->title);
+
         return redirect()->route('statistics.index');
     }
 

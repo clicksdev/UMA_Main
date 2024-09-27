@@ -34,6 +34,8 @@ Route::middleware('AdminAuth')->group(function () {
     Route::get('courses/toggle-show/{id}', [CourseController::class, 'toggleShow']);
     Route::resource('courses', CourseController::class);
 
+    Route::view('/admins-logs', 'backend.modules.admins_logs.index');
+
     /*****************  Site majors ****************/
     Route::get('majors/dataTable', [MajorController::class, 'dataTable']);
     Route::get('majors/{major}/delete', [MajorController::class, 'destroy'])->name('majors.delete');

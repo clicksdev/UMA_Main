@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\ActionLogger;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Major;
@@ -73,6 +74,8 @@ class MajorController extends Controller
             }
 
             DB::commit();
+
+            ActionLogger::log('create', 'major', $major->title);
 
             return response()->json([
                 "status" => true,
@@ -195,6 +198,8 @@ class MajorController extends Controller
                 }
             }
 
+            ActionLogger::log('update', 'major', $major->title);
+
             if ($major)
                 return response()->json([
                     "status" => true,
@@ -206,9 +211,11 @@ class MajorController extends Controller
 
     public function destroy(Major $major)
     {
+        $original = $major;
         $major->levels()->delete();
         $major->delete();
         Toastr::success('major deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        ActionLogger::log('delete', 'major', $original->title);
         return redirect()->route('majors.index');
     }
 
