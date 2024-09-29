@@ -216,7 +216,7 @@
                             <div class="questions w-100 mt-3" style="display: flex; gap: 8px; flex-wrap: wrap">
                                 <span v-for="(obj, index) in questions" :key="obj.id" class="text-secondary"
                                     style="font-size: 16px">
-                                    @{{ obj.question }} <button class="text-danger"
+                                    @{{ obj.question }} <br /> @{{ obj.question_ar }} <button class="text-danger"
                                         style="background: transparent;border: none"
                                         @click="handleRemoveQuestion(index)">x</button>
                                 </span>
