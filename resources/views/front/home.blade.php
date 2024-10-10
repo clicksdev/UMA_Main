@@ -686,6 +686,10 @@
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            pagination: {
+                el: ".mySwiperTest .swiper-pagination",
+                clickable: true,
+            },
         });
         var swiper = new Swiper(".mySwiper2", {
             slidesPerView: 1,
