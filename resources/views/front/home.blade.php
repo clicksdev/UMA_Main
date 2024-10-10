@@ -134,7 +134,7 @@
                     </h1>
                 </div>
                     <div class="courses_wrapper" style="display: block">
-                        <div class="swiper mySwiper2" style="width: 100%">
+                        <div class="swiper mySwiper2 sipermaj" style="width: 100%">
                             <div class="swiper-wrapper">
 
                                     @foreach ($latest_courses as $course)
@@ -682,6 +682,8 @@
         var swiper = new Swiper(".mySwiperTest", {
             slidesPerView: 1,
             spaceBetween: 16,
+            autoplay: true,
+            loop: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -698,7 +700,7 @@
             loop: true,
 
             pagination: {
-                el: ".swiper-pagination",
+                el: ".sipermaj .swiper-pagination",
                 clickable: true,
             },
             breakpoints: {
