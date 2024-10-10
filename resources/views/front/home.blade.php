@@ -180,8 +180,6 @@
                                     @endforeach
                                 </div>
                                 <div class="swiper-pagination"></div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
 
                             </div>
 
@@ -469,7 +467,7 @@
     @if((isset($settingsArray['isShowTestemonials']) && $settingsArray['isShowTestemonials']["value"]) || !isset($settingsArray['isShowTestemonials']))
     <section class="testemonials">
         <div class="container">
-            <div class="swiper mySwiper">
+            <div class="swiper mySwiper mySwiperTest">
                 <div class="swiper-wrapper">
                     @foreach($testimonials as $testimonial)
                         <div class="swiper-slide">
@@ -487,6 +485,8 @@
 
                 </div>
                 <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
             <div class="text_wrapper">
                 @foreach($testimonials as $testimonial)
@@ -679,15 +679,17 @@
 
       <!-- Initialize Swiper -->
       <script>
+        var swiper = new Swiper(".mySwiperTest", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
         var swiper = new Swiper(".mySwiper2", {
             slidesPerView: 1,
             spaceBetween: 16,
             autoplay: true,
             loop: true,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
 
             pagination: {
                 el: ".swiper-pagination",
