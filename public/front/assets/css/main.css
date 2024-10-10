@@ -1200,8 +1200,8 @@ header nav .container .logo {
 }
 .testemonials .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .testemonials .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
   margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 4px);
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
   background: white;
 }
 .testemonials .swiper-horizontal > .swiper-pagination-bullets, .testemonials .swiper-pagination-bullets.swiper-pagination-horizontal, .testemonials .swiper-pagination-custom, .testemonials .swiper-pagination-fraction {
