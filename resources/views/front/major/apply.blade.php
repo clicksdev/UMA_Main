@@ -130,8 +130,8 @@
                                 <div class="invalid-feedback">{{ $errors->first('duration_of_employment') }}</div>
                             </div>
                             <div class="input-group">
-                                <label for="subject_studied">Relevant Majors or Subjects Studied</label>
-                                {{ Form::text('subject_studied', old('subject_studied'), ['placeholder' => 'Majors ', 'class' => $errors->has('subject_studied') ? 'form-control is-invalid' : 'form-control']) }}
+                                <label for="subject_studied">Relevant Programs or Subjects Studied</label>
+                                {{ Form::text('subject_studied', old('subject_studied'), ['placeholder' => 'Programs ', 'class' => $errors->has('subject_studied') ? 'form-control is-invalid' : 'form-control']) }}
                                 <div class="invalid-feedback">{{ $errors->first('subject_studied') }}</div>
                             </div>
                         </div>

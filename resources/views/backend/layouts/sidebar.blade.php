@@ -127,7 +127,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><span class="menu-text">Programs Applicants</span></a>
+                    </span><span class="menu-text">Majors Applicants</span></a>
             </li>
 
             <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'majorApplicants') === 0 ? 'menu-item-active' : '' }}"
@@ -148,7 +148,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><span class="menu-text">Majors Applicants</span></a>
+                    </span><span class="menu-text">Programs Applicants</span></a>
             </li>
 
             <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'statistics') === 0 ? 'menu-item-active' : '' }}"

@@ -7,20 +7,6 @@
             <img src="{{asset('/front/assets/imgs/logo-n.png')}}" alt="">
             <p>serves as a beacon of knowledge and expertise, nurturing aspiring media professionals and shaping the
                 future of the industry.</p>
-            <a href="/#our-major" id="apply_btn_footer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-click" width="20"
-                     height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M3 12l3 0"/>
-                    <path d="M12 3l0 3"/>
-                    <path d="M7.8 7.8l-2.2 -2.2"/>
-                    <path d="M16.2 7.8l2.2 -2.2"/>
-                    <path d="M7.8 16.2l-2.2 2.2"/>
-                    <path d="M12 12l9 3l-4 2l-2 4l-3 -9"/>
-                </svg>
-                Apply now
-            </a>
         </div>
         <div class="links">
             <ul>
@@ -31,7 +17,7 @@
             </ul>
             <ul>
                 <li><h2>Quick Links</h2></li>
-                <li><a href="/our-programs">Our Majors</a></li>
+                <li><a href="/our-programs">Our Programs</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/privacy-policy">Privacy Policy</a></li>
                 <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
@@ -54,13 +40,16 @@
                         </svg>
                     </a>
                     @endif
-                    @if((isset($settingsArray['twitter_link']) && $settingsArray['twitter_link']["value"]))
-                    <a href="{{(isset($settingsArray['twitter_link']) && $settingsArray['twitter_link']["value"])  ? $settingsArray['twitter_link']["value"] : ''}}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                            </svg>
+                    @if((isset($settingsArray['linkedin_link']) && $settingsArray['linkedin_link']["value"]))
+                    <a href="{{(isset($settingsArray['linkedin_link']) && $settingsArray['linkedin_link']["value"])  ? $settingsArray['linkedin_link']["value"] : ''}}" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#CBBBB3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M8 11l0 5" />
+                            <path d="M8 8l0 .01" />
+                            <path d="M12 16l0 -5" />
+                            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+                          </svg>
                         </a>
                     @endif
                 </li>

@@ -21,7 +21,7 @@
             {{-- <div class="links">
                 <a href="/" class="active">Home</a>
                 <a href="#">Who we are</a>
-                <a href="#">Majors</a>
+                <a href="#">Programs</a>
                 <a href="#">Learn Online</a>
                 <a href="#">UMA</a>
                 <a href="#">Helpful links</a>

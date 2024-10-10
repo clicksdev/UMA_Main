@@ -194,9 +194,9 @@
             <section class="our-major course-overview-our-major">
                 <div class="container">
                     <div class="head">
-                        <span>Other Majors</span>
+                        <span>Other Programs</span>
                         <h1>
-                            Browse Our Majors
+                            Browse Our Programs
                         </h1>
                     </div>
                     <div class="courses_wrapper">

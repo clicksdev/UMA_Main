@@ -1010,6 +1010,23 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label class="col-form-label col-lg-3 col-sm-12">{{ __('linkedin Link') }}</label>
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+                                        {{ Form::text(
+                                            'linkedin_link',
+                                            isset($settingsArray['linkedin_link']) && $settingsArray['linkedin_link']['value']
+                                                ? $settingsArray['linkedin_link']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'linkedin Link',
+                                                'class' => $errors->has('linkedin_link') ? 'form-control is-invalid' : 'form-control',
+                                            ],
+                                        ) }}
+                                        <div class="invalid-feedback">{{ $errors->first('linkedin_link') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label class="col-form-label col-lg-3 col-sm-12">{{ __('Instagram Link') }}</label>
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::text(

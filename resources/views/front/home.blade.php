@@ -202,7 +202,7 @@
                         Our
                         <br>
                         <span>
-                            Majors
+                            Programs
                         </span>
                     </h1>
                 </div>
