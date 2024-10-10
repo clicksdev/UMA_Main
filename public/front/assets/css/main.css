@@ -1102,8 +1102,8 @@ header nav .container .logo {
   gap: 80px;
 }
 .testemonials .container .swiper {
-    width: 330px;
-    min-width: 330px;
+    width: 280px;
+    min-width: 280px;
 }
 .testemonials .container .swiper .swiper-slide {
     height: 320px;
