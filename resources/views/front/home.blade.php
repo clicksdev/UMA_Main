@@ -682,8 +682,6 @@
         var swiper = new Swiper(".mySwiperTest", {
             slidesPerView: 1,
             spaceBetween: 16,
-            autoplay: true,
-            loop: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
