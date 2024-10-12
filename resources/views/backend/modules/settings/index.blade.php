@@ -1044,81 +1044,67 @@
                                 </div>
                             </div>
                             <div id="privacy-policy" class="tab-pane">
+
                                 <div class="form-group row">
+
                                     <label class="col-form-label col-lg-3 col-sm-12">{{ __('Privacy Policy') }}</label>
+
                                     <div class="col-lg-7 col-md-9 col-sm-12">
-                                        {{ Form::textarea(
-                                            'privacy_policy',
-                                            isset($settingsArray['privacy_policy']) && $settingsArray['privacy_policy']['value']
-                                                ? $settingsArray['privacy_policy']['value']
-                                                : null,
-                                            [
-                                                'placeholder' => 'Privacy Policy',
-                                                'class' => $errors->has('privacy_policy') ? 'form-control is-invalid' : 'form-control',
-                                            ],
-                                        ) }}
+
+                                        {{ Form::textarea('privacy_policy', isset($settingsArray['privacy_policy']) && $settingsArray['privacy_policy']['value'] ? $settingsArray['privacy_policy']['value'] : null, ['placeholder' => 'Privacy Policy', 'class' => $errors->has('privacy_policy') ? 'form-control is-invalid' : 'form-control', 'id' => 'privacy_policy_editor']) }}
+
                                         <div class="invalid-feedback">{{ $errors->first('privacy_policy') }}</div>
+
                                     </div>
+
                                 </div>
 
                                 <div class="form-group row">
-                                    <label
-                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Privacy Policy (AR)') }}</label>
+
+                                    <label class="col-form-label col-lg-3 col-sm-12">{{ __('Privacy Policy (AR)') }}</label>
+
                                     <div class="col-lg-7 col-md-9 col-sm-12">
-                                        {{ Form::textarea(
-                                            'privacy_policy_ar',
-                                            isset($settingsArray['privacy_policy_ar']) && $settingsArray['privacy_policy_ar']['value']
-                                                ? $settingsArray['privacy_policy_ar']['value']
-                                                : null,
-                                            [
-                                                'placeholder' => 'Privacy Policy (AR)',
-                                                'class' => $errors->has('privacy_policy_ar') ? 'form-control is-invalid' : 'form-control',
-                                            ],
-                                        ) }}
+
+                                        {{ Form::textarea('privacy_policy_ar', isset($settingsArray['privacy_policy_ar']) && $settingsArray['privacy_policy_ar']['value'] ? $settingsArray['privacy_policy_ar']['value'] : null, ['placeholder' => 'Privacy Policy (AR)', 'class' => $errors->has('privacy_policy_ar') ? 'form-control is-invalid' : 'form-control', 'id' => 'privacy_policy_ar_editor']) }}
+
                                         <div class="invalid-feedback">{{ $errors->first('privacy_policy_ar') }}</div>
-                                    </div>
-                                </div>
-                            </div>
 
+                                    </div>
+
+                                </div>
+
+                            </div>
                             <div id="terms-and-conditions" class="tab-pane">
+
                                 <div class="form-group row">
-                                    <label
-                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Terms and Conditions') }}</label>
+
+                                    <label class="col-form-label col-lg-3 col-sm-12">{{ __('Terms and Conditions') }}</label>
+
                                     <div class="col-lg-7 col-md-9 col-sm-12">
-                                        {{ Form::textarea(
-                                            'terms_and_conditions',
-                                            isset($settingsArray['terms_and_conditions']) && isset($settingsArray['terms_and_conditions']['value'])
-                                                ? $settingsArray['terms_and_conditions']['value']
-                                                : null,
-                                            [
-                                                'placeholder' => 'Terms and Conditions',
-                                                'class' => $errors->has('terms_and_conditions') ? 'form-control is-invalid' : 'form-control',
-                                            ],
-                                        ) }}
+
+                                        {{ Form::textarea('terms_and_conditions', isset($settingsArray['terms_and_conditions']) && isset($settingsArray['terms_and_conditions']['value']) ? $settingsArray['terms_and_conditions']['value'] : null, ['placeholder' => 'Terms and Conditions', 'class' => $errors->has('terms_and_conditions') ? 'form-control is-invalid' : 'form-control', 'id' => 'terms_and_conditions_editor']) }}
+
                                         <div class="invalid-feedback">{{ $errors->first('terms_and_conditions') }}</div>
+
                                     </div>
+
                                 </div>
 
                                 <div class="form-group row">
-                                    <label
-                                        class="col-form-label col-lg-3 col-sm-12">{{ __('Terms and Conditions (AR)') }}</label>
-                                    <div class="col-lg-7 col-md-9 col-sm-12">
-                                        {{ Form::textarea(
-                                            'terms_and_conditions_ar',
-                                            isset($settingsArray['terms_and_conditions_ar']) && isset($settingsArray['terms_and_conditions_ar']['value'])
-                                                ? $settingsArray['terms_and_conditions_ar']['value']
-                                                : null,
-                                            [
-                                                'placeholder' => 'Terms and Conditions (AR)',
-                                                'class' => $errors->has('terms_and_conditions_ar') ? 'form-control is-invalid' : 'form-control',
-                                            ],
-                                        ) }}
-                                        <div class="invalid-feedback">{{ $errors->first('terms_and_conditions_ar') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
+                                    <label class="col-form-label col-lg-3 col-sm-12">{{ __('Terms and Conditions (AR)') }}</label>
+
+                                    <div class="col-lg-7 col-md-9 col-sm-12">
+
+                                        {{ Form::textarea('terms_and_conditions_ar', isset($settingsArray['terms_and_conditions_ar']) && isset($settingsArray['terms_and_conditions_ar']['value']) ? $settingsArray['terms_and_conditions_ar']['value'] : null, ['placeholder' => 'Terms and Conditions (AR)', 'class' => $errors->has('terms_and_conditions_ar') ? 'form-control is-invalid' : 'form-control', 'id' => 'terms_and_conditions_ar_editor']) }}
+
+                                        <div class="invalid-feedback">{{ $errors->first('terms_and_conditions_ar') }}</div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -1136,4 +1122,20 @@
         </div>
         {!! Form::close() !!}
     </div>
+@endsection
+@section('Script')
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('privacy_policy_editor');
+
+CKEDITOR.replace('privacy_policy_ar_editor');
+
+CKEDITOR.replace('terms_and_conditions_editor');
+
+CKEDITOR.replace('terms_and_conditions_ar_editor');
+
+CKEDITOR.replace('about_editor');
+
+CKEDITOR.replace('about_ar_editor');
+</script>
 @endsection

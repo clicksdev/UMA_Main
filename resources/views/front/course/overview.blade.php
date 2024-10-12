@@ -19,7 +19,7 @@
 
         <div class="overview_wrapper">
             <div class="container">
-                <div class="content_wapper overview_content">
+                {{-- <div class="content_wapper overview_content">
                     <h1>{{$course->title}}</h1>
                     <p>{{ $course->brief }}</p>
                     <img src="{{ $course->hasMedia() ? $course->getFirstMediaUrl() :  '' }}" alt="">
@@ -45,7 +45,7 @@
                             @endforeach
                         </div>
                     @endif
-                </div>
+                </div> --}}
                 @if($course->levels()->get()->count() > 0)
                     @foreach ($course->levels()->get() as $index => $level)
                         <div class="content_wapper level_{{$index}}_content">
@@ -89,7 +89,7 @@
                         <path d="M8 3v4"/>
                         <path d="M4 11h16"/>
                         <path d="M7 14h.013"/>
-                        <path d="M10.01 14h.005"/>
+                        <path d ="M10.01 14h.005"/>
                         <path d="M13.01 14h.005"/>
                         <path d="M16.015 14h.005"/>
                         <path d="M13.015 17h.005"/>
@@ -103,7 +103,7 @@
                          height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                          stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M12 9m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"/>
+                        <path d="M12 9m-6 0a6 6 0 1 0 18 0a6 6 0 0 0 -18 0"/>
                         <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"/>
                         <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"/>
                     </svg>
@@ -114,11 +114,12 @@
                         @foreach ($course->levels()->get() as $index => $level)
                             <div class="info level_{{ $index }}_content">
                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-3"
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="icon icon-tabler icon-tabler-clock-hour-3"
                              width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                              stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/>
+                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/>
                             <path d="M12 12h3.5"/>
                             <path d="M12 7v5"/>
                         </svg>
@@ -151,7 +152,7 @@
                             @endforeach
                         @endif
                         <div class="btns">
-                            <button class="active overview_btn" for-show="overview_content">
+                            <button class=" overview_btn" for-show="overview_content">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          class="icon icon-tabler icon-tabler-info-circle" width="20" height="20"
@@ -176,7 +177,7 @@
                         </div>
                     </div>
                     @if ($course->isReady)
-                        <a href="/course/apply/{{$course->id}}" class="apply" style="display: none;text-decoration: none">
+                        <a href="/course/apply/{{$course->id}}" class="apply" style="display: block;text-decoration: none">
                             Apply Now
                         </a>
                     @else
@@ -339,5 +340,14 @@
                 }, 500);
             }
         })
+
+        // Make the first level active by default
+        $(".overview_wrapper .container .options_wrapper .info-menu .btns button:not(.overview_btn):first").trigger("click");
+
+        // Show the "Apply" button by default
+        $("a.apply").fadeIn().css("display", "block");
+
+        // Remove or hide the "Overview" section by default
+        $(".overview_wrapper .container .options_wrapper .info-menu .btns .overview_btn").hide();
     </script>
 @endsection

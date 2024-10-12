@@ -467,7 +467,7 @@
     @if((isset($settingsArray['isShowTestemonials']) && $settingsArray['isShowTestemonials']["value"]) || !isset($settingsArray['isShowTestemonials']))
     <section class="testemonials">
         <div class="container">
-            <div class="swiper mySwiper mySwiperTest">
+            <div class="swiper mySwiperTest">
                 <div class="swiper-wrapper">
                     @foreach($testimonials as $testimonial)
                         <div class="swiper-slide">
@@ -490,13 +490,14 @@
             </div>
             <div class="text_wrapper">
                 @foreach($testimonials as $testimonial)
-                    <div class="test-card {{ $loop->index }}">
-                        <img src="  {{asset('front/assets/imgs/Icon.png')}}?v={{time()}}" alt="">
-                        <h4>{{ $testimonial->title }}</h4>
-                        <p>{{ $testimonial->description }}</p>
-                    </div>
-                @endforeach
-                <a href="">Read More Testimonials</a>
+                <div class="test-card {{ $loop->first ? 'active' : '' }}">
+                    <img src="{{ asset('front/assets/imgs/Icon.png') }}?v={{ time() }}" alt="">
+                    <h4>{{ $testimonial->title }}</h4>
+                    <p>{{ $testimonial->description }}</p>
+                </div>
+            @endforeach
+
+            <a href="">Read More Testimonials</a>
             </div>
         </div>
     </section>
@@ -679,19 +680,35 @@
 
       <!-- Initialize Swiper -->
       <script>
-        var swiper = new Swiper(".mySwiperTest", {
-            slidesPerView: 1,
-            spaceBetween: 16,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".mySwiperTest .swiper-pagination",
-                clickable: true,
-            },
-        });
-        var swiper = new Swiper(".mySwiper2", {
+// Initialize Swiper for Testimonials
+var swiperTest = new Swiper(".mySwiperTest", {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    autoplay: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+        el: ".mySwiperTest .swiper-pagination",
+        clickable: true,
+    },
+    on: {
+        slideChange: function () {
+            var activeIndex = this.activeIndex;
+            var testCards = document.querySelectorAll('.test-card');
+            testCards.forEach(function (testCard, index) {
+                if (index === activeIndex) {
+                    testCard.classList.add('active');
+                } else {
+                    testCard.classList.remove('active');
+                }
+            });
+        }
+    }
+});
+
+     var swiper = new Swiper(".mySwiper2", {
             slidesPerView: 1,
             spaceBetween: 16,
             autoplay: true,

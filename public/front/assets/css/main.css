@@ -1151,8 +1151,11 @@ header nav .container .logo {
   position: relative;
   min-height: 470px;
 }
-.testemonials .container .text_wrapper .test-card:not(:first-child) {
+.testemonials .container .text_wrapper .test-card {
   display: none;
+}
+.test-card.active {
+    display: block !important;
 }
 .testemonials .container .text_wrapper .test-card {
   position: absolute;
