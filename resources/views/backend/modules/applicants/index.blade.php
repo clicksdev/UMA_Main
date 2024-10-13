@@ -3,6 +3,8 @@
 @section('content')
 @php
         $courses = \App\Models\Applicant::select('course')->distinct()->get();
+        $retes = \App\Models\Applicant::select('rate')->distinct()->get();
+        $countrys = \App\Models\Applicant::select('country')->distinct()->get();
 @endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -88,8 +90,31 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-lg-3 col-md-9 col-sm-12">
+                                    <select id="rete_filter" class="form-control">
+                                        <option value="">Any retes</option>
+                                        @foreach($retes as $rate)
+                                            <option value="{{ $rate->rate }}">{{ $rate->rate }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
+                                    <select id="country_filter" class="form-control">
+                                        <option value="">All countries</option>
+                                        @foreach($countrys as $country)
+                                            <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
+                                        <select id="gender_filter" name="gender" id="gender" class="form-control">
+                                        <option value="">Any Gender</option>
+                                            <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
+                                            <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
+                                        </select>
+                                </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-3 mt-4">
                                     <button onclick="preventDefault()" id="exportFormButton"
                                             class="btn btn-success btn-lg w-100">
                                         Export
@@ -178,6 +203,9 @@ $(document).ready(function () {
                 d.start_date = $('#start_date').val();
                 d.end_date = $('#end_date').val();
                 d.course = $('#course_filter').val(); // Get the selected course
+                d.gender = $('#gender_filter').val(); // Get the selected course
+                d.rate = $('#rete_filter').val(); // Get the selected course
+                d.country = $('#country_filter').val(); // Get the selected course
             }
         },
         columns: [
@@ -192,7 +220,7 @@ $(document).ready(function () {
         order: [[5, 'desc']]
     });
 
-    $('#start_date, #end_date, #course_filter').on('change', function () {
+    $('#start_date, #end_date, #course_filter, #gender_filter, #rete_filter, #country_filter').on('change', function () {
         table.draw(); // Redraw the table when filters change
     });
 });

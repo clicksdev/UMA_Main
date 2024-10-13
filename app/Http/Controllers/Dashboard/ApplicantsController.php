@@ -73,6 +73,18 @@ class ApplicantsController extends Controller
         if ($request->course) {
             $applicants->where('course', $request->course);
         }
+        // Filter by course if selected
+        if ($request->gender) {
+            $applicants->where('gender', $request->gender);
+        }
+        // Filter by course if selected
+        if ($request->country) {
+            $applicants->where('country', $request->country);
+        }
+        // Filter by course if selected
+        if ($request->rate) {
+            $applicants->where('rate', $request->rate);
+        }
         // Check if the sorting column is the created_at column (index 5)
         if ($request->has('order')) {
             $orderColumn = $request->input('order.0.column'); // Column index
