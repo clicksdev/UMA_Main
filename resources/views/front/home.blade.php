@@ -1,4 +1,7 @@
 @extends('front.layout.master')
+@php
+    $locale = App::getLocale(); // Retrieve the current locale
+@endphp
 
 @section('content')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -7,9 +10,9 @@
     <section class="hero">
         <div class="container">
             <div class="content">
-                <h1>{{$settingsArray['shape_section_title']['value']}}</h1>
+                <h1>{{$settingsArray['shape_section_title' . ($locale == 'ar' ? "_ar" : '')]['value']}}</h1>
                 <p>
-                    {{$settingsArray['shape_section_description']['value']}}
+                    {{$settingsArray['shape_section_description' . ($locale == 'ar' ? "_ar" : '')]['value']}}
                 </p>
                 {{-- <form id="signupForm">
                     <input type="email" name="email" id="email" placeholder="Your email address" required>
@@ -34,7 +37,7 @@
                         <path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z"/>
                         <path d="M12 7l0 4"/>
                     </svg>
-                    Scroll Down
+                    {{ __('home.Scroll_Down') }}
                 </span>
             </a>
         </div>

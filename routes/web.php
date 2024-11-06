@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
+use Illuminate\Support\Facades\Session;
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -31,3 +32,12 @@ Route::get('/our-programs', function() {
 
 Route::get('/admins/moveToTop/{id}', [HomeController::class, 'moveToTop']);
 Route::get('/admins/moveMajorToTop/{id}', [HomeController::class, 'moveMajorToTop']);
+
+
+Route::get('/set-language/{lang}', function ($lang) {
+
+    Session::put('applocale', $lang);
+
+    return redirect()->back();
+
+})->name('set.language');

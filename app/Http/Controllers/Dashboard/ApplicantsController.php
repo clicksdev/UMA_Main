@@ -69,21 +69,32 @@ class ApplicantsController extends Controller
             return $q->where('created_at', '<', Carbon::parse($request->end_date)->endOfDay());
         });
 
-        // Filter by course if selected
-        if ($request->course) {
+        // Existing filters
+        if ($request->filled('course')) {
             $applicants->where('course', $request->course);
         }
-        // Filter by course if selected
-        if ($request->gender) {
+        if ($request->filled('gender')) {
             $applicants->where('gender', $request->gender);
         }
-        // Filter by course if selected
-        if ($request->country) {
+        if ($request->filled('rate')) {
+            $applicants->where('rate', $request->rate);
+        }
+        if ($request->filled('country')) {
             $applicants->where('country', $request->country);
         }
-        // Filter by course if selected
-        if ($request->rate) {
-            $applicants->where('rate', $request->rate);
+
+        // New filters
+        if ($request->filled('qualification')) {
+            $applicants->where('qualification', $request->qualification);
+        }
+        if ($request->filled('job')) {
+            $applicants->where('job', $request->job);
+        }
+        if ($request->filled('prev_education')) {
+            $applicants->where('prev_education', $request->prev_education);
+        }
+        if ($request->filled('subject_studied')) {
+            $applicants->where('subject_studied', $request->subject_studied);
         }
         // Check if the sorting column is the created_at column (index 5)
         if ($request->has('order')) {
@@ -106,7 +117,8 @@ class ApplicantsController extends Controller
             ->make(true);
     }
 
-    public function getUserIndex($id) {
+    public function getUserIndex($id)
+    {
         $user = Applicant::find($id);
         return view("backend.modules.applicants.user", compact("user"));
     }

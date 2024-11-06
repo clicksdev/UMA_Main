@@ -2,9 +2,16 @@
 @section('title','Courses')
 @section('content')
 @php
-        $courses = \App\Models\Applicant::select('course')->distinct()->get();
-        $retes = \App\Models\Applicant::select('rate')->distinct()->get();
-        $countrys = \App\Models\Applicant::select('country')->distinct()->get();
+    // Existing queries
+    $courses = \App\Models\Applicant::select('course')->distinct()->get();
+    $retes = \App\Models\Applicant::select('rate')->distinct()->get();
+    $countrys = \App\Models\Applicant::select('country')->distinct()->get();
+
+    // New queries for additional filters
+    $qualifications = \App\Models\Applicant::select('qualification')->whereNotNull('qualification')->distinct()->get();
+    $jobs = \App\Models\Applicant::select('job')->whereNotNull('job')->distinct()->get();
+    $prevEducations = \App\Models\Applicant::select('prev_education')->whereNotNull('prev_education')->distinct()->get();
+    $subjectStudied = \App\Models\Applicant::select('subject_studied')->whereNotNull('subject_studied')->distinct()->get();
 @endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -61,6 +68,7 @@
                               action="{{ route('applicants.export') }}">
                             @csrf
                             <div class="row">
+                                <!-- Existing date filters -->
                                 <div class="col-lg-3 col-md-9 col-sm-12">
                                     <div class="input-group date">
                                         {!! Form::text('start_date', request()->start_date, ['id' => 'start_date', 'class' => 'form-control kt_datepicker_3_modal', 'readonly' => true, 'placeholder' => 'Start Date']) !!}
@@ -82,6 +90,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Existing filters -->
                                 <div class="col-lg-3 col-md-9 col-sm-12">
                                     <select id="course_filter" class="form-control">
                                         <option value="">All Courses</option>
@@ -90,14 +100,17 @@
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="col-lg-3 col-md-9 col-sm-12">
                                     <select id="rete_filter" class="form-control">
-                                        <option value="">Any retes</option>
+                                        <option value="">Any rates</option>
                                         @foreach($retes as $rate)
                                             <option value="{{ $rate->rate }}">{{ $rate->rate }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+
+                                <!-- New filters - Row 1 -->
                                 <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
                                     <select id="country_filter" class="form-control">
                                         <option value="">All countries</option>
@@ -106,23 +119,61 @@
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
-                                        <select id="gender_filter" name="gender" id="gender" class="form-control">
+                                    <select id="gender_filter" name="gender" class="form-control">
                                         <option value="">Any Gender</option>
-                                            <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
-                                            <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
-                                        </select>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                </div>
+
+                                <!-- New filters - Row 2 -->
+                                <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
+                                    <select id="qualification_filter" class="form-control">
+                                        <option value="">All Qualifications</option>
+                                        @foreach($qualifications as $qualification)
+                                            <option value="{{ $qualification->qualification }}">{{ $qualification->qualification }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
+                                    <select id="job_filter" class="form-control">
+                                        <option value="">All Jobs</option>
+                                        @foreach($jobs as $job)
+                                            <option value="{{ $job->job }}">{{ $job->job }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- New filters - Row 3 -->
+                                <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
+                                    <select id="prev_education_filter" class="form-control">
+                                        <option value="">All Previous Education</option>
+                                        @foreach($prevEducations as $education)
+                                            <option value="{{ $education->prev_education }}">{{ $education->prev_education }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 col-md-9 col-sm-12 mt-4">
+                                    <select id="subject_studied_filter" class="form-control">
+                                        <option value="">All Subjects Studied</option>
+                                        @foreach($subjectStudied as $subject)
+                                            <option value="{{ $subject->subject_studied }}">{{ $subject->subject_studied }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="col-md-3 mt-4">
-                                    <button onclick="preventDefault()" id="exportFormButton"
-                                            class="btn btn-success btn-lg w-100">
+                                    <button onclick="preventDefault()" id="exportFormButton" class="btn btn-success btn-lg w-100">
                                         Export
                                         <i class="fas fa-file-export"></i>
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                                        </form>
 
 
                         @if (\App\Models\Applicant::count() > 0)
@@ -188,9 +239,8 @@
     </div>
 
 @endsection
-
 @section('Script')
-    <script>
+<script>
 $(document).ready(function () {
     var table = $('#myTable').DataTable({
         processing: true,
@@ -200,12 +250,19 @@ $(document).ready(function () {
         ajax: {
             url: "{{ route('applicants.datatable') }}",
             data: function (d) {
+                // Existing filters
                 d.start_date = $('#start_date').val();
                 d.end_date = $('#end_date').val();
-                d.course = $('#course_filter').val(); // Get the selected course
-                d.gender = $('#gender_filter').val(); // Get the selected course
-                d.rate = $('#rete_filter').val(); // Get the selected course
-                d.country = $('#country_filter').val(); // Get the selected course
+                d.course = $('#course_filter').val();
+                d.gender = $('#gender_filter').val();
+                d.rate = $('#rete_filter').val();
+                d.country = $('#country_filter').val();
+
+                // New filters
+                d.qualification = $('#qualification_filter').val();
+                d.job = $('#job_filter').val();
+                d.prev_education = $('#prev_education_filter').val();
+                d.subject_studied = $('#subject_studied_filter').val();
             }
         },
         columns: [
@@ -220,9 +277,10 @@ $(document).ready(function () {
         order: [[5, 'desc']]
     });
 
-    $('#start_date, #end_date, #course_filter, #gender_filter, #rete_filter, #country_filter').on('change', function () {
-        table.draw(); // Redraw the table when filters change
+    // Update event listeners for all filters
+    $('#start_date, #end_date, #course_filter, #gender_filter, #rete_filter, #country_filter, #qualification_filter, #job_filter, #prev_education_filter, #subject_studied_filter').on('change', function () {
+        table.draw();
     });
 });
-    </script>
+</script>
 @endsection

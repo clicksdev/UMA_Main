@@ -13,6 +13,9 @@
             <path d="M12 16l4 -4" />
         </svg>
     </div> --}}
+    @php
+        $latest_courses = App\Models\Course::latest()->get();
+    @endphp
     <nav>
         <div class="container" style="display: flex;justify-content: space-between">
             <a href="/">
@@ -28,24 +31,52 @@
                 <a href="#">Contact</a>
             </div>
             <span></span> --}}
-            <button
-                class="toggle_more"
-                style="cursor: pointer;position: relative;display: flex;  height: 40px;align-items: center;background: #8080800e;border: none;border-radius: 0;padding: 7px;">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="20"
-                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 8l16 0"></path>
-                    <path d="M4 16l16 0"
-                        style="/*! display: flex; *//*! align-items: center; *//*! background: #8080803b; */"></path>
-                </svg>
-                <ul class="more">
-                    <li><a href="/">Home</a></li>
-                    {{-- <li><a href="/about-us">About us</a></li> --}}
-                    <li><a href="/our-programs">Programs</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                </ul>
-            </button>
+            <div style="display: flex;align-items: center;gap: 32px">
+                {{-- <div class="language-switcher">
+                    @if(App::getLocale() == 'ar')
+                    <a href="{{ route('set.language', 'en') }}" style="color: #000">English</a>
+                    @else
+                    <a href="{{ route('set.language', 'ar') }}" style='color: #000;  font-family: "Cairo", sans-serif;'>العربية</a>
+                    @endif
+                </div> --}}
+                <button
+                    class="toggle_more"
+                    style="cursor: pointer;position: relative;display: flex;  height: 40px;align-items: center;background: #8080800e;border: none;border-radius: 0;padding: 7px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="20"
+                        height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 8l16 0"></path>
+                        <path d="M4 16l16 0"
+                            style="/*! display: flex; *//*! align-items: center; *//*! background: #8080803b; */"></path>
+                    </svg>
+                    <ul class="more">
+                        <li><a href="/">{{ __('home.home') }}</a></li>
+                        {{-- <li><a href="/about-us">About us</a></li> --}}
+                        <li>
+                            <a href="/our-programs" class="our-programs-link">
+                                {{ __('home.programs') }}
+                                <div class="showed">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M6 9l6 6l6 -6"></path>
+                                    </svg>
+                                </div>
+                                <div class="hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M6 15l6 -6l6 6"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="programs-more" style="padding-left: 30px;font-size: 14px;list-style: disc;display:none">
+                                @foreach ($latest_courses as $course)
+                                <li><a href="{{$course->isReady ? '/course/' . $course->id : "#"}}">{{ $course['title' . (App::getLocale() == 'ar' ? "_ar" : '')] }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li><a href="/contact">{{ __('home.contact') }}</a></li>
+                    </ul>
+                </button>
+            </div>
         </div>
     </nav>
 </header>

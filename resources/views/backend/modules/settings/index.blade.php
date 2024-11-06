@@ -808,17 +808,20 @@
                                     <label
                                         class="col-form-label col-lg-3 col-sm-12">{{ __('President Name (AR)') }}</label>
                                     <div class="col-lg-7 col-md-9 col-sm-12">
-                                        {{ Form::text(
-                                            'presedent_name_ar',
-                                            isset($settingsArray['presedent_name_ar']) && $settingsArray['presedent_name_ar']['value']
-                                                ? $settingsArray['presedent_name_ar']['value']
+                                        {{ Form::textarea(
+                                            'presedent_word_full_ar',
+                                            isset($settingsArray['presedent_word_full_ar']) && is_array($settingsArray['presedent_word_full_ar']) && isset($settingsArray['presedent_word_full_ar']['value'])
+                                                ? $settingsArray['presedent_word_full_ar']['value']
                                                 : null,
                                             [
-                                                'placeholder' => 'President Name (AR)',
-                                                'class' => $errors->has('presedent_name_ar') ? 'form-control is-invalid' : 'form-control',
-                                            ],
+                                                'placeholder' => 'President Full word (AR)',
+                                                'class' => $errors->has('presedent_word_full_ar') ? 'form-control is-invalid' : 'form-control',
+                                            ]
                                         ) }}
-                                        <div class="invalid-feedback">{{ $errors->first('presedent_name_ar') }}</div>
+
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('presedent_word_full_ar') }}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -895,16 +898,19 @@
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::textarea(
                                             'presedent_word_full_ar',
-                                            isset($settingsArray['presedent_word_full_ar']) && $settingsArray['presedent_word_full_ar']['value']
+                                            isset($settingsArray['presedent_word_full_ar']) && is_array($settingsArray['presedent_word_full_ar']) && isset($settingsArray['presedent_word_full_ar']['value'])
                                                 ? $settingsArray['presedent_word_full_ar']['value']
                                                 : null,
                                             [
                                                 'placeholder' => 'President Full word (AR)',
                                                 'class' => $errors->has('presedent_word_full_ar') ? 'form-control is-invalid' : 'form-control',
-                                            ],
+                                            ]
                                         ) }}
-                                        <div class="invalid-feedback">{{ $errors->first('presedent_word_full_ar') }}
+
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('presedent_word_full_ar') }}
                                         </div>
+                                                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -928,13 +934,13 @@
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::textarea(
                                             'uma_vision_ar',
-                                            isset($settingsArray['uma_vision_ar']) && $settingsArray['uma_vision_ar']['value']
+                                            isset($settingsArray['uma_vision_ar']) && is_array($settingsArray['uma_vision_ar']) && isset($settingsArray['uma_vision_ar']['value'])
                                                 ? $settingsArray['uma_vision_ar']['value']
                                                 : null,
                                             [
                                                 'placeholder' => 'UMA Vision (AR)',
                                                 'class' => $errors->has('uma_vision_ar') ? 'form-control is-invalid' : 'form-control',
-                                            ],
+                                            ]
                                         ) }}
                                         <div class="invalid-feedback">{{ $errors->first('uma_vision_ar') }}</div>
                                     </div>
@@ -962,13 +968,13 @@
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::textarea(
                                             'uma_mission_ar',
-                                            isset($settingsArray['uma_mission_ar']) && $settingsArray['uma_mission_ar']['value']
+                                            isset($settingsArray['uma_mission_ar']) && is_array($settingsArray['uma_mission_ar']) && isset($settingsArray['uma_mission_ar']['value'])
                                                 ? $settingsArray['uma_mission_ar']['value']
                                                 : null,
                                             [
                                                 'placeholder' => 'UMA Mission (AR)',
                                                 'class' => $errors->has('uma_mission_ar') ? 'form-control is-invalid' : 'form-control',
-                                            ],
+                                            ]
                                         ) }}
                                         <div class="invalid-feedback">{{ $errors->first('uma_mission_ar') }}</div>
                                     </div>
@@ -1014,13 +1020,13 @@
                                     <div class="col-lg-7 col-md-9 col-sm-12">
                                         {{ Form::text(
                                             'linkedin_link',
-                                            isset($settingsArray['linkedin_link']) && $settingsArray['linkedin_link']['value']
+                                            isset($settingsArray['linkedin_link']) && is_array($settingsArray['linkedin_link']) && isset($settingsArray['linkedin_link']['value'])
                                                 ? $settingsArray['linkedin_link']['value']
                                                 : null,
                                             [
-                                                'placeholder' => 'linkedin Link',
+                                                'placeholder' => 'LinkedIn Link',
                                                 'class' => $errors->has('linkedin_link') ? 'form-control is-invalid' : 'form-control',
-                                            ],
+                                            ]
                                         ) }}
                                         <div class="invalid-feedback">{{ $errors->first('linkedin_link') }}</div>
                                     </div>
@@ -1065,7 +1071,17 @@
 
                                     <div class="col-lg-7 col-md-9 col-sm-12">
 
-                                        {{ Form::textarea('privacy_policy_ar', isset($settingsArray['privacy_policy_ar']) && $settingsArray['privacy_policy_ar']['value'] ? $settingsArray['privacy_policy_ar']['value'] : null, ['placeholder' => 'Privacy Policy (AR)', 'class' => $errors->has('privacy_policy_ar') ? 'form-control is-invalid' : 'form-control', 'id' => 'privacy_policy_ar_editor']) }}
+                                        {{ Form::textarea(
+                                            'privacy_policy_ar',
+                                            isset($settingsArray['privacy_policy_ar']) && is_array($settingsArray['privacy_policy_ar']) && isset($settingsArray['privacy_policy_ar']['value'])
+                                                ? $settingsArray['privacy_policy_ar']['value']
+                                                : null,
+                                            [
+                                                'placeholder' => 'Privacy Policy (AR)',
+                                                'class' => $errors->has('privacy_policy_ar') ? 'form-control is-invalid' : 'form-control',
+                                                'id' => 'privacy_policy_ar_editor'
+                                            ]
+                                        ) }}
 
                                         <div class="invalid-feedback">{{ $errors->first('privacy_policy_ar') }}</div>
 
