@@ -2421,7 +2421,7 @@ footer .container:last-child a {
     font-weight: 400;
     line-height: 23px;
     text-align: justify;
-    color: #1E1E1E;
+    color: #56636d;
     width: 100%;
     margin: 16px 0;
 }
@@ -2748,4 +2748,55 @@ body.ar {
 
 body.ar * {
     font-family: "Cairo", sans-serif !important;
+}
+
+
+@media (min-width: 768.98px) {
+    .toggle_more {
+        background-color: transparent !important;
+    }
+    .toggle_more >svg {
+        display: none;
+    }
+    .more {
+        display: flex !important;
+        position: relative;
+        flex-direction: row !important;
+        top: 0;
+        background: transparent;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: max-content !important;
+        max-width: 100% !important;
+        opacity: 1 !important;
+        animation: none;
+        gap: 26px;
+        box-shadow: none;
+        border: none;
+        background-color: transparent !important;
+    }
+    .more li {
+        width: max-content;
+        color: #000;
+        opacity: 1 !important;
+        animation: none;
+        position: relative;
+    }
+    .more a {
+        display: flex;
+        color: #000;
+        opacity: 1 !important;
+        animation: none;
+    }
+
+    .more .programs-more {
+        position: absolute  !important;
+        top: 100%;
+        left: 50%;
+        list-style: none !important;
+        background: white;
+        padding: 1rem !important;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        transform: translateX(-50%);
+    }
 }
