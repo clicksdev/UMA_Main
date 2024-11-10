@@ -3212,6 +3212,7 @@ body.ar * {
         animation: none;
         position: relative;
         align-items: center;
+        display: flex;
     }
 
     .more a {

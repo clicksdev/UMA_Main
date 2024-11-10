@@ -3212,6 +3212,8 @@ body.ar * {
         opacity: 1 !important;
         animation: none;
         align-items: center;
+        display: flex;
+
         position: relative;
     }
 
