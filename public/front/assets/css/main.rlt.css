@@ -3087,11 +3087,13 @@ p {
 }
 
 .ar .more {
-    right: 0;
-    left: auto;
-    text-align: left;
+    right: auto;
+    left: 0;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
 }
-
 h2 {
     font-size: 24px !important;
 }
