@@ -73,7 +73,6 @@
                     @endforeach
                 @endif
                 <div class="content_wapper level_{{ $index }}_content">
-                    <p>{{ $level['overview' . (App::getLocale() == 'ar' ? '_ar' : '')] }}</p>
                     <div class="options_wrapper">
                         <h3>{{ __('messages.Information') }} :</h3>
                         <div class="info overview_content">
