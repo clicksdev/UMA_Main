@@ -6,7 +6,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Outfit:wght@100..900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('front/assets/css/main.css')}}?v={{time()}}">
+        @if(App::getLocale() == 'ar')
+            <link rel="stylesheet" href="{{asset('front/assets/css/main.rlt.css')}}?v={{time()}}">
+        @else
+            <link rel="stylesheet" href="{{asset('front/assets/css/main.css')}}?v={{time()}}">
+        @endif
     <link rel="stylesheet" href="{{asset('front/assets/css/swiper.css')}}">
     <meta name="description" content="United Media Academy (UMA), a leading Egyptian training institute, empowering media creatives across Egypt and the Arab World.">
     <style>

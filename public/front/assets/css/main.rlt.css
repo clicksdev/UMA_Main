@@ -9,10 +9,10 @@
 
 .container {
     width: 100%;
-    padding-right: 16px;
     padding-left: 16px;
-    margin-right: auto;
+    padding-right: 16px;
     margin-left: auto;
+    margin-right: auto;
 }
 
 @media (min-width: 576px) {
@@ -42,6 +42,8 @@
 body {
     width: 100vw;
     overflow: hidden auto;
+    direction: rtl;
+    text-align: right !important;
 }
 
 .flex-center,
@@ -193,7 +195,7 @@ header nav .container .logo {
 
 .hero .container .img {
     position: relative;
-    margin-left: 32px;
+    margin-right: 32px;
 
 }
 
@@ -205,14 +207,14 @@ header nav .container .logo {
     position: absolute;
     width: 16px;
     bottom: 32px;
-    left: -120px;
+    right: -120px;
 }
 
 .hero .container .img .close {
     position: absolute;
     width: 14px;
     top: 30%;
-    left: -40px;
+    right: -40px;
 }
 
 .hero .container:last-child {
@@ -271,7 +273,7 @@ header nav .container .logo {
 
     .hero .container .img .triangle {
         bottom: 26.9473684211px;
-        left: -101.0526315789px;
+        right: -101.0526315789px;
     }
 }
 
@@ -327,11 +329,11 @@ header nav .container .logo {
 
     .hero .container .img .triangle {
         bottom: 20.2105263158px;
-        left: -75.7894736842px;
+        right: -75.7894736842px;
     }
 
     .hero .container .img .close {
-        left: -24px;
+        right: -24px;
     }
 }
 
@@ -340,7 +342,7 @@ header nav .container .logo {
         width: 190px;
         position: absolute;
         top: 0px;
-        right: 0;
+        left: 0;
     }
 
     .hero .content {
@@ -352,12 +354,12 @@ header nav .container .logo {
     }
 
     .hero .container .img .triangle {
-        right: 300px;
+        left: 300px;
     }
 
     .hero .container .img .close {
-        left: auto;
-        right: 0;
+        right: auto;
+        left: 0;
     }
 }
 
@@ -372,12 +374,12 @@ header nav .container .logo {
 
     .hero .container .img .close {
         top: -90px;
-        right: 30px;
+        left: 30px;
     }
 
     .hero .container .img .triangle {
         top: 25px;
-        left: -50px;
+        right: -50px;
     }
 
     .hero .content {
@@ -479,7 +481,7 @@ header nav .container .logo {
     position: absolute;
     bottom: 24px;
     color: #000;
-    left: 24px;
+    right: 24px;
 }
 
 .our-major .container .courses_wrapper .course_card .img .date svg {
@@ -527,7 +529,7 @@ header nav .container .logo {
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     font-size: 28px;
     z-index: 2;
 }
@@ -606,7 +608,7 @@ header nav .container .logo {
         font-size: 10px;
         gap: 3px;
         padding: 3px 7px;
-        left: 8px;
+        right: 8px;
         bottom: 8px;
     }
 
@@ -758,7 +760,7 @@ header nav .container .logo {
     background-color: #5BA8D9;
     width: 100%;
     height: 100%;
-    left: 0;
+    right: 0;
     top: 0;
     transition: transform 0.3s ease-in;
 }
@@ -1244,7 +1246,7 @@ header nav .container .logo {
 }
 
 .statistics .container>div:not(:last-child) {
-    border-right: 4px solid #509DCE;
+    border-left: 4px solid #509DCE;
 }
 
 .statistics .container>div h1 {
@@ -1343,7 +1345,7 @@ header nav .container .logo {
 .testemonials .container .swiper .swiper-slide .img .text {
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     z-index: 2;
     color: #fff;
@@ -1351,7 +1353,7 @@ header nav .container .logo {
     font-weight: 700;
     line-height: 38.4px;
 
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 69.77%, #000000 105.7%);
+    background: linear-gradient(-180deg, rgba(0, 0, 0, 0) 69.77%, #000000 105.7%);
     height: 100%;
     padding: 32px 16px;
     display: flex;
@@ -1447,11 +1449,11 @@ header nav .container .logo {
 .testemonials .swiper-pagination-fraction {
     bottom: var(--swiper-pagination-bottom, 8px);
     top: var(--swiper-pagination-top, auto);
-    left: 0;
+    right: 0;
     width: 100%;
     width: max-content;
-    left: auto;
-    right: 16px;
+    right: auto;
+    left: 16px;
     bottom: 16px;
 }
 
@@ -1619,7 +1621,7 @@ header nav .container .logo {
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
-    margin-left: 32px;
+    margin-right: 32px;
 
     color: #7F8490;
 }
@@ -1699,7 +1701,7 @@ header nav .container .logo {
         font-size: 13px;
         font-weight: 400;
         line-height: 26px;
-        margin-left: 32px;
+        margin-right: 32px;
 
         color: #7F8490;
     }
@@ -2181,7 +2183,7 @@ footer .container:last-child a {
     font-size: 20px;
     font-weight: 700;
     line-height: 32px;
-    padding-right: 40px;
+    padding-left: 40px;
 
     color: #0E0E0F;
     position: relative;
@@ -2190,7 +2192,7 @@ footer .container:last-child a {
 .questions_wrapper .question .head svg {
     position: absolute;
     top: 50%;
-    right: 16px;
+    left: 16px;
     width: 20px;
     height: 20px;
     stroke: #0E0E0F;
@@ -2237,7 +2239,7 @@ footer .container:last-child a {
     .questions_wrapper .question .head svg {
         position: absolute;
         top: 50%;
-        right: 16px;
+        left: 16px;
         width: 20px;
         height: 20px;
         stroke: #0E0E0F;
@@ -2608,8 +2610,6 @@ footer .container:last-child a {
     }
 }
 
-/*# sourceMappingURL=main.css.map */
-
 .input-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2654,7 +2654,7 @@ footer .container:last-child a {
     font-size: 28px;
     margin-bottom: 20px;
     margin-top: 32px;
-    padding-left: 24px;
+    padding-right: 24px;
     position: relative;
     text-transform: uppercase;
 }
@@ -2663,7 +2663,7 @@ footer .container:last-child a {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100%;
     width: 10px;
     background-color: #F2C572;
@@ -2708,7 +2708,7 @@ footer .container:last-child a {
     height: 100%;
     border-radius: 50px;
     top: 0;
-    left: 0;
+    right: 0;
 }
 
 .head_form.step1 .step:first-child {
@@ -2754,7 +2754,7 @@ footer .container:last-child a {
 
     .form .container form h2 {
         font-size: 20px;
-        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .form .container form h2::after {
@@ -2774,7 +2774,7 @@ footer .container:last-child a {
     overflow: hidden;
     border-radius: 12px;
     position: relative;
-    margin-right: 24px;
+    margin-left: 24px;
 }
 
 .presedentSection .container .img img {
@@ -2790,8 +2790,8 @@ footer .container:last-child a {
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 69.77%, #000000 105.7%);
+    right: 0;
+    background: linear-gradient(-180deg, rgba(0, 0, 0, 0) 69.77%, #000000 105.7%);
 }
 
 .presedentSection .container {
@@ -2801,7 +2801,7 @@ footer .container:last-child a {
 .presedentSection .breif {
     position: absolute;
     bottom: 16px;
-    left: 24px;
+    right: 24px;
 }
 
 .presedentSection .breif h1 {
@@ -2891,7 +2891,7 @@ footer .container:last-child a {
     .presedentSection .breif {
         position: absolute;
         bottom: 8px;
-        left: 16px;
+        right: 16px;
     }
 
     .presedentSection .breif h1 {
@@ -3047,7 +3047,7 @@ p {
     position: absolute;
     top: calc(100% + 40px);
     width: 240px;
-    right: 0;
+    left: 0;
 
     padding: 16px;
     background: white;
@@ -3087,9 +3087,9 @@ p {
 }
 
 .ar .more {
-    left: 0;
-    right: auto;
-    text-align: right;
+    right: 0;
+    left: auto;
+    text-align: left;
 }
 
 h2 {
@@ -3173,6 +3173,7 @@ h1 {
     }
 }
 
+
 body.ar * {
     font-family: "Cairo", sans-serif !important;
 }
@@ -3223,12 +3224,12 @@ body.ar * {
     .more .programs-more {
         position: absolute !important;
         top: 100%;
-        left: 50%;
+        right: 50%;
         list-style: none !important;
         background: white;
         padding: 1rem !important;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        transform: translateX(-50%);
+        transform: translateX(50%);
     }
 }
 
@@ -3243,4 +3244,3 @@ body.ar * {
         padding: 0px 12px !important;
     }
 }
-

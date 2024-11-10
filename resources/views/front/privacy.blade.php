@@ -7,7 +7,7 @@
     <section style="background-color: #ffffff;border-top: 1px solid rgba(128, 128, 128, 0.203);padding: 32px 0">
         <div class="container">
             <p>
-                {!! $settingsArray['privacy_policy']['value'] !!}
+                {!! $settingsArray['privacy_policy' . (App::getLocale() == 'ar' ? '_ar' : '')]['value'] !!}
             </p>
         </div>
     </section>

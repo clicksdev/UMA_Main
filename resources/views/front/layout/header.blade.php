@@ -31,14 +31,7 @@
                 <a href="#">Contact</a>
             </div>
             <span></span> --}}
-            <div style="display: flex;align-items: center;gap: 32px">
-                {{-- <div class="language-switcher">
-                    @if(App::getLocale() == 'ar')
-                    <a href="{{ route('set.language', 'en') }}" style="color: #000">English</a>
-                    @else
-                    <a href="{{ route('set.language', 'ar') }}" style='color: #000;  font-family: "Cairo", sans-serif;'>العربية</a>
-                    @endif
-                </div> --}}
+            <div style="display: flex;align-items: center;gap: 32px" class="nav-side-wrapper">
                 <button
                     class="toggle_more"
                     style="cursor: pointer;position: relative;display: flex;  height: 40px;align-items: center;background: #8080800e;border: none;border-radius: 0;padding: 7px;">
@@ -76,6 +69,13 @@
                         <li><a href="/contact">{{ __('home.contact') }}</a></li>
                     </ul>
                 </button>
+                <div class="language-switcher">
+                    @if(App::getLocale() == 'ar')
+                    <a href="{{ route('set.language', 'en') }}" style='color: #000;border: 1px solid;padding: 4px 17px;'>English</a>
+                    @else
+                    <a href="{{ route('set.language', 'ar') }}" style='color: #000;  font-family: "Cairo", sans-serif;border: 1px solid;padding: 4px 17px;'>العربية</a>
+                    @endif
+                </div>
             </div>
         </div>
     </nav>

@@ -8,8 +8,8 @@
                 <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                 <path d="M9 12l2 2l4 -4" />
             </svg>
-            <h1>Thanks {{ $user_name ?? "" }}, we have received your request</h1>
-            <p>We got your request and we will contact you as soon is posible!</p>
+            <h1>{{ __('home.thank_you', ['user_name' => $user_name ?? '']) }}</h1>
+            <p>{{ __('home.received_request') }}</p>
         </div>
     </section>
 @endsection
