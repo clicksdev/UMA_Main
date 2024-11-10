@@ -3129,9 +3129,13 @@ h1 {
 }
 
 .our-programs-link:hover .hidden {
-    display: block;
+    display: flex;
+    align-items: center;
 }
-
+.showed {
+    display: flex;
+    align-items: center;
+}
 .our-programs-link:hover .showed {
     display: none;
 }
@@ -3213,7 +3217,6 @@ body.ar * {
         animation: none;
         align-items: center;
         display: flex;
-
         position: relative;
     }
 

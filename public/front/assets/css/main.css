@@ -3128,8 +3128,14 @@ h1 {
     display: none;
 }
 
+
 .our-programs-link:hover .hidden {
-    display: block;
+    display: flex;
+    align-items: center;
+}
+.showed {
+    display: flex;
+    align-items: center;
 }
 
 .our-programs-link:hover .showed {
