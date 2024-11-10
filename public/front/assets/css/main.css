@@ -3048,7 +3048,7 @@ p {
     top: calc(100% + 40px);
     width: 240px;
     right: 0;
-
+    text-align: left;
     padding: 16px;
     background: white;
     border-radius: 3px;
