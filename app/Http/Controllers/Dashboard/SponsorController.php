@@ -73,7 +73,7 @@ class SponsorController extends Controller
             );
         }
 
-        $image = $this->saveImg($request->image, 'images/uploads/Sponsors', time());
+        $image = $this->saveImg($request->image, 'public/images/uploads/Sponsors', time());
 
 
         $sponsor = Sponsor::create([
@@ -121,7 +121,7 @@ class SponsorController extends Controller
 
         if ($request->image) {
             $this->deleteFile(base_path($sponsor->image_path));
-            $image = $this->saveImg($request->image, 'images/uploads/Sponsors', time());
+            $image = $this->saveImg($request->image, 'public/images/uploads/Sponsors', time());
             $sponsor->image_path= '/images/uploads/Sponsors/' . $image;
         }
 
