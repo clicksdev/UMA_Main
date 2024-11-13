@@ -33,4 +33,5 @@
 @keyframes l3 {to{transform: rotate(1turn)}}
     </style>
     <title>{{ $settingsArray['site_name']['value'] }}</title>
+    <link rel="shortcut icon" href="{{ asset('front/assets/imgs/favicon.png') }}" type="image/x-icon">
 </head>

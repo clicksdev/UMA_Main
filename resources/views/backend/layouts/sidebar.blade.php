@@ -23,7 +23,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><span class="menu-text">{{__('sidebar.dashboard')}}</span></a>
+                    </span><span class="menu-text">dashboard</span></a>
             </li>
             <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'settings') === 0 ? 'menu-item-active' : '' }}"
                 aria-haspopup="true">
@@ -43,7 +43,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><span class="menu-text">{{__('sidebar.settings')}}</span></a>
+                    </span><span class="menu-text">settings</span></a>
             </li>
 
             <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'sponsors') === 0 ? 'menu-item-active' : '' }}"

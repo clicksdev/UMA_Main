@@ -60,10 +60,10 @@ createApp({
     data() {
         return {
             id: '{{ $sponsor->id }}',
-            name: '{{ $sponsor->name }}',
-            link: '{{ $sponsor->link }}',
+            name: @json($sponsor->name)',
+            link: @json($sponsor->link)',
             thumbnail: null,
-            thumbnail_path: '{{ $sponsor->image_path }}',
+            thumbnail_path: @json($sponsor->image_path),
         }
     },
     methods: {
