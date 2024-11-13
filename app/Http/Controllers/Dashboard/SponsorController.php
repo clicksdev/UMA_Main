@@ -120,7 +120,6 @@ class SponsorController extends Controller
         $sponsor = Sponsor::find($request->id);
 
         if ($request->image) {
-            $this->deleteFile(base_path($sponsor->image_path));
             $image = $this->saveImg($request->image, 'public/images/uploads/Sponsors', time());
             $sponsor->image_path= '/images/uploads/Sponsors/' . $image;
         }
