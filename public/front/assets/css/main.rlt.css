@@ -3228,6 +3228,7 @@ body.ar * {
         opacity: 1 !important;
         animation: none;
         font-size: 20px;
+        font-weight: bold;
     }
 
     .more .programs-more {

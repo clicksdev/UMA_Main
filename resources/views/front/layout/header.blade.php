@@ -71,9 +71,9 @@
                 </button>
                 <div class="language-switcher">
                     @if(App::getLocale() == 'ar')
-                    <a href="{{ route('set.language', 'en') }}" style='color: #000;border: 1px solid;padding: 4px 17px;'>English</a>
+                    <a href="{{ route('set.language', 'en') }}" style='color: #000;border: 1px solid;padding: 4px 17px;  font-weight: bold;'>English</a>
                     @else
-                    <a href="{{ route('set.language', 'ar') }}" style='color: #000;  font-family: "Cairo", sans-serif;border: 1px solid;padding: 4px 17px;'>العربية</a>
+                    <a href="{{ route('set.language', 'ar') }}" style='color: #000;  font-family: "Cairo", sans-serif;border: 1px solid;padding: 4px 17px;  font-weight: bold;'>العربية</a>
                     @endif
                 </div>
             </div>

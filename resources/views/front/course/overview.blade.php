@@ -73,7 +73,7 @@
                     @endforeach
                 @endif
                 <div class="content_wapper level_{{ $index }}_content">
-                    <div class="options_wrapper">
+                    <div class="options_wrapper" style="  margin-top: 42px;">
                         <h3>{{ __('messages.Information') }} :</h3>
                         <div class="info overview_content">
                             <span>
@@ -140,7 +140,7 @@
                                 </div>
                             @endforeach
                         @endif
-                        <div class="info-menu">
+                        <div class="info-menu" style="display: none">
                             <div class="head overview_content" style="display: none"></div>
                             @if ($course->levels->count() > 0)
                                 @foreach ($course->levels as $index => $level)
