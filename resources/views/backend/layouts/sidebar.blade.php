@@ -253,7 +253,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><span class="menu-text">{{__('sidebar.admins')}}</span></a>
+                    </span><span class="menu-text">admins</span></a>
             </li>
         </ul>
         <!--end::Menu Nav-->
