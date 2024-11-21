@@ -343,8 +343,10 @@ class CourseController extends Controller
         }
     }
 
-    public function destroy(Course $course)
+    public function destroy($id)
     {
+        $course = Course::withoutGlobalScope('excludeWorkShop')->where('course_type', 'work_shop')->find($id);
+
         $original = $course;
 
         $course->levels()->delete();
