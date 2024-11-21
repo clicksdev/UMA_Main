@@ -37,7 +37,7 @@ $course_patch = $course->patches()->get()->mapWithKeys(function ($patch) {
             <div class="container">
                 <form ref="form" @submit.prevent="handleSubmit" action="{{route('course.apply')}}" enctype="multipart/form-data" method="POST" style="background: #ECECEC; width: 100%">
                     @csrf
-                    <input type="hidden" name="course" value="{{$course['title' . (App::getLocale() == 'ar' ? '_ar' : '')] . " - " . $course->patch}}">
+                    <input type="hidden" name="course" value="{{$course['title' . (App::getLocale() == 'ar' ? '_ar' : '')]}}">
                     <div class="head_form step1" :class="step == 2 ? 'step2' : (step == 3 ? 'step2 step3' : '')">
                         <div class="step">1</div>
                         <span></span>
