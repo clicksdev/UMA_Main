@@ -1,0 +1,20 @@
+<?php
+return [
+    'title'                 => 'Home Page',
+    'total_users'           => 'Total Number Of Users',
+    'total_stores'          => 'Total Number Of Stores',
+    'total_custom_requests' => 'Total Number Of Custom Orders',
+    'total_orders'          => 'Total Number Of Orders',
+    'total_products'        => 'Total Number Of Products',
+    'total_categories'      => 'Total Number Of Stores Categories',
+    'total_bids'            => 'Total Number Of Bids',
+    'total_coins_orders'    => 'Total Number Of Purchase Coins',
+    'total_coins_revenues'  => 'Total Purchasing Coins Revenues',
+    'total_orders_revenues' => 'Total Orders Revenues',
+    'total_revenues'        => 'Total Platform Revenues',
+    'last_users'            => 'Last 5 Users',
+    'last_orders'           => 'Last 5 Orders',
+    'last_custom_requests'  => 'Last 5 Custom Orders',
+    'last_products'         => 'Last 5 Products',
+    'last_stores'           => 'Last 5 Stores',
+];

@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'title'         => 'Manage Users',
+    'add_new'       => 'Add New',
+    'name'          => 'Name',
+    'email'         => 'E-mail Address',
+    'phone'         => 'Phone Number',
+    'created_at'    => 'Add Date',
+    'actions'       => 'Actions',
+    'edit'          => 'Edit Data',
+    'show'          => 'Show Data',
+    'delete'        => 'Delete',
+    'edit_user'     => 'Edit Data Of User',
+    'user_details'  => 'Details Of User',
+    'password'      => 'Password',
+    'phone_num'     => 'Phone Number',
+    'orders_count'  => 'Total Number Of Orders',
+    'join_since'    => 'join since',
+    'basic_data'    => 'Basic User Data',
+    'address_data'  => 'User Address Data',
+    'no_addresses_to_show' => 'No Addresses To Display',
+    'address_title' => 'Title',
+    'address'       => 'Address',
+    'city'          => 'City',
+    'area'          => 'Area',
+    'lat'           => 'Lat',
+    'lng'           => 'Lng',
+
+];

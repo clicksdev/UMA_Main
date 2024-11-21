@@ -1,0 +1,20 @@
+<?php
+return [
+    'title'                 => 'الرئيسية',
+    'total_users'           => 'إجمالى عدد المستخدمين',
+    'total_stores'          => 'إجمالى عدد المتاجر',
+    'total_custom_requests' => 'إجمالى عدد الطلبات المخصصة',
+    'total_orders'          => 'اجمالي الطلبات',
+    'total_products'        => 'إجمالى عدد المنتجات',
+    'total_categories'      => 'إجمالى عدد تصنيفات المتاجر',
+    'total_bids'            => 'إجمالى عدد المزايدات',
+    'total_coins_orders'    => 'إجمالى عدد طلبات شراء الكوينز',
+    'total_coins_revenues'  => 'إجمالى ايرادات شراء الكوينز',
+    'total_orders_revenues' => 'إجمالى ايرادات الطلبات',
+    'total_revenues'        => 'إجمالى ايرادات المنصة',
+    'last_users'            => 'آخر 5 مستخدمين',
+    'last_orders'           => 'آخر 5 طلبات',
+    'last_custom_requests'  => 'آخر 5 طلبات مخصصة',
+    'last_products'         => 'آخر 5 منتجات',
+    'last_stores'           => 'آخر 5 متاجر',
+];
