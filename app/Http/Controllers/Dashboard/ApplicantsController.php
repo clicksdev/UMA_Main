@@ -73,6 +73,11 @@ class ApplicantsController extends Controller
         if ($request->filled('course')) {
             $applicants->where('course', $request->course);
         }
+        if ($request->filled('course_type')) {
+            $applicants->where('course_type', 'work_shop');
+        } else {
+            $applicants->where('course_type', null);
+        }
         if ($request->filled('gender')) {
             $applicants->where('gender', $request->gender);
         }

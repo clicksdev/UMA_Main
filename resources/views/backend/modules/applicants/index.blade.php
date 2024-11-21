@@ -264,6 +264,7 @@ $(document).ready(function () {
                 d.job = $('#job_filter').val();
                 d.prev_education = $('#prev_education_filter').val();
                 d.subject_studied = $('#subject_studied_filter').val();
+                d.course_type = "{{request()->get('course_type')}}";
             }
         },
         columns: [

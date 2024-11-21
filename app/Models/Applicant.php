@@ -13,6 +13,7 @@ class Applicant extends Model
         "name",
         "phone",
         "email",
+        "course_type",
         "course",
         "course_patch",
         "rate",

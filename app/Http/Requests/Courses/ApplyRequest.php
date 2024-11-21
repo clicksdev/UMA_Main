@@ -25,6 +25,7 @@ class ApplyRequest extends FormRequest
     {
         return [
             'course_patch'      => 'nullable|string',
+            'course_type'      => 'nullable',
             'name'      => 'required|string',
             'phone'     => 'required|string',
             'email'     => 'required|email',
