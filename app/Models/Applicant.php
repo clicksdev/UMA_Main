@@ -14,6 +14,7 @@ class Applicant extends Model
         "phone",
         "email",
         "course",
+        "course_patch",
         "rate",
         "dob",
         'gender',

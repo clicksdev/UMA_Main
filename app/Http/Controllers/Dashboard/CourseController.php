@@ -11,6 +11,7 @@ use App\Models\Objective;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\Courses\CreateUpdateCourseRequest;
 use App\Models\CoursesFAQ;
+use App\Models\Patch;
 use App\Models\Question;
 use App\Models\QuestionsOption;
 use Yajra\DataTables\Facades\DataTables;
@@ -66,6 +67,15 @@ class CourseController extends Controller
                             ]);
                         }
                     }
+                }
+            }
+            if ($request->patches) {
+                foreach ($request->patches as $obj) {
+                    $patch = Patch::create([
+                        "start_at" => $obj['start_at'],
+                        "end_at" => $obj['end_at'],
+                        "course_id" => $course->id
+                    ]);
                 }
             }
 
@@ -190,6 +200,18 @@ class CourseController extends Controller
                                 ]);
                             }
                         }
+                    }
+                }
+
+                $course->patches()->delete();
+
+                if ($request->patches) {
+                    foreach ($request->patches as $obj) {
+                        $patch = Patch::create([
+                            "start_at" => $obj['start_at'],
+                            "end_at" => $obj['end_at'],
+                            "course_id" => $course->id
+                        ]);
                     }
                 }
 

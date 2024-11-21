@@ -66,18 +66,41 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label text-right col-lg-3 col-sm-12">Patch *</label>
+                        <label class="col-form-label text-right col-lg-3 col-sm-12">Patches *</label>
                         <div class="col-lg-6">
-                            <select class="form-control" name="patch" v-model="patch">
-                                <option value="" disabled>Select Patch</option>
-                                <option v-for="num in 10" :key="num" :value="num">
-                                    @{{ num }}</option>
-                            </select>
-                            <div class="invalid-feedback" :style="{ display: this.errors['patch'] ? 'block' : null }">
-                                @{{ this.errors['patch'] ? this.errors['patch'][0] : '' }}
+                          <div v-for="(patch, index) in patches" :key="index" class="patch-item mb-3 d-flex align-items-end">
+                            <div class="mr-2">
+                              <label class="mr-2">Start Date</label>
+                              <input
+                                type="date"
+                                v-model="patch.start_at"
+                                class="form-control form-control-sm mr-2"
+                              />
                             </div>
+                            <div class="mr-2">
+                              <label class="mr-2">End Date</label>
+                              <input
+                                type="date"
+                                v-model="patch.end_at"
+                                class="form-control form-control-sm mr-2"
+                              />
+                            </div>
+                            <button
+                              @click="removePatch(index)"
+                              class="btn btn-danger btn-sm"
+                            >
+                              Remove
+                            </button>
+                          </div>
+
+                          <button
+                            @click="addPatch"
+                            class="btn btn-primary mt-2"
+                          >
+                            Add Patch
+                          </button>
                         </div>
-                    </div>
+                      </div>
 
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Brief</label>

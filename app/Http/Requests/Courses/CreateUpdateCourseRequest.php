@@ -44,6 +44,10 @@ class CreateUpdateCourseRequest extends FormRequest
             'levels.*.num_sessions'     => 'required',
             'faq_questions'     => 'nullable',
             'faq_type'     => 'nullable',
+            'patches' => 'array',
+            'patches.*.start_at' => 'required|date',
+            'patches.*.id' => 'nullable',
+            'patches.*.end_at' => 'required|date|after_or_equal:patches.*.start_at',
             // 'levels.*.image'            => 'required',
         ];
     }

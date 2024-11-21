@@ -45,6 +45,10 @@ class Course extends Model implements HasMedia
     {
         return $this->hasMany('App\Models\Question', 'course_id');
     }
+    public function patches()
+    {
+        return $this->hasMany('App\Models\Patch', 'course_id');
+    }
     public function FAQ()
     {
         return $this->hasMany('App\Models\CoursesFAQ', 'course_id');

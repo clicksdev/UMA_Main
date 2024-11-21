@@ -44,5 +44,6 @@ return [
     "previous"=>  "السابق",
     "next"=>  "التالي",
     "overview" => "عرض الدورة",
+    "choose_patch"=>  "اختر فترة الالتحاق",
     "apply"=>  "تقديم"
 ];

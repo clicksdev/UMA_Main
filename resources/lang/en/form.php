@@ -44,5 +44,6 @@ return [
     'video_size_limit' => 'Video size cannot exceed 100MB',
     "previous"=>  "Previous",
     "next"=>  "Next",
+    "choose_patch"=>  "Choose a patch",
     "apply"=>  "Apply"
 ];

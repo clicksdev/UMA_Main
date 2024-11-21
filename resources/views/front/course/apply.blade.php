@@ -1,6 +1,18 @@
 @extends('front.layout.master')
 @section('content')
-    @if($course)
+@if($course)
+@php
+$course_patch = $course->patches()->get()->mapWithKeys(function ($patch) {
+    // Format start_at and end_at to 'd M Y' (e.g., 21 Nov 2024)
+    $formattedStart = Carbon\Carbon::parse($patch->start_at)->format('d M Y');
+    $formattedEnd = Carbon\Carbon::parse($patch->end_at)->format('d M Y');
+
+    // Use the formatted date range as both key and value
+    $dateRangeText = "{$formattedStart} to {$formattedEnd}";
+
+    return [$dateRangeText => $dateRangeText];
+});
+@endphp
         <div class="page_path">
             <div class="container">
                 <a href="/">
@@ -127,6 +139,10 @@
                                 <div class="invalid-feedback">{{ $errors->first('duration_of_employment') }}</div>
                             </div>
                             <div class="input-group">
+                                <label for="course_patch">{{ __('form.choose_patch') }}</label>
+                                {{ Form::select('course_patch', $course_patch, old('course_patch'), ['placeholder' => __('form.choose_patch'), 'class' => $errors->has('course_patch') ? 'form-control is-invalid' : 'form-control']) }}
+                                <div class="invalid-feedback">{{ $errors->first('course_patch') }}</div>
+                            </div>                            <div class="input-group">
                                 <label for="subject_studied">{{ __('form.relevant_courses') }}</label>
                                 {{ Form::text('subject_studied', old('subject_studied'), ['placeholder' => __('form.relevant_courses_placeholder'), 'class' => $errors->has('subject_studied') ? 'form-control is-invalid' : 'form-control']) }}
                                 <div class="invalid-feedback">{{ $errors->first('subject_studied') }}</div>

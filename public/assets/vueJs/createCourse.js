@@ -30,11 +30,38 @@ createApp({
             errors: [],
             current_options: [], // Array to hold MCQ options
             faqType: 1, // Default FAQ type is 1 (Default)
-            faqs: [] // Array to hold custom FAQs
+            faqs: [],
+            patches: [
+                { start_at: '', end_at: '' }
+            ]
         }
     },
     methods: {
         // Add a new empty FAQ
+        addPatch() {
+            // Add a new patch with empty start and end dates
+            this.patches.push({ start_at: '', end_at: '' });
+        },
+        removePatch(index) {
+            // Remove patch at specific index
+            // Ensure at least one patch always remains
+            if (this.patches.length > 1) {
+                this.patches.splice(index, 1);
+            } else {
+                alert('At least one patch must remain');
+            }
+        },
+        validatePatches() {
+            // Optional method to validate patches
+            return this.patches.every(patch =>
+                patch.start_at && patch.end_at &&
+                new Date(patch.start_at) <= new Date(patch.end_at)
+            );
+        },
+        getPatchesData() {
+            // Method to get current patches data (can be used by parent component)
+            return this.patches;
+        },
         addFaq() {
             this.faqs.push({ question: '', answer: '', question_ar: '', answer_ar: "" });
         },
@@ -168,6 +195,7 @@ createApp({
                         patch: this.patch,
                         faq_questions: this.faqs,
                         faq_type: this.faqType,
+                        patches: this.patches,
                         levels: this.levels
                     },
                         {

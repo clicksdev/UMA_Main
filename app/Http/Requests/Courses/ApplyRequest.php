@@ -24,6 +24,7 @@ class ApplyRequest extends FormRequest
     public function rules()
     {
         return [
+            'course_patch'      => 'nullable|string',
             'name'      => 'required|string',
             'phone'     => 'required|string',
             'email'     => 'required|email',

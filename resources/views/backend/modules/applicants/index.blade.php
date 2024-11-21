@@ -187,6 +187,7 @@
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>Course</th>
+                                    <th>Course Patch</th>
                                     <th>Created at</th>
                                     <th>Rate</th>
                                 </tr>
@@ -271,6 +272,7 @@ $(document).ready(function () {
             {data: 'phone'},
             {data: 'email'},
             {data: 'course'},
+            {data: 'course_patch'},
             {data: 'created_at'},
             {data: 'rate'},
         ],
