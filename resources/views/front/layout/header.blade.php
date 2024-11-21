@@ -15,6 +15,7 @@
     </div> --}}
     @php
         $latest_courses = App\Models\Course::latest()->get();
+        $latest_work_shops = App\Models\Course::withoutGlobalScope('excludeWorkShop')->where('course_type', 'work_shop')->latest()->get();
     @endphp
     <nav>
         <div class="container" style="display: flex;justify-content: space-between">
@@ -66,6 +67,28 @@
                                 @endforeach
                             </ul>
                         </li>
+                        @if((isset($settingsArray['isShowOurWorkShops']) && $settingsArray['isShowOurWorkShops']["value"]) || !isset($settingsArray['isShowOurWorkShops']))
+                        <li>
+                            <a href="/our-work-shops" class="our-programs-link">
+                                {{ __('home.work_shops') }}
+                                <div class="showed">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M6 9l6 6l6 -6"></path>
+                                    </svg>
+                                </div>
+                                <div class="hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M6 15l6 -6l6 6"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="programs-more" style="padding-left: 30px;font-size: 14px;list-style: disc;display:none">
+                                @foreach ($latest_work_shops as $course)
+                                <li><a href="{{$course->isReady ? '/course/' . $course->id : "#"}}">{{ $course['title' . (App::getLocale() == 'ar' ? "_ar" : '')] }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        @endif
                         <li><a href="/contact">{{ __('home.contact') }}</a></li>
                     </ul>
                 </button>

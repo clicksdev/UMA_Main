@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function courseDetails($id)
     {
-        $course = Course::find($id);
+        $course = Course::withoutGlobalScope('excludeWorkShop')->find($id);
 
         $faqs  = Faq::query()->get();
 
@@ -49,7 +49,7 @@ class HomeController extends Controller
 
     public function courseApplyIndex($id)
     {
-        $course = Course::find($id);
+        $course = Course::withoutGlobalScope('excludeWorkShop')->find($id);
 
         $faqs  = Faq::query()->get();
 
@@ -77,7 +77,7 @@ class HomeController extends Controller
     public function moveToTop($id)
     {
         // Find the course by its ID
-        $course = Course::find($id);
+        $course = Course::withoutGlobalScope('excludeWorkShop')->find($id);
 
         if (!$course) {
             return response()->json(['message' => 'Course not found'], 404);
@@ -86,7 +86,7 @@ class HomeController extends Controller
         // Start a transaction to ensure data integrity
         DB::transaction(function () use ($course) {
             // Increment the arrangement value for all courses
-            $courses_rest = Course::where('id', '!=', $course->id)->orderBy('home_arrangment', 'asc')
+            $courses_rest = Course::withoutGlobalScope('excludeWorkShop')->where('id', '!=', $course->id)->orderBy('home_arrangment', 'asc')
                   ->get();
 
             $i = 2;

@@ -242,9 +242,9 @@ createApp({
                         }
                     }
                 );
-                if (response.data.status) {
-                    window.location.href = "/admin/courses"
-                }
+                // if (response.data.status) {
+                    window.location.href = this.course.course_type == "work_shop" ? "/admin/work_shops" : "/admin/courses"
+                // }
             } catch (error) {
                 this.errors = error.response.data.errors
             }

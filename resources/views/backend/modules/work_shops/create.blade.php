@@ -1,5 +1,5 @@
 @extends('backend.layouts.layout')
-@section('title', "Add New")
+@section('title', 'Add New')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -10,7 +10,7 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">{{ "Add New" }}</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">Add New</h5>
                         <!--end::Page Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -19,10 +19,10 @@
                                 <a href="{{ route('dashboard.index') }}" class="text-muted">{{ __('home.title') }}</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('courses.index') }}" class="text-muted">Programs</a>
+                                <a href="{{ route('work_shops.index') }}" class="text-muted">Work Shops</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted">{{ "Add New" }}</a>
+                                    <a href="" class="text-muted">Add New</a>
                             </li>
                         </ul>
                         <!--end::Breadcrumb-->
@@ -40,7 +40,7 @@
             <div class="card card-custom">
                 <div class="card-header">
                     <h3 class="card-title">
-                        {{ "Add New" }}
+                        Add New
                     </h3>
                 </div>
                 <div class="card-body">
@@ -53,6 +53,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <input type="hidden" name="course_type" id="course_type" value="work_shop" >
 
                     <div class="form-group row">
                         <label class="col-form-label text-right col-lg-3 col-sm-12">Title (AR) *</label>

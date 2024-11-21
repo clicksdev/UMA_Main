@@ -30,6 +30,11 @@ Route::get('/our-programs', function() {
     return view('front.majors');
 });
 
+Route::get('/our-work-shops', function() {
+    $work_shops = true;
+    return view('front.majors', compact('work_shops'));
+});
+
 Route::get('/admins/moveToTop/{id}', [HomeController::class, 'moveToTop']);
 Route::get('/admins/moveMajorToTop/{id}', [HomeController::class, 'moveMajorToTop']);
 

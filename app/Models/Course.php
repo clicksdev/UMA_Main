@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Level;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Builder;
 
 class Course extends Model implements HasMedia
 {
@@ -26,6 +27,7 @@ class Course extends Model implements HasMedia
         'home_arrangment',
         'doesShow',
         'faq_type',
+        'course_type',
     ];
 
     /**
@@ -53,4 +55,17 @@ class Course extends Model implements HasMedia
     {
         return $this->hasMany('App\Models\CoursesFAQ', 'course_id');
     }
+
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::addGlobalScope('excludeWorkShop', function (Builder $builder) {
+            // Only apply this scope if the user is not an admin
+                $builder->where('course_type',  null);
+        });
+
+    }
+
 }

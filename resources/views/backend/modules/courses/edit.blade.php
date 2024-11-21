@@ -1,5 +1,5 @@
 @extends('backend.layouts.layout')
-@section('title',__('categories.add_new'))
+@section('title',"Edit")
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -10,7 +10,7 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">{{__('categories.add_new')}}</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">{{"Edit"}}</h5>
                         <!--end::Page Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -22,7 +22,7 @@
                                 <a href="{{ route('courses.index') }}" class="text-muted">Programs</a>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted">{{__('categories.add_new')}}</a>
+                                <a href="" class="text-muted">{{"Edit"}}</a>
                             </li>
                         </ul>
                         <!--end::Breadcrumb-->
@@ -40,7 +40,7 @@
             <div class="card card-custom">
                 <div class="card-header">
                     <h3 class="card-title">
-                        {{__('categories.add_new')}}
+                        {{"Edit"}}
                     </h3>
                 </div>
                 <div class="card-body">

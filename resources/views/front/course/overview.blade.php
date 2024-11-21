@@ -191,6 +191,8 @@
 
         @php
             $latest_courses = App\Models\Course::all();
+            if ($course->course_type == 'work_shop')
+            $latest_courses = App\Models\Course::withoutGlobalScope('excludeWorkShop')->where('course_type', 'work_shop')->get();
         @endphp
         @if ($latest_courses->count() > 0)
             <section class="our-major course-overview-our-major">

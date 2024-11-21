@@ -26,6 +26,7 @@ class CreateUpdateCourseRequest extends FormRequest
         return [
             'title'                     => 'required|string|max:255',
             'title_ar'                     => 'required|string|max:255',
+            'course_type'                     => 'nullable',
             'brief'                     => 'max:255',
             'brief_ar'                     => 'max:255',
             'duration'                  => 'required|numeric',

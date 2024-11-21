@@ -4,6 +4,7 @@ return [
     'home' => 'Home',
     'Apply' => 'Apply',
     'programs' => 'Programs',
+    'work_shops' => 'Work Shops',
     'contact' => 'Contact Us',
     'read_biography' => 'Read Chairperson Biography ',
     'uma_vision' => 'UMA Vision',

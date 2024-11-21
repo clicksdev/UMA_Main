@@ -28,6 +28,10 @@ Route::middleware('AdminAuth')->group(function () {
 
     /*****************  Site courses ****************/
     Route::get('courses/dataTable', [CourseController::class, 'dataTable']);
+    Route::get('work_shops/dataTable', [CourseController::class, 'WorkSHopDataTable']);
+    Route::get('work_shops/', [CourseController::class, 'workShopIndex'])->name('work_shops.index');
+    Route::get('work_shops/create', [CourseController::class, 'workShopCreate'])->name('work_shops.create');
+    Route::get('work_shops/edit/{id}', [CourseController::class, 'workShopEdit'])->name('work_shops.edit');
     Route::get('courses/{course}/delete', [CourseController::class, 'destroy'])->name('courses.delete');
     Route::post('courses/store', [CourseController::class, 'store']);
     Route::post('courses/update', [CourseController::class, 'update']);

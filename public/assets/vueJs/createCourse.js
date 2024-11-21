@@ -23,6 +23,7 @@ createApp({
             current_objective_text_ar: "",
             current_type: 1,
             current_note_text: "",
+            course_type: document.getElementById('course_type')?.value || null,
             levels: [
                 {
                 }
@@ -35,6 +36,11 @@ createApp({
                 { start_at: '', end_at: '' }
             ]
         }
+    },
+    created() {
+        setTimeout(() => {
+            this.course_type = document.getElementById('course_type')?.value || null
+        }, 200);
     },
     methods: {
         // Add a new empty FAQ
@@ -196,6 +202,7 @@ createApp({
                         faq_questions: this.faqs,
                         faq_type: this.faqType,
                         patches: this.patches,
+                        course_type: this.course_type,
                         levels: this.levels
                     },
                         {
@@ -205,7 +212,7 @@ createApp({
                         }
                     );
                     if (response.data.status) {
-                        window.location.href = "/admin/courses"
+                        window.location.href = this.course_type == "work_shop" ? "/admin/work_shops" : "/admin/courses"
                     }
                 } catch (error) {
                     this.errors = error.response.data.errors

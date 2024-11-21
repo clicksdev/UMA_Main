@@ -694,6 +694,13 @@
                                     <label class="form-check-label" for="flexCheckChecked2">Show Our Majors?</label>
                                 </div>
                                 <div class="form-check">
+                                    <input type="hidden" name="isShowOurWorkShops" value="0">
+                                    <input class="form-check-input" type="checkbox" name="isShowOurWorkShops"
+                                        id="isShowOurWorkShops" value="1"
+                                        {{ isset($settingsArray['isShowOurWorkShops']) && $settingsArray['isShowOurWorkShops']['value'] == 1 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="isShowOurWorkShops">Show Our Work Shops?</label>
+                                </div>
+                                <div class="form-check">
                                     <input type="hidden" name="isShowPresedintSection" value="0">
                                     <input class="form-check-input" type="checkbox" name="isShowPresedintSection"
                                         id="flexCheckChecked22" value="1"

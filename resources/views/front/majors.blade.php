@@ -3,6 +3,8 @@
 @section('content')
     @php
     $latest_courses = App\Models\Course::latest()->where("doesShow", true)->paginate(16); // 10 courses per page
+    if (isset($work_shops) && $work_shops)
+    $latest_courses = App\Models\Course::withoutGlobalScope('excludeWorkShop')->where('course_type', 'work_shop')->latest()->where("doesShow", true)->paginate(16); // 10 courses per page
     @endphp
     <!-- Bootstrap 4 CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +16,7 @@
                     {{ __('home.our') }}
                     <br>
                     <span>
-                        {{ __('home.programs') }}
+                        {{ isset($work_shops) && $work_shops ? __('home.work_shops') : __('home.programs') }}
                     </span>
                 </h1>
             </div>

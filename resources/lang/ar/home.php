@@ -9,6 +9,7 @@ return [
     'uma_mission' => 'مهمتنـــا',
     'our' => 'جميع',
     'programs' => 'برامجنـا',
+    'work_shops' => 'ورش العمل',
     'logo_short' => 'شعار مختصر',
     'course_image_alt' => 'صورة الدورة',
     'start' => 'يبدأ',

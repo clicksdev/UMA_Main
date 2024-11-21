@@ -28,6 +28,15 @@ class CourseController extends Controller
     {
         return view('backend.modules.courses.create');
     }
+    public function workShopIndex()
+    {
+        return view('backend.modules.work_shops.index');
+    }
+
+    public function workShopCreate()
+    {
+        return view('backend.modules.work_shops.create');
+    }
 
     public function store(CreateUpdateCourseRequest $request)
     {
@@ -137,6 +146,15 @@ class CourseController extends Controller
         }
         return view('backend.modules.courses.edit', compact(['course', 'levels']));
     }
+    public function workShopEdit($id)
+    {
+        $course = Course::withoutGlobalScope('excludeWorkShop')->where('course_type', 'work_shop')->find($id);
+        $levels = $course->levels()->with("objectives")->get();
+        foreach ($levels as $level) {
+            $level->thumbnail = $level->hasMedia() ? $level->getFirstMediaUrl() : null;
+        }
+        return view('backend.modules.work_shops.edit', compact(['course', 'levels']));
+    }
     public function update(CreateUpdateCourseRequest $request)
     {
         // Start a database transaction
@@ -145,7 +163,7 @@ class CourseController extends Controller
 
         try {
             $validatedData = $request->validated();
-            $course = Course::find($request->id ?? 0);
+            $course = Course::withoutGlobalScope('excludeWorkShop')->find($request->id ?? 0);
 
             $original = $course;
 
@@ -350,6 +368,30 @@ class CourseController extends Controller
             })
             ->addColumn('actions', function ($model) {
                 return '<a href="' . route('courses.edit', $model->id) . '" class="btn btn-sm btn-clean btn-icon" title="edit">
+								<i class="la la-edit icon-xl"></i>
+							</a>' .
+                    '<a onClick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('courses.delete', $model->id) . '" class="btn btn-sm btn-clean btn-icon" title="delete">
+								<i class="la la-trash icon-xl"></i>
+							</a>';
+            })
+            ->rawColumns(['actions', 'image'])->make(true);
+    }
+
+    public function WorkSHopDataTable()
+    {
+        $courses = Course::query();
+
+        $courses->withoutGlobalScope('excludeWorkShop')->where('course_type', 'work_shop');
+
+        return DataTables::of($courses)
+            ->addColumn('image', function ($model) {
+                return '<img src="' . $model->getFirstMediaUrl() . '" alt="Course Image" width="50" height="50">';
+            })
+            ->addColumn('created_at', function ($model) {
+                return $model->created_at->format('Y-m-d H:i:s');
+            })
+            ->addColumn('actions', function ($model) {
+                return '<a href="' . route('work_shops.edit', $model->id) . '" class="btn btn-sm btn-clean btn-icon" title="edit">
 								<i class="la la-edit icon-xl"></i>
 							</a>' .
                     '<a onClick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('courses.delete', $model->id) . '" class="btn btn-sm btn-clean btn-icon" title="delete">
