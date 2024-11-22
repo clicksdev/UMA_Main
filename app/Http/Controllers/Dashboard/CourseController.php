@@ -404,7 +404,7 @@ class CourseController extends Controller
     }
 
     public function toggleShow($id) {
-        $course = Course::find($id);
+        $course = Course::withoutGlobalScope('excludeWorkShop')->find($id);
         $course->doesShow = !$course->doesShow;
         $course->save();
 
