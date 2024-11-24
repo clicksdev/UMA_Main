@@ -67,9 +67,9 @@
                     </span><span class="menu-text">Our Parteners</span></a>
             </li>
 
-            <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'work_shops') === 0 ? 'menu-item-active' : '' }}"
+            <li class="menu-item menu-item {{ strpos(Route::currentRouteName(), 'courses') === 0 ? 'menu-item-active' : '' }}"
                 aria-haspopup="true">
-                <a href="{{ route('work_shops.index')}}" class="menu-link"><span class="svg-icon menu-icon">
+                <a href="{{ route('courses.index')}}" class="menu-link"><span class="svg-icon menu-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg--><svg
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="24px"
