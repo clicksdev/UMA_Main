@@ -34,4 +34,16 @@
     </style>
     <title>{{ $settingsArray['site_name']['value'] }}</title>
     <link rel="shortcut icon" href="{{ asset('front/assets/imgs/favicon.png') }}" type="image/x-icon">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSTYYKVTH8"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-HSTYYKVTH8');
+        </script>
 </head>
